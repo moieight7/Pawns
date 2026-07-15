@@ -10,13 +10,15 @@ public class Ability
 	public string description;
 	public AbilityType type;
 
+	public float inBetweenChargesCooldownTime;
 	public float cooldownTime;
 
+	public int numberOfCharges;
 	public int maxCharges;
 
-	public UltEvent OnAbilityTriggered, OnAbilityCoolDown;
+	public UltEvent OnAbilityTriggeredEvent, OnAbilityCoolDownEvent;
 
-	private bool usable = true;
+	[SerializeField] private bool usable = true;
     public bool GetUsable() { return usable; }
 
     /*public string DisplayName { get { SetName(true); return name; } private set { } }
@@ -25,25 +27,45 @@ public class Ability
 
     public Ability() { }
 
-	public void TriggerAbility() 
+    public delegate void OnAbilityTriggeredAction();
+    public static event OnAbilityTriggeredAction OnAbilityTriggered;
+
+    public delegate void OnAbilityChargeCooldownAction();
+    public static event OnAbilityChargeCooldownAction OnAbilityChargeCooldown;
+
+    public void TriggerAbility() 
 	{
-		Debug.Log(AbilityBehaviorManager.AbilityTriggerLog(name));
-        OnAbilityTriggered.Invoke();
+		if (numberOfCharges <= 0 || !usable) return;
+
+		numberOfCharges--;
+        if (maxCharges > 1) AbilityCooldownManager.instance.TriggerAbilityInBetweenChargesCooldown(this);
         AbilityCooldownManager.instance.TriggerAbilityCooldown(this);
+
+        Debug.Log(AbilityBehaviorManager.AbilityTriggerLog(this));
+        OnAbilityTriggered.Invoke();
+        OnAbilityTriggeredEvent.Invoke();
     }
 
     public void FinishAbilityCooldown() 
 	{
-        Debug.Log(AbilityBehaviorManager.CooldownFinishLog(name));
-        OnAbilityCoolDown.Invoke();
+        Debug.Log(AbilityBehaviorManager.CooldownFinishLog(this));
+        OnAbilityChargeCooldown.Invoke();
+        OnAbilityCoolDownEvent.Invoke();
     }
 
 	public IEnumerator Cooldown()
 	{
-		usable = false;
 		yield return new WaitForSeconds(cooldownTime);
-		usable = true;
-		FinishAbilityCooldown();
+        numberOfCharges++;
+        numberOfCharges = Mathf.Clamp(numberOfCharges, 0, maxCharges);
+        FinishAbilityCooldown();
+    }
+
+    public IEnumerator InBetweenChargesCooldown()
+    {
+        usable = false;
+        yield return new WaitForSeconds(inBetweenChargesCooldownTime);
+        if (numberOfCharges > 0) usable = true;
     }
 }
 

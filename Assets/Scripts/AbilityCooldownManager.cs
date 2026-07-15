@@ -23,4 +23,9 @@ public class AbilityCooldownManager : MonoBehaviour
     {
         StartCoroutine(ability.Cooldown());
     }
+
+    public void TriggerAbilityInBetweenChargesCooldown(Ability ability)
+    {
+        StartCoroutine(ability.InBetweenChargesCooldown());
+    }
 }

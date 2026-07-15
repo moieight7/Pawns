@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerAbilities : MonoBehaviour
@@ -9,8 +10,13 @@ public class PlayerAbilities : MonoBehaviour
 
     public PlayerAbility primary, secondary, utility, special;
 
+    public TextMeshProUGUI primaryAbilityChargeNum, secondaryAbilityChargeNum, utilityAbilityChargeNum, specialAbilityChargeNum;
+
     void Start()
     {
+        Ability.OnAbilityTriggered += OnAbilityTriggered;
+        Ability.OnAbilityChargeCooldown += OnAbilityChargeCooldown;
+
         SetAbilities();
     }
 
@@ -28,6 +34,21 @@ public class PlayerAbilities : MonoBehaviour
         secondary = FindAbilityByType(AbilityType.Secondary);
         utility = FindAbilityByType(AbilityType.Utility);
         special = FindAbilityByType(AbilityType.Special);
+
+        primary.numberOfCharges = primary.maxCharges;
+        secondary.numberOfCharges = secondary.maxCharges;
+        utility.numberOfCharges = utility.maxCharges;
+        special.numberOfCharges = special.maxCharges;
+
+        SetAbilityNumText();
+    }
+
+    private void SetAbilityNumText()
+    {
+        primaryAbilityChargeNum.text = primary.numberOfCharges.ToString();
+        secondaryAbilityChargeNum.text = secondary.numberOfCharges.ToString();
+        utilityAbilityChargeNum.text = utility.numberOfCharges.ToString();
+        specialAbilityChargeNum.text = special.numberOfCharges.ToString();
     }
 
     private PlayerAbility FindAbilityByType(AbilityType type)
@@ -35,6 +56,18 @@ public class PlayerAbilities : MonoBehaviour
         PlayerAbility playerAbility = playerAbilities.Find(x => x.type == type);
         if (playerAbility == null) return null;
         else return playerAbility;
+    }
+
+    private void OnAbilityTriggered()
+    {
+        Debug.Log("OnAbilityTriggered");
+        SetAbilityNumText();
+    }
+
+    private void OnAbilityChargeCooldown()
+    {
+        Debug.Log("OnAbilityChargeCooldown");
+        SetAbilityNumText();
     }
 }
 
