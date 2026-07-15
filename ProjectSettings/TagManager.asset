@@ -41,6 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: CameraBackground
+    uniqueID: 3826226687
+    locked: 0
   - name: Floor
     uniqueID: 1156878781
     locked: 0
