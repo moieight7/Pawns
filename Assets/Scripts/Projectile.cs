@@ -26,18 +26,9 @@ public class Projectile : MonoBehaviour
         
     }
 
-    public void SetDirection()
+    public void SetDirection(Vector2 direction, float rotationZ)
     {
-        Vector3 diff = target - sender.position;
-        diff.Normalize();
-        float rotationZ = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
-
-        float distance = diff.magnitude;
-        Vector2 direction = diff / distance;
-        direction.Normalize();
-
         gameObject.transform.rotation = Quaternion.Euler(0f, 0f, rotationZ);
-
         GetComponent<Rigidbody2D>().velocity = direction * speed;
     }
 }

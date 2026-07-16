@@ -34,7 +34,16 @@ public static class AbilityBehaviorManager
 
             projectileComponent.sender = caster.firePoint;
             projectileComponent.target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            projectileComponent.SetDirection();
+
+            Vector3 diff = Camera.main.ScreenToWorldPoint(Input.mousePosition) - caster.firePoint.position;
+            diff.Normalize();
+            float rotationZ = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
+
+            float distance = diff.magnitude;
+            Vector2 direction = diff / distance;
+            direction.Normalize();
+
+            projectileComponent.SetDirection(direction, rotationZ);
         }
         else if (caster.type == EntityType.Enemy)
         {
@@ -43,9 +52,42 @@ public static class AbilityBehaviorManager
         else Debug.LogError("AbilityBehaviorManager has a defined caster with an invalid EntityType");
     }
 
-    public static void TestSecondary_UseEffect()
+    public static void TestSecondary_UseEffect(Entity caster, GameObject bullet, int numberOfBullets = 3, float bulletSpread = 30)
     {
+        Debug.Log("TestPrimary_UseEffect");
+        Debug.Log(caster.name);
 
+        if (caster.type == EntityType.Player)
+        {
+            for (int i = 0; i < numberOfBullets; i++)
+            {
+                GameObject projectile = GameObject.Instantiate(bullet, caster.firePoint.transform.position, Quaternion.Euler(0f, 0f, 0f));
+
+                Projectile projectileComponent = projectile.GetComponent<Projectile>();
+
+                projectileComponent.sender = caster.firePoint;
+                projectileComponent.target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+                Vector3 diff = Camera.main.ScreenToWorldPoint(Input.mousePosition) - caster.firePoint.position;
+                diff.Normalize();
+                float rotationZ = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
+
+                float distance = diff.magnitude;
+                Vector2 direction = diff / distance;
+                direction.Normalize();
+
+                Quaternion rot = Quaternion.AngleAxis(0f - bulletSpread + (bulletSpread * i), Vector3.forward);
+
+                direction = rot * direction;
+
+                projectileComponent.SetDirection(direction, rotationZ);
+            }
+        }
+        else if (caster.type == EntityType.Enemy)
+        {
+
+        }
+        else Debug.LogError("AbilityBehaviorManager has a defined caster with an invalid EntityType");
     }
 
     public static void TestUtility_UseEffect()
