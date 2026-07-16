@@ -47,6 +47,11 @@ public class PlayerAbilities : MonoBehaviour
 
         SetAbilityNumText();
         SetAbilityIcons();
+
+        primary.caster = gameObject.GetComponent<Entity>();
+        secondary.caster = gameObject.GetComponent<Entity>();
+        utility.caster = gameObject.GetComponent<Entity>();
+        special.caster = gameObject.GetComponent<Entity>();
     }
 
     private void SetAbilityNumText()

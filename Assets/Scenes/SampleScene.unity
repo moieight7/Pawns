@@ -248,6 +248,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24890039e2c833a4abad7fb029035660, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &179007964
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 179007965}
+  m_Layer: 3
+  m_Name: FirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &179007965
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 179007964}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1723039268}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &185489530
 GameObject:
   m_ObjectHideFlags: 0
@@ -13648,6 +13679,7 @@ GameObject:
   - component: {fileID: 1723039269}
   - component: {fileID: 1723039272}
   - component: {fileID: 1723039271}
+  - component: {fileID: 1723039273}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -13719,7 +13751,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 179007965}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1723039269
@@ -13828,8 +13861,30 @@ MonoBehaviour:
     cooldownTime: 1
     numberOfCharges: 0
     maxCharges: 3
+    caster: {fileID: 0}
     OnAbilityTriggeredEvent:
-      _PersistentCalls: []
+      _PersistentCalls:
+      - _Target: {fileID: 0}
+        _MemberName: AbilityBehaviorManager, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+          PublicKeyToken=null.TestPrimary_UseEffect
+        _PersistentArguments:
+        - _Type: 13
+          _Int: 0
+          _String: Entity, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+          _X: 0
+          _Y: 0
+          _Z: 0
+          _W: 0
+          _Object: {fileID: 0}
+        - _Type: 13
+          _Int: 0
+          _String: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          _X: 0
+          _Y: 0
+          _Z: 0
+          _W: 0
+          _Object: {fileID: 41337451440972637, guid: ff7ee0741d2feee4ab9e70ef3437a733, type: 3}
     OnAbilityCoolDownEvent:
       _PersistentCalls: []
     usable: 1
@@ -13841,6 +13896,7 @@ MonoBehaviour:
     cooldownTime: 2
     numberOfCharges: 0
     maxCharges: 2
+    caster: {fileID: 0}
     OnAbilityTriggeredEvent:
       _PersistentCalls: []
     OnAbilityCoolDownEvent:
@@ -13854,6 +13910,7 @@ MonoBehaviour:
     cooldownTime: 4
     numberOfCharges: 0
     maxCharges: 1
+    caster: {fileID: 0}
     OnAbilityTriggeredEvent:
       _PersistentCalls: []
     OnAbilityCoolDownEvent:
@@ -13867,6 +13924,7 @@ MonoBehaviour:
     cooldownTime: 10
     numberOfCharges: 0
     maxCharges: 1
+    caster: {fileID: 0}
     OnAbilityTriggeredEvent:
       _PersistentCalls: []
     OnAbilityCoolDownEvent:
@@ -13885,6 +13943,7 @@ MonoBehaviour:
     cooldownTime: 0
     numberOfCharges: 0
     maxCharges: 0
+    caster: {fileID: 0}
     OnAbilityTriggeredEvent:
       _PersistentCalls: []
     OnAbilityCoolDownEvent:
@@ -13899,6 +13958,7 @@ MonoBehaviour:
     cooldownTime: 0
     numberOfCharges: 0
     maxCharges: 0
+    caster: {fileID: 0}
     OnAbilityTriggeredEvent:
       _PersistentCalls: []
     OnAbilityCoolDownEvent:
@@ -13913,6 +13973,7 @@ MonoBehaviour:
     cooldownTime: 0
     numberOfCharges: 0
     maxCharges: 0
+    caster: {fileID: 0}
     OnAbilityTriggeredEvent:
       _PersistentCalls: []
     OnAbilityCoolDownEvent:
@@ -13927,6 +13988,7 @@ MonoBehaviour:
     cooldownTime: 0
     numberOfCharges: 0
     maxCharges: 0
+    caster: {fileID: 0}
     OnAbilityTriggeredEvent:
       _PersistentCalls: []
     OnAbilityCoolDownEvent:
@@ -13944,6 +14006,21 @@ MonoBehaviour:
   secondaryAbilityChargeNum: {fileID: 2112340141}
   utilityAbilityChargeNum: {fileID: 440517642}
   specialAbilityChargeNum: {fileID: 625142314}
+--- !u!114 &1723039273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1723039266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf785419dc87e37479139664762f3f10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  type: 1
+  firePoint: {fileID: 179007965}
 --- !u!1 &1762802331
 GameObject:
   m_ObjectHideFlags: 0
@@ -14350,6 +14427,67 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2112340139}
   m_CullTransparentMesh: 1
+--- !u!1001 &8320491782325749225
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 41337451440972637, guid: ff7ee0741d2feee4ab9e70ef3437a733, type: 3}
+      propertyPath: m_Name
+      value: TestBullet
+      objectReference: {fileID: 0}
+    - target: {fileID: 41337451440972637, guid: ff7ee0741d2feee4ab9e70ef3437a733, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6656060860156164217, guid: ff7ee0741d2feee4ab9e70ef3437a733, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6656060860156164217, guid: ff7ee0741d2feee4ab9e70ef3437a733, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.00000011920929
+      objectReference: {fileID: 0}
+    - target: {fileID: 6656060860156164217, guid: ff7ee0741d2feee4ab9e70ef3437a733, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6656060860156164217, guid: ff7ee0741d2feee4ab9e70ef3437a733, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6656060860156164217, guid: ff7ee0741d2feee4ab9e70ef3437a733, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6656060860156164217, guid: ff7ee0741d2feee4ab9e70ef3437a733, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6656060860156164217, guid: ff7ee0741d2feee4ab9e70ef3437a733, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6656060860156164217, guid: ff7ee0741d2feee4ab9e70ef3437a733, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6656060860156164217, guid: ff7ee0741d2feee4ab9e70ef3437a733, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6656060860156164217, guid: ff7ee0741d2feee4ab9e70ef3437a733, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ff7ee0741d2feee4ab9e70ef3437a733, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -14364,3 +14502,4 @@ SceneRoots:
   - {fileID: 185489531}
   - {fileID: 1491365597}
   - {fileID: 969373238}
+  - {fileID: 8320491782325749225}

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using UltEvents;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -16,6 +17,8 @@ public class Ability
 
 	public int numberOfCharges;
 	public int maxCharges;
+
+    [HideInInspector] public Entity caster;
 
 	public UltEvent OnAbilityTriggeredEvent, OnAbilityCoolDownEvent;
 
@@ -44,7 +47,13 @@ public class Ability
 
         Debug.Log(AbilityBehaviorManager.AbilityTriggerLog(this));
         OnAbilityTriggered.Invoke();
-        OnAbilityTriggeredEvent.Invoke();
+
+        Debug.Log(OnAbilityTriggeredEvent.ToString());
+
+        List<PersistentCall> persistentCalls = new List<PersistentCall>();
+        persistentCalls = OnAbilityTriggeredEvent.PersistentCallsList;
+
+        foreach (PersistentCall call in persistentCalls) { Debug.Log(call.ToString()); AbilityBehaviorManager.CreateCastAbility(caster, this, call); }
     }
 
     public void FinishAbilityCooldown() 
