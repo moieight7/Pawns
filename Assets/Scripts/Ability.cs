@@ -20,6 +20,8 @@ public class Ability
 
     [HideInInspector] public Entity caster;
 
+    private bool isCoolingDown = false;
+
 	public UltEvent OnAbilityTriggeredEvent, OnAbilityCoolDownEvent;
 
 	[SerializeField] private bool usable = true;
@@ -39,7 +41,7 @@ public class Ability
 
     public void TriggerAbility() 
 	{
-		if (numberOfCharges <= 0 || !usable) return;
+		if ((numberOfCharges <= 0 || !usable)) return;
 
 		numberOfCharges--;
         if (maxCharges > 1) AbilityCooldownManager.instance.TriggerAbilityInBetweenChargesCooldown(this);
@@ -65,17 +67,26 @@ public class Ability
 
 	public IEnumerator Cooldown()
 	{
-		yield return new WaitForSeconds(cooldownTime);
+        Debug.Log("Ability cooldown start");
+
+        yield return new WaitUntil(() => isCoolingDown == false);
+
+        AbilityUI.instance.CooldownAnimation(this);
+        isCoolingDown = true;
+        yield return new WaitForSeconds(cooldownTime);
+        isCoolingDown = false;
+
         numberOfCharges++;
         numberOfCharges = Mathf.Clamp(numberOfCharges, 0, maxCharges);
         FinishAbilityCooldown();
+        Debug.Log("Ability cooldown end");
     }
 
     public IEnumerator InBetweenChargesCooldown()
     {
         usable = false;
         yield return new WaitForSeconds(inBetweenChargesCooldownTime);
-        if (numberOfCharges > 0) usable = true;
+        usable = true;
     }
 }
 
@@ -85,5 +96,6 @@ public enum AbilityType
 	Primary,
 	Secondary,
 	Utility,
-	Special
+	Special,
+    Switch
 }

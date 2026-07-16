@@ -11,12 +11,6 @@ public class PlayerAbilities : MonoBehaviour
 
     public PlayerAbility primary, secondary, utility, special;
 
-    [Header("UI")]
-    public Image primaryAbilityIcon;
-    public Image secondaryAbilityIcon, utilityAbilityIcon, specialAbilityIcon;
-    public Image primaryAbilityBorder, secondaryAbilityBorder, utilityAbilityBorder, specialAbilityBorder;
-    public TextMeshProUGUI primaryAbilityChargeNum, secondaryAbilityChargeNum, utilityAbilityChargeNum, specialAbilityChargeNum;
-
     void Start()
     {
         Ability.OnAbilityTriggered += OnAbilityTriggered;
@@ -45,37 +39,13 @@ public class PlayerAbilities : MonoBehaviour
         if (utility != null) utility.numberOfCharges = utility.maxCharges;
         if (special != null) special.numberOfCharges = special.maxCharges;
 
-        SetAbilityNumText();
-        SetAbilityIcons();
+        AbilityUI.instance.PopulateContainerList(playerAbilities);
+        AbilityUI.instance.SetAbilityUI();
 
         primary.caster = gameObject.GetComponent<Entity>();
         secondary.caster = gameObject.GetComponent<Entity>();
         utility.caster = gameObject.GetComponent<Entity>();
         special.caster = gameObject.GetComponent<Entity>();
-    }
-
-    private void SetAbilityNumText()
-    {
-        if (primary != null) primaryAbilityChargeNum.text = primary.numberOfCharges.ToString();
-        else primaryAbilityChargeNum.text = "";
-        if (secondary != null) secondaryAbilityChargeNum.text = secondary.numberOfCharges.ToString();
-        else secondaryAbilityChargeNum.text = "";
-        if (utility != null) utilityAbilityChargeNum.text = utility.numberOfCharges.ToString();
-        else utilityAbilityChargeNum.text = "";
-        if (special != null) specialAbilityChargeNum.text = special.numberOfCharges.ToString();
-        else specialAbilityChargeNum.text = "";
-    }
-
-    private void SetAbilityIcons()
-    {
-        if (primary != null) { primaryAbilityIcon.enabled = true; primaryAbilityBorder.enabled = true; primaryAbilityIcon.sprite = primary.icon; }
-        else { primaryAbilityIcon.enabled = false; primaryAbilityBorder.enabled = false; }
-        if (secondary != null) { secondaryAbilityIcon.enabled = true; secondaryAbilityIcon.sprite = secondary.icon; }
-        else { secondaryAbilityIcon.enabled = false; secondaryAbilityBorder.enabled = false; }
-        if (utility != null) { utilityAbilityIcon.enabled = true; utilityAbilityIcon.sprite = utility.icon; }
-        else { utilityAbilityIcon.enabled = false; utilityAbilityBorder.enabled = false; }
-        if (special != null) { specialAbilityIcon.enabled = true; specialAbilityIcon.sprite = special.icon; }
-        else { specialAbilityIcon.enabled = false; specialAbilityBorder.enabled = false; }
     }
 
     private PlayerAbility FindAbilityByType(AbilityType type)
@@ -88,17 +58,18 @@ public class PlayerAbilities : MonoBehaviour
     private void OnAbilityTriggered()
     {
         Debug.Log("OnAbilityTriggered");
-        SetAbilityNumText();
-        SetAbilityIcons();
+        AbilityUI.instance.SetAbilityUI();
     }
 
     private void OnAbilityChargeCooldown()
     {
         Debug.Log("OnAbilityChargeCooldown");
-        SetAbilityNumText();
-        SetAbilityIcons();
+        AbilityUI.instance.SetAbilityUI();
     }
 }
 
 [System.Serializable]
-public class PlayerAbility : Ability { }
+public class PlayerAbility : Ability 
+{
+    public AbilityUIContainer AbilityUIContainer;
+}

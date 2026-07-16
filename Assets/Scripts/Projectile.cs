@@ -14,16 +14,38 @@ public class Projectile : MonoBehaviour
     [HideInInspector] public Vector3 target;
     protected Vector2 moveDir;
 
+    private float timer;
+    [HideInInspector] public bool invisible = false;
+
     // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (invisible)
+        {
+            timer += Time.deltaTime;
+            if (timer > timeUntilDelete) Destroy(gameObject);
+        }
+        else timer = 0;
+    }
+
+    public virtual void OnBecameInvisible()
+    {
+        invisible = true;
+    }
+
+    public virtual void OnBecameVisible()
+    {
+        invisible = false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Destroy(gameObject);
     }
 
     public void SetDirection(Vector2 direction, float rotationZ)
