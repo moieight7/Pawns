@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerAbilities : MonoBehaviour
 {
@@ -10,6 +11,10 @@ public class PlayerAbilities : MonoBehaviour
 
     public PlayerAbility primary, secondary, utility, special;
 
+    [Header("UI")]
+    public Image primaryAbilityIcon;
+    public Image secondaryAbilityIcon, utilityAbilityIcon, specialAbilityIcon;
+    public Image primaryAbilityBorder, secondaryAbilityBorder, utilityAbilityBorder, specialAbilityBorder;
     public TextMeshProUGUI primaryAbilityChargeNum, secondaryAbilityChargeNum, utilityAbilityChargeNum, specialAbilityChargeNum;
 
     void Start()
@@ -35,20 +40,37 @@ public class PlayerAbilities : MonoBehaviour
         utility = FindAbilityByType(AbilityType.Utility);
         special = FindAbilityByType(AbilityType.Special);
 
-        primary.numberOfCharges = primary.maxCharges;
-        secondary.numberOfCharges = secondary.maxCharges;
-        utility.numberOfCharges = utility.maxCharges;
-        special.numberOfCharges = special.maxCharges;
+        if (primary != null) primary.numberOfCharges = primary.maxCharges;
+        if (secondary != null) secondary.numberOfCharges = secondary.maxCharges;
+        if (utility != null) utility.numberOfCharges = utility.maxCharges;
+        if (special != null) special.numberOfCharges = special.maxCharges;
 
         SetAbilityNumText();
+        SetAbilityIcons();
     }
 
     private void SetAbilityNumText()
     {
-        primaryAbilityChargeNum.text = primary.numberOfCharges.ToString();
-        secondaryAbilityChargeNum.text = secondary.numberOfCharges.ToString();
-        utilityAbilityChargeNum.text = utility.numberOfCharges.ToString();
-        specialAbilityChargeNum.text = special.numberOfCharges.ToString();
+        if (primary != null) primaryAbilityChargeNum.text = primary.numberOfCharges.ToString();
+        else primaryAbilityChargeNum.text = "";
+        if (secondary != null) secondaryAbilityChargeNum.text = secondary.numberOfCharges.ToString();
+        else secondaryAbilityChargeNum.text = "";
+        if (utility != null) utilityAbilityChargeNum.text = utility.numberOfCharges.ToString();
+        else utilityAbilityChargeNum.text = "";
+        if (special != null) specialAbilityChargeNum.text = special.numberOfCharges.ToString();
+        else specialAbilityChargeNum.text = "";
+    }
+
+    private void SetAbilityIcons()
+    {
+        if (primary != null) { primaryAbilityIcon.enabled = true; primaryAbilityBorder.enabled = true; primaryAbilityIcon.sprite = primary.icon; }
+        else { primaryAbilityIcon.enabled = false; primaryAbilityBorder.enabled = false; }
+        if (secondary != null) { secondaryAbilityIcon.enabled = true; secondaryAbilityIcon.sprite = secondary.icon; }
+        else { secondaryAbilityIcon.enabled = false; secondaryAbilityBorder.enabled = false; }
+        if (utility != null) { utilityAbilityIcon.enabled = true; utilityAbilityIcon.sprite = utility.icon; }
+        else { utilityAbilityIcon.enabled = false; utilityAbilityBorder.enabled = false; }
+        if (special != null) { specialAbilityIcon.enabled = true; specialAbilityIcon.sprite = special.icon; }
+        else { specialAbilityIcon.enabled = false; specialAbilityBorder.enabled = false; }
     }
 
     private PlayerAbility FindAbilityByType(AbilityType type)
@@ -62,12 +84,14 @@ public class PlayerAbilities : MonoBehaviour
     {
         Debug.Log("OnAbilityTriggered");
         SetAbilityNumText();
+        SetAbilityIcons();
     }
 
     private void OnAbilityChargeCooldown()
     {
         Debug.Log("OnAbilityChargeCooldown");
         SetAbilityNumText();
+        SetAbilityIcons();
     }
 }
 

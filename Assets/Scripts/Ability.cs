@@ -8,6 +8,7 @@ public class Ability
 {
 	public string name;
 	public string description;
+    public Sprite icon;
 	public AbilityType type;
 
 	public float inBetweenChargesCooldownTime;

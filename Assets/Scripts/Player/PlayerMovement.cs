@@ -9,9 +9,12 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 motion;
 
+    private Crosshair crosshair;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        crosshair = FindAnyObjectByType<Crosshair>();
     }
 
     void FixedUpdate()
@@ -20,7 +23,10 @@ public class PlayerMovement : MonoBehaviour
 
         rb.velocity = motion;
 
-        if (rb.velocity.x < 0) GetComponent<SpriteRenderer>().flipX = true;
-        else if (rb.velocity.x > 0) GetComponent<SpriteRenderer>().flipX = false;
+        if (gameObject.transform.position.x > crosshair.gameObject.transform.position.x) GetComponent<SpriteRenderer>().flipX = true;
+        else if (gameObject.transform.position.x < crosshair.gameObject.transform.position.x) GetComponent<SpriteRenderer>().flipX = false;
+
+        /*if (rb.velocity.x < 0) GetComponent<SpriteRenderer>().flipX = true;
+        else if (rb.velocity.x > 0) GetComponent<SpriteRenderer>().flipX = false;*/
     }
 }
