@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UltEvents;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
@@ -16,6 +17,8 @@ public class Projectile : MonoBehaviour
 
     private float timer;
     [HideInInspector] public bool invisible = false;
+
+    public UltEvent OnHitEvent;
 
     // Start is called before the first frame update
     void Start()
@@ -45,7 +48,29 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log("Collided with " + collision.name);
+
+        if (OnHitEvent != null) foreach (PersistentCall call in OnHitEvent.PersistentCallsList) SetOnHitPersistentCallArguments(call, collision);
+        OnHitEvent.Invoke();
+
         Destroy(gameObject);
+    }
+
+    private void SetOnHitPersistentCallArguments(PersistentCall call, Collider2D collision)
+    {
+        if (call.PersistentArguments.Length > 0)
+        {
+            Entity senderEntity, targetEntity;
+        
+            if (!(senderEntity = sender.GetComponent<Entity>()))
+                if (!(senderEntity = sender.GetComponentInParent<Entity>())) return;
+            if (!(targetEntity = collision.gameObject.GetComponent<Entity>()))
+                if (!(targetEntity = collision.gameObject.GetComponentInParent<Entity>())) return;
+
+            if (senderEntity == null) Debug.LogError("Projectile " + gameObject.name + " has no defined sender entity.");
+            if (targetEntity == null) Debug.LogError("Projectile " + gameObject.name + " has no defined target entity.");
+            call.SetArguments(senderEntity, targetEntity);
+        }
     }
 
     public void SetDirection(Vector2 direction, float rotationZ)

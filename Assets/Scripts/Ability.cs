@@ -5,35 +5,71 @@ using UltEvents;
 using UnityEngine;
 using UnityEngine.UIElements;
 
+[System.Serializable]
 public class Ability
 {
-	public string name;
-	public string description;
-    public Sprite icon;
-    public Color color = Color.white;
-    public Color offColor = new Color(140, 140, 140, 129);
-    public AbilityType type;
-
-	public float inBetweenChargesCooldownTime;
-	public float cooldownTime;
-
-	public int numberOfCharges;
-	public int maxCharges;
+    [SerializeField] private AbilityData abilityData;
 
     [HideInInspector] public Entity caster;
+    [HideInInspector] public int numberOfCharges;
 
     private bool isCoolingDown = false;
 
-	public UltEvent OnAbilityTriggeredEvent, OnAbilityCoolDownEvent;
-
 	[SerializeField] private bool usable = true;
-    public bool GetUsable() { return usable; }
 
-    /*public string DisplayName { get { SetName(true); return name; } private set { } }
-    public string TooltipName { get { SetName(false); return name; } private set { } }
-    public string Description { get { SetDescription(); return description; } private set { } }*/
+    public string Name
+    {
+        get => abilityData.name;
+        private set => abilityData.name = value;
+    }
 
-    public Ability() { }
+    public string Description
+    {
+        get => abilityData.description;
+        private set => abilityData.description = value;
+    }
+
+    public Sprite Icon
+    {
+        get => abilityData.icon;
+        private set => abilityData.icon = value;
+    }
+
+    public Color Color
+    {
+        get => abilityData.color;
+        private set => abilityData.color = value;
+    }
+
+    public Color OffColor
+    {
+        get => abilityData.offColor;
+        private set => abilityData.offColor = value;
+    }
+
+    public AbilityType Type
+    {
+        get => abilityData.type;
+        private set => abilityData.type = value;
+    }
+
+    public float CooldownTime
+    {
+        get => abilityData.cooldownTime;
+        private set => abilityData.cooldownTime = value;
+    }
+
+    public int MaxCharges
+    {
+        get => abilityData.maxCharges;
+        private set => abilityData.maxCharges = value;
+    }
+
+    public bool StartUsable
+    {
+        get => abilityData.startUsable;
+        private set => abilityData.startUsable = value;
+    }
 
     public delegate void OnAbilityTriggeredAction();
     public static event OnAbilityTriggeredAction OnAbilityTriggered;
@@ -46,16 +82,16 @@ public class Ability
 		if ((numberOfCharges <= 0 || !usable)) return;
 
 		numberOfCharges--;
-        if (maxCharges > 1) AbilityCooldownManager.instance.TriggerAbilityInBetweenChargesCooldown(this);
+        if (abilityData.maxCharges > 1) AbilityCooldownManager.instance.TriggerAbilityInBetweenChargesCooldown(this);
         AbilityCooldownManager.instance.TriggerAbilityCooldown(this);
 
         Debug.Log(AbilityBehaviorManager.AbilityTriggerLog(this));
         OnAbilityTriggered.Invoke();
 
-        Debug.Log(OnAbilityTriggeredEvent.ToString());
+        Debug.Log(abilityData.OnAbilityTriggeredEvent.ToString());
 
         List<PersistentCall> persistentCalls = new List<PersistentCall>();
-        persistentCalls = OnAbilityTriggeredEvent.PersistentCallsList;
+        persistentCalls = abilityData.OnAbilityTriggeredEvent.PersistentCallsList;
 
         foreach (PersistentCall call in persistentCalls) { Debug.Log(call.ToString()); AbilityBehaviorManager.CreateCastAbility(caster, this, call); }
     }
@@ -64,7 +100,7 @@ public class Ability
 	{
         Debug.Log(AbilityBehaviorManager.CooldownFinishLog(this));
         OnAbilityChargeCooldown.Invoke();
-        OnAbilityCoolDownEvent.Invoke();
+        abilityData.OnAbilityCoolDownEvent.Invoke();
     }
 
 	public IEnumerator Cooldown()
@@ -73,13 +109,13 @@ public class Ability
 
         yield return new WaitUntil(() => isCoolingDown == false);
 
-        AbilityUI.instance.CooldownAnimation(this);
+        if (caster.type == EntityType.Player) AbilityUI.instance.CooldownAnimation(this);
         isCoolingDown = true;
-        yield return new WaitForSeconds(cooldownTime);
+        yield return new WaitForSeconds(abilityData.cooldownTime);
         isCoolingDown = false;
 
         numberOfCharges++;
-        numberOfCharges = Mathf.Clamp(numberOfCharges, 0, maxCharges);
+        numberOfCharges = Mathf.Clamp(numberOfCharges, 0, abilityData.maxCharges);
         FinishAbilityCooldown();
         Debug.Log("Ability cooldown end");
     }
@@ -87,7 +123,7 @@ public class Ability
     public IEnumerator InBetweenChargesCooldown()
     {
         usable = false;
-        yield return new WaitForSeconds(inBetweenChargesCooldownTime);
+        yield return new WaitForSeconds(abilityData.inBetweenChargesCooldownTime);
         usable = true;
     }
 }

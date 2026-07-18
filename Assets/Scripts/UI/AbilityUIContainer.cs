@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -12,6 +13,8 @@ public class AbilityUIContainer : MonoBehaviour
     public Image abilityBorder;
     public TextMeshProUGUI abilityChargeNum;
 
+    private Tween cooldownAnimation = null;
+
     public void SetAbilityNumText()
     {
         if (ability != null) abilityChargeNum.text = ability.numberOfCharges.ToString();
@@ -20,7 +23,19 @@ public class AbilityUIContainer : MonoBehaviour
 
     public void SetAbilityIcons()
     {
-        if (ability != null) { abilityIcon.enabled = true; abilityBorder.enabled = true; abilityIcon.sprite = ability.icon; }
+        if (ability != null) { abilityIcon.enabled = true; abilityBorder.enabled = true; abilityIcon.sprite = ability.Icon; }
         else { abilityIcon.enabled = false; abilityBorder.enabled = false; }
+    }
+
+    public void CooldownAnimation()
+    {
+        abilityIcon.fillAmount = 0;
+        cooldownAnimation = abilityIcon.DOFillAmount(1, ability.CooldownTime).SetEase(Ease.Linear);
+    }
+
+    private void OnDestroy()
+    {
+        abilityIcon.fillAmount = 1;
+        cooldownAnimation.Complete();
     }
 }

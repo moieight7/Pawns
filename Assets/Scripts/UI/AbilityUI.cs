@@ -9,7 +9,7 @@ public class AbilityUI : MonoBehaviour
 
     public GameObject containerPrefab;
 
-    private List<AbilityUIContainer> abilityUIContainers = new List<AbilityUIContainer>();
+    [SerializeField] private List<AbilityUIContainer> abilityUIContainers = new List<AbilityUIContainer>();
     private Tween cooldownAnimation = null;
 
     private void Awake()
@@ -25,7 +25,7 @@ public class AbilityUI : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
 
-    public void PopulateContainerList(List<PlayerAbility> abilities)
+    public void PopulateContainerList(List<Ability> abilities)
     {
         if (abilityUIContainers.Count > 0)
         {
@@ -39,13 +39,13 @@ public class AbilityUI : MonoBehaviour
             abilityUIContainer.transform.SetParent(gameObject.transform, false);
             abilityUIContainers.Add(abilityUIContainer);
 
-            abilityUIContainer.abilityIcon.sprite = abilities[i].icon;
-            abilityUIContainer.abilityOffIcon.sprite = abilities[i].icon;
+            abilityUIContainer.abilityIcon.sprite = abilities[i].Icon;
+            abilityUIContainer.abilityOffIcon.sprite = abilities[i].Icon;
 
-            abilityUIContainer.abilityIcon.color = abilities[i].color;
-            abilityUIContainer.abilityOffIcon.color = abilities[i].offColor;
+            abilityUIContainer.abilityIcon.color = abilities[i].Color;
+            abilityUIContainer.abilityOffIcon.color = abilities[i].OffColor;
 
-            if (abilities[i].type == AbilityType.None) Debug.LogError("AbilityUI.cs attempted to populate a UI container with an invalid ability.");
+            if (abilities[i].Type == AbilityType.None) Debug.LogError("AbilityUI.cs attempted to populate a UI container with an invalid ability.");
             abilityUIContainer.ability = abilities[i];
         }
 
@@ -65,7 +65,6 @@ public class AbilityUI : MonoBehaviour
     {
         AbilityUIContainer abilityUIContainer = abilityUIContainers.Find(x => x.ability == ability);
 
-        abilityUIContainer.abilityIcon.fillAmount = 0;
-        cooldownAnimation = abilityUIContainer.abilityIcon.DOFillAmount(1, ability.cooldownTime).SetEase(Ease.Linear).OnComplete(() => { cooldownAnimation = null; });
+        abilityUIContainer.CooldownAnimation();
     }
 }

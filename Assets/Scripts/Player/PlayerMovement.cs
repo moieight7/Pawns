@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float movementSpeed = 1f;
+    public float movementSpeed;
 
     private Rigidbody2D rb;
     private Vector2 motion;
