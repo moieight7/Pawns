@@ -10,7 +10,9 @@ public class Ability
 	public string name;
 	public string description;
     public Sprite icon;
-	public AbilityType type;
+    public Color color = Color.white;
+    public Color offColor = new Color(140, 140, 140, 129);
+    public AbilityType type;
 
 	public float inBetweenChargesCooldownTime;
 	public float cooldownTime;

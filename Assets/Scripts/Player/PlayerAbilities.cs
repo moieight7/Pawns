@@ -9,7 +9,7 @@ public class PlayerAbilities : MonoBehaviour
     public List<PlayerAbility> playerAbilities;
     public KeyCode primaryKey, secondaryKey, utilityKey, specialKey;
 
-    public PlayerAbility primary, secondary, utility, special;
+    private PlayerAbility primary, secondary, utility, special;
 
     void Start()
     {
@@ -34,6 +34,11 @@ public class PlayerAbilities : MonoBehaviour
         utility = FindAbilityByType(AbilityType.Utility);
         special = FindAbilityByType(AbilityType.Special);
 
+        if (primary != null) primary.caster = gameObject.GetComponent<Entity>();
+        if (secondary != null) secondary.caster = gameObject.GetComponent<Entity>();
+        if (utility != null) utility.caster = gameObject.GetComponent<Entity>();
+        if (special != null) special.caster = gameObject.GetComponent<Entity>();
+
         if (primary != null) primary.numberOfCharges = primary.maxCharges;
         if (secondary != null) secondary.numberOfCharges = secondary.maxCharges;
         if (utility != null) utility.numberOfCharges = utility.maxCharges;
@@ -41,11 +46,6 @@ public class PlayerAbilities : MonoBehaviour
 
         AbilityUI.instance.PopulateContainerList(playerAbilities);
         AbilityUI.instance.SetAbilityUI();
-
-        primary.caster = gameObject.GetComponent<Entity>();
-        secondary.caster = gameObject.GetComponent<Entity>();
-        utility.caster = gameObject.GetComponent<Entity>();
-        special.caster = gameObject.GetComponent<Entity>();
     }
 
     private PlayerAbility FindAbilityByType(AbilityType type)
@@ -71,5 +71,5 @@ public class PlayerAbilities : MonoBehaviour
 [System.Serializable]
 public class PlayerAbility : Ability 
 {
-    public AbilityUIContainer AbilityUIContainer;
+    
 }

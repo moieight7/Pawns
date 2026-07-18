@@ -5,10 +5,11 @@ using UnityEngine;
 
 public class AbilityUI : MonoBehaviour
 {
-    public List<AbilityUIContainer> abilityUIContainers = new List<AbilityUIContainer>();
-
     public static AbilityUI instance;
 
+    public GameObject containerPrefab;
+
+    private List<AbilityUIContainer> abilityUIContainers = new List<AbilityUIContainer>();
     private Tween cooldownAnimation = null;
 
     private void Awake()
@@ -26,10 +27,26 @@ public class AbilityUI : MonoBehaviour
 
     public void PopulateContainerList(List<PlayerAbility> abilities)
     {
+        if (abilityUIContainers.Count > 0)
+        {
+            foreach (var container in abilityUIContainers) Destroy(container.gameObject);
+            abilityUIContainers.Clear();
+        }
+
         for (int i = 0; i < abilities.Count; i++)
         {
+            AbilityUIContainer abilityUIContainer = GameObject.Instantiate(containerPrefab).GetComponent<AbilityUIContainer>();
+            abilityUIContainer.transform.SetParent(gameObject.transform, false);
+            abilityUIContainers.Add(abilityUIContainer);
+
+            abilityUIContainer.abilityIcon.sprite = abilities[i].icon;
+            abilityUIContainer.abilityOffIcon.sprite = abilities[i].icon;
+
+            abilityUIContainer.abilityIcon.color = abilities[i].color;
+            abilityUIContainer.abilityOffIcon.color = abilities[i].offColor;
+
             if (abilities[i].type == AbilityType.None) Debug.LogError("AbilityUI.cs attempted to populate a UI container with an invalid ability.");
-            abilityUIContainers[i].ability = abilities[i];
+            abilityUIContainer.ability = abilities[i];
         }
 
         SetAbilityUI();
