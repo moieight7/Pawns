@@ -50,6 +50,10 @@ public class Projectile : MonoBehaviour
     {
         Debug.Log("Collided with " + collision.name);
 
+        Entity entity = collision.GetComponent<Entity>();
+
+        if (entity != null && entity.type == EntityType.Enemy) entity.TakeDamage(damage);
+
         if (OnHitEvent != null) foreach (PersistentCall call in OnHitEvent.PersistentCallsList) SetOnHitPersistentCallArguments(call, collision);
         OnHitEvent.Invoke();
 

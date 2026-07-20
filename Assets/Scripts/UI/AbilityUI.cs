@@ -64,7 +64,12 @@ public class AbilityUI : MonoBehaviour
     public void CooldownAnimation(Ability ability)
     {
         AbilityUIContainer abilityUIContainer = abilityUIContainers.Find(x => x.ability == ability);
-
         abilityUIContainer.CooldownAnimation();
+    }
+
+    public void CancelCooldownAnimation(Ability ability)
+    {
+        AbilityUIContainer abilityUIContainer = abilityUIContainers.Find(x => x.ability == ability);
+        abilityUIContainer.CancelCooldownAnimation();
     }
 }

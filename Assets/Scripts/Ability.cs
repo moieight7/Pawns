@@ -126,6 +126,17 @@ public class Ability
         yield return new WaitForSeconds(abilityData.inBetweenChargesCooldownTime);
         usable = true;
     }
+
+    public void ResetCooldown()
+    {
+        isCoolingDown = false;
+        numberOfCharges = MaxCharges;
+
+        FinishAbilityCooldown();
+        AbilityCooldownManager.instance.CancelAbilityCooldown(this);
+
+        if (caster.type == EntityType.Player) AbilityUI.instance.CancelCooldownAnimation(this);
+    }
 }
 
 public enum AbilityType

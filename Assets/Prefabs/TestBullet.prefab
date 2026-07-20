@@ -171,9 +171,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39c9fad0ca32caf4794c53459202635b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 20
   speed: 10
   timeUntilDelete: 1
   sender: {fileID: 0}
   target: {x: 0, y: 0, z: 0}
   invisible: 0
+  OnHitEvent:
+    _PersistentCalls: []

@@ -4,10 +4,22 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
-    public int health;
+    public float health;
     public EntityType type;
 
     public Transform firePoint;
+
+    public void TakeDamage(float damage)
+    {
+        health -= damage;
+
+        if (health <= 0) Die();
+    }
+
+    private void Die()
+    {
+        Destroy(gameObject);
+    }
 }
 
 public enum EntityType

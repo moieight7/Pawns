@@ -1,3 +1,4 @@
+using IngameDebugConsole;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -21,6 +22,8 @@ public class EntityAbilities : MonoBehaviour
         Ability.OnAbilityChargeCooldown += OnAbilityChargeCooldown;
 
         SetAbilities();
+
+        DebugLogConsole.AddCommand("ability_refresh", "Resets cooldowns for every player ability.", ResetAllCooldowns);
     }
 
     void Update()
@@ -70,6 +73,11 @@ public class EntityAbilities : MonoBehaviour
     {
         Debug.Log("OnAbilityChargeCooldown");
         if (entity.type == EntityType.Player) AbilityUI.instance.SetAbilityUI();
+    }
+
+    private void ResetAllCooldowns()
+    {
+        foreach (PlayerAbility playerAbility in playerAbilities) playerAbility.ability.ResetCooldown();
     }
 }
 

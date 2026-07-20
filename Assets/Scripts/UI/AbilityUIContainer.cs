@@ -33,9 +33,14 @@ public class AbilityUIContainer : MonoBehaviour
         cooldownAnimation = abilityIcon.DOFillAmount(1, ability.CooldownTime).SetEase(Ease.Linear);
     }
 
-    private void OnDestroy()
+    public void CancelCooldownAnimation()
     {
         abilityIcon.fillAmount = 1;
         cooldownAnimation.Complete();
+    }
+
+    private void OnDestroy()
+    {
+        CancelCooldownAnimation();
     }
 }
