@@ -10343,6 +10343,7 @@ MonoBehaviour:
   utilityKey: 304
   specialKey: 114
   switchKey: 32
+  playerAbilities: []
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -12557,6 +12558,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   containerPrefab: {fileID: 2502609137999945602, guid: 65da58cfbb835864ca7e12ed2ee55c02, type: 3}
+  abilityUIContainers: []
 --- !u!1 &969373235
 GameObject:
   m_ObjectHideFlags: 0
@@ -13190,6 +13192,7 @@ MonoBehaviour:
   utilityKey: 304
   specialKey: 114
   switchKey: 32
+  playerAbilities: []
 --- !u!114 &1723039273
 MonoBehaviour:
   m_ObjectHideFlags: 0

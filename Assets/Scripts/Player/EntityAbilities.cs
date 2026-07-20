@@ -44,7 +44,9 @@ public class EntityAbilities : MonoBehaviour
         foreach (PlayerAbility playerAbility in playerAbilities)
         {
             playerAbility.ability.caster = gameObject.GetComponent<Entity>();
-            playerAbility.ability.numberOfCharges = playerAbility.ability.MaxCharges;
+            
+            if (playerAbility.ability.StartUsable) playerAbility.ability.numberOfCharges = playerAbility.ability.MaxCharges;
+            else { playerAbility.ability.numberOfCharges = 0; AbilityCooldownManager.instance.TriggerAbilityCooldown(playerAbility.ability); }
         }
 
         if (entity.type == EntityType.Player) AbilityUI.instance.PopulateContainerList(entityAbilities);
