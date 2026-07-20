@@ -48,7 +48,7 @@ public static class AbilityBehaviorManager
         }
         else if (caster.type == EntityType.Enemy)
         {
-            projectileComponent.target = Camera.main.ScreenToWorldPoint(player.transform.position);
+            projectileComponent.target = player.transform.position;
             projectile.layer = LayerMask.NameToLayer("EnemyBullets");
         }
         else Debug.LogError("AbilityBehaviorManager has a defined caster with an invalid EntityType");

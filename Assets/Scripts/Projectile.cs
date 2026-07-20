@@ -12,7 +12,7 @@ public class Projectile : MonoBehaviour
     //public GameObject hitEffect;
 
     [HideInInspector] public Transform sender;
-    [HideInInspector] public Vector3 target;
+    public Vector3 target;
     protected Vector2 moveDir;
 
     private float timer;
