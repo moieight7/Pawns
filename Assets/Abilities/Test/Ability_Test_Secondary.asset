@@ -21,6 +21,7 @@ MonoBehaviour:
   inBetweenChargesCooldownTime: 1
   cooldownTime: 2
   maxCharges: 2
+  startUsable: 1
   OnAbilityTriggeredEvent:
     _PersistentCalls:
     - _Target: {fileID: 0}

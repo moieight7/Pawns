@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UltEvents;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -13,9 +14,15 @@ public class Ability
     [HideInInspector] public Entity caster;
     [HideInInspector] public int numberOfCharges;
 
+    [HideInInspector] public List<IEnumerator> cooldownCoroutines = new List<IEnumerator>();
+
+    [HideInInspector] public bool cooldownLoopRunning = false;
+
     private bool isCoolingDown = false;
 
 	[SerializeField] private bool usable = true;
+
+    [SerializeField] public UltEvent OnAbilityTriggeredEvent, OnAbilityCoolDownEvent;
 
     public string Name
     {
@@ -71,27 +78,34 @@ public class Ability
         private set => abilityData.startUsable = value;
     }
 
-    public delegate void OnAbilityTriggeredAction();
+    public delegate void OnAbilityTriggeredAction(Entity entity);
     public static event OnAbilityTriggeredAction OnAbilityTriggered;
 
-    public delegate void OnAbilityChargeCooldownAction();
+    public delegate void OnAbilityChargeCooldownAction(Entity entity);
     public static event OnAbilityChargeCooldownAction OnAbilityChargeCooldown;
+
+    public void SetEvents()
+    {
+        OnAbilityTriggeredEvent.CopyFrom(abilityData.OnAbilityTriggeredEvent);
+        OnAbilityCoolDownEvent.CopyFrom(abilityData.OnAbilityCoolDownEvent);
+    }
 
     public void TriggerAbility() 
 	{
-		if ((numberOfCharges <= 0 || !usable)) return;
+		if (numberOfCharges <= 0 || !usable) return;
 
-		numberOfCharges--;
         if (abilityData.maxCharges > 1) AbilityCooldownManager.instance.TriggerAbilityInBetweenChargesCooldown(this);
-        AbilityCooldownManager.instance.TriggerAbilityCooldown(this);
+        AbilityCooldownManager.instance.QueueCooldown(this);
+
+        numberOfCharges--;
 
         Debug.Log(AbilityBehaviorManager.AbilityTriggerLog(this));
-        OnAbilityTriggered.Invoke();
+        OnAbilityTriggered.Invoke(caster);
 
-        Debug.Log(abilityData.OnAbilityTriggeredEvent.ToString());
+        Debug.Log(OnAbilityTriggeredEvent.ToString());
 
         List<PersistentCall> persistentCalls = new List<PersistentCall>();
-        persistentCalls = abilityData.OnAbilityTriggeredEvent.PersistentCallsList;
+        persistentCalls = OnAbilityTriggeredEvent.PersistentCallsList;
 
         foreach (PersistentCall call in persistentCalls) { Debug.Log(call.ToString()); AbilityBehaviorManager.CreateCastAbility(caster, this, call); }
     }
@@ -99,15 +113,26 @@ public class Ability
     public void FinishAbilityCooldown() 
 	{
         Debug.Log(AbilityBehaviorManager.CooldownFinishLog(this));
-        OnAbilityChargeCooldown.Invoke();
-        abilityData.OnAbilityCoolDownEvent.Invoke();
+        OnAbilityChargeCooldown.Invoke(caster);
+        OnAbilityCoolDownEvent.Invoke();
+    }
+
+    public IEnumerator CooldownLoop()
+    {
+        cooldownLoopRunning = true;
+        while (cooldownCoroutines.Count > 0)
+        {
+            yield return new WaitUntil(() => cooldownCoroutines.Count > 0);
+            AbilityCooldownManager.instance.TriggerAbilityCooldown(cooldownCoroutines.First());
+            cooldownCoroutines.Remove(cooldownCoroutines.First());
+            yield return new WaitUntil(() => isCoolingDown == false);
+        }
+        cooldownLoopRunning = false;
     }
 
 	public IEnumerator Cooldown()
 	{
         Debug.Log("Ability cooldown start");
-
-        yield return new WaitUntil(() => isCoolingDown == false);
 
         if (caster.type == EntityType.Player) AbilityUI.instance.CooldownAnimation(this);
         isCoolingDown = true;

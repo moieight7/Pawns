@@ -1,0 +1,16 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class ENEMY_NAME : StateMachineEntity
+{
+    STATE_REFERENCES
+    STATE_DATA_CONTAINER_REFERENCES
+    public override void Start()
+    {
+        base.Start();
+
+        STATE_TRANSITION_ITEMS_REFERENCES
+        stateMachine.Initialize(STARTING_STATE);
+    }
+}

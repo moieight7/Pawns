@@ -1,0 +1,7 @@
+using UnityEngine;
+
+//[CreateAssetMenu(fileName = "newStateDataContainerTemplate", menuName = "Data/State Machine Entity Data/State Data Container Template Data")]
+public class STATE_DATA_CONTAINER_NAME : ScriptableObject
+{
+    
+}

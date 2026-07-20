@@ -9,6 +9,9 @@ public class Entity : MonoBehaviour
 
     public Transform firePoint;
 
+    public delegate void EnemyKilledAction();
+    public static event EnemyKilledAction OnEnemyKilled;
+
     public void TakeDamage(float damage)
     {
         health -= damage;
@@ -18,6 +21,8 @@ public class Entity : MonoBehaviour
 
     private void Die()
     {
+        if (type == EntityType.Enemy && OnEnemyKilled != null) OnEnemyKilled.Invoke();
+
         Destroy(gameObject);
     }
 }

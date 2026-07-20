@@ -19,8 +19,9 @@ MonoBehaviour:
   offColor: {r: 0.54901963, g: 0.54901963, b: 0.54901963, a: 0.50980395}
   type: 1
   inBetweenChargesCooldownTime: 0.5
-  cooldownTime: 1.5
+  cooldownTime: 2
   maxCharges: 3
+  startUsable: 1
   OnAbilityTriggeredEvent:
     _PersistentCalls:
     - _Target: {fileID: 0}

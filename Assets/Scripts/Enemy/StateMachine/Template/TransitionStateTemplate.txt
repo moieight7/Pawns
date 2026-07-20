@@ -1,0 +1,36 @@
+public class STATE_NAME : PARENT_CLASS_NAME
+{
+    private ENEMY_CLASS_NAME enemy;
+
+    public STATE_NAME() { }
+
+    public STATE_NAME(StateMachineEntity entity, FiniteStateMachine stateMachine, string animBoolName, DATA_CONTAINER_CLASS_NAME stateData, ENEMY_CLASS_NAME enemy) : base(entity, stateMachine, animBoolName, stateData)
+    {
+        this.enemy = enemy;
+    }
+
+    public override void Checks()
+    {
+        base.Checks();
+    }
+
+    public override void Enter()
+    {
+        base.Enter();
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+    }
+
+    public override void LogicUpdate()
+    {
+        base.LogicUpdate();
+    }
+
+    public override void PhysicsUpdate()
+    {
+        base.PhysicsUpdate();
+    }
+}

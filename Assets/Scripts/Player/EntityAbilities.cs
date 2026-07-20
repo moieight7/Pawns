@@ -49,11 +49,18 @@ public class EntityAbilities : MonoBehaviour
             playerAbility.ability.caster = gameObject.GetComponent<Entity>();
             
             if (playerAbility.ability.StartUsable) playerAbility.ability.numberOfCharges = playerAbility.ability.MaxCharges;
-            else { playerAbility.ability.numberOfCharges = 0; AbilityCooldownManager.instance.TriggerAbilityCooldown(playerAbility.ability); }
+            else { playerAbility.ability.numberOfCharges = 0; AbilityCooldownManager.instance.QueueCooldown(playerAbility.ability); }
+
+            playerAbility.ability.SetEvents();
         }
 
         if (entity.type == EntityType.Player) AbilityUI.instance.PopulateContainerList(entityAbilities);
         if (entity.type == EntityType.Player) AbilityUI.instance.SetAbilityUI();
+    }
+
+    public void TriggerAbilityByIndex(int index)
+    {
+        playerAbilities[index].ability.TriggerAbility();
     }
 
     private Ability FindAbilityByType(AbilityType type)
@@ -63,13 +70,13 @@ public class EntityAbilities : MonoBehaviour
         else return playerAbility;
     }
 
-    private void OnAbilityTriggered()
+    private void OnAbilityTriggered(Entity entity)
     {
         Debug.Log("OnAbilityTriggered");
         if (entity.type == EntityType.Player) AbilityUI.instance.SetAbilityUI();
     }
 
-    private void OnAbilityChargeCooldown()
+    private void OnAbilityChargeCooldown(Entity entity)
     {
         Debug.Log("OnAbilityChargeCooldown");
         if (entity.type == EntityType.Player) AbilityUI.instance.SetAbilityUI();

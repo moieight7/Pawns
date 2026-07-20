@@ -19,9 +19,15 @@ public class AbilityCooldownManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
 
-    public void TriggerAbilityCooldown(Ability ability)
+    public void QueueCooldown(Ability ability)
     {
-        StartCoroutine(ability.Cooldown());
+        ability.cooldownCoroutines.Add(ability.Cooldown());
+        if (!ability.cooldownLoopRunning) StartCoroutine(ability.CooldownLoop());
+    }
+
+    public void TriggerAbilityCooldown(IEnumerator coroutine)
+    {
+        StartCoroutine(coroutine);
     }
 
     public void TriggerAbilityInBetweenChargesCooldown(Ability ability)
