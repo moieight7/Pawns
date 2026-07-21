@@ -31,7 +31,8 @@ public class EntityAbilities : MonoBehaviour
         if (entity.type == EntityType.Player) {
             foreach (PlayerAbility playerAbility in playerAbilities)
             {
-                if (Input.GetKey(playerAbility.keyCode)) playerAbility.ability.TriggerAbility();
+                if (Input.GetKey(playerAbility.keyCode) && playerAbility.ability.Type != AbilityType.Switch) playerAbility.ability.TriggerAbility();
+                else if (Input.GetKeyDown(playerAbility.keyCode) && playerAbility.ability.Type == AbilityType.Switch) playerAbility.ability.TriggerAbility();
             }
         }
     }
@@ -74,6 +75,7 @@ public class EntityAbilities : MonoBehaviour
     public void AddAbility(Ability ability)
     {
         entityAbilities.Add(ability);
+        if (!ability.StartUsable) ability.numberOfCharges = 0;
     }
 
     public void RemoveAbility(AbilityType type)

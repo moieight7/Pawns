@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -107,11 +108,16 @@ public static class AbilityBehaviorManager
         target.gameObject.layer = LayerMask.NameToLayer("Player");
         caster.gameObject.layer = LayerMask.NameToLayer("Enemy");
 
+        target.gameObject.tag = "Player";
+        caster.gameObject.tag = "Enemy";
+
         float movementSpeed = oldPlayerMovement.movementSpeed;
         newPlayerMovement.movementSpeed = movementSpeed;
         GameObject.Destroy(oldPlayerMovement);
 
         caster.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+
+        EnemyTargetSwitcher.instance.SetNewTarget();
     }
 
     private class CastAbility
@@ -151,7 +157,7 @@ public static class AbilityBehaviorManager
             }
             else if (caster.type == EntityType.Enemy)
             {
-                projectileComponent.target = player.transform.position;
+                projectileComponent.target = caster.target.transform.position;
                 projectile.layer = LayerMask.NameToLayer("EnemyBullets");
             }
             else Debug.LogError("AbilityBehaviorManager has a defined caster with an invalid EntityType");
