@@ -132,7 +132,7 @@ public class Ability
 
 	public IEnumerator Cooldown()
 	{
-        Debug.Log("Ability cooldown start");
+        Debug.Log("Ability cooldown start (" + Name + ")");
 
         if (caster.type == EntityType.Player) AbilityUI.instance.CooldownAnimation(this);
         isCoolingDown = true;
@@ -142,7 +142,7 @@ public class Ability
         numberOfCharges++;
         numberOfCharges = Mathf.Clamp(numberOfCharges, 0, abilityData.maxCharges);
         FinishAbilityCooldown();
-        Debug.Log("Ability cooldown end");
+        Debug.Log("Ability cooldown end (" + Name + ")");
     }
 
     public IEnumerator InBetweenChargesCooldown()
@@ -161,6 +161,14 @@ public class Ability
         AbilityCooldownManager.instance.CancelAbilityCooldown(this);
 
         if (caster.type == EntityType.Player) AbilityUI.instance.CancelCooldownAnimation(this);
+
+        cooldownCoroutines.Clear();
+    }
+
+    public void OnRemove()
+    {
+        AbilityCooldownManager.instance.CancelAbilityCooldown(this);
+        cooldownCoroutines.Clear();
     }
 }
 

@@ -16,7 +16,7 @@ public class IdleState : State, IEnemyState
 
     public IdleState() { }
 
-    public IdleState(StateMachineEntity entity, FiniteStateMachine stateMachine, string animBoolName, D_IdleState stateData) : base(entity, stateMachine, animBoolName)
+    public IdleState(Entity entity, FiniteStateMachine stateMachine, string animBoolName, D_IdleState stateData) : base(entity, stateMachine, animBoolName)
     {
         this.stateData = stateData;
     }

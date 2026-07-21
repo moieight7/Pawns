@@ -21,7 +21,7 @@ public class ChargeState : State, IEnemyState
 
     public ChargeState() { }
 
-    public ChargeState(StateMachineEntity entity, FiniteStateMachine stateMachine, string animBoolName, D_ChargeState stateData) : base(entity, stateMachine, animBoolName)
+    public ChargeState(Entity entity, FiniteStateMachine stateMachine, string animBoolName, D_ChargeState stateData) : base(entity, stateMachine, animBoolName)
     {
         this.stateData = stateData;
     }

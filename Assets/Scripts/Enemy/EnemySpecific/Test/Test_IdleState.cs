@@ -4,7 +4,7 @@ public class Test_IdleState : IdleState
 
     public Test_IdleState() { }
 
-    public Test_IdleState(StateMachineEntity entity, FiniteStateMachine stateMachine, string animBoolName, D_IdleState stateData, Test enemy) : base(entity, stateMachine, animBoolName, stateData)
+    public Test_IdleState(Entity entity, FiniteStateMachine stateMachine, string animBoolName, D_IdleState stateData, Test enemy) : base(entity, stateMachine, animBoolName, stateData)
     {
         this.enemy = enemy;
     }

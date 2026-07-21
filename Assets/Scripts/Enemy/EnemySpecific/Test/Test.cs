@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Test : StateMachineEntity
+public class Test : Entity
 {
     public Test_IdleState IdleState { get; private set; }
     

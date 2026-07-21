@@ -14,7 +14,7 @@ public class MoveState : State, IEnemyState
 
     public MoveState() { }
 
-    public MoveState(StateMachineEntity entity, FiniteStateMachine stateMachine, string animBoolName, D_MoveState stateData) : base(entity, stateMachine, animBoolName)
+    public MoveState(Entity entity, FiniteStateMachine stateMachine, string animBoolName, D_MoveState stateData) : base(entity, stateMachine, animBoolName)
     {
         this.stateData = stateData;
     }

@@ -79,17 +79,28 @@ public static class AbilityBehaviorManager
     public static void SwitchCharacters(Entity caster, Entity target)
     {
         PlayerMovement oldPlayerMovement = caster.GetComponent<PlayerMovement>();
-        EntityAbilities oldPlayerAbilities = caster.GetComponent<EntityAbilities>();
+        EntityAbilities oldEntityAbilities = caster.GetComponent<EntityAbilities>();
 
         PlayerMovement newPlayerMovement = target.AddComponent<PlayerMovement>();
-        EntityAbilities newPlayerAbilities = target.GetComponent<EntityAbilities>();
+        EntityAbilities newEntityAbilities = target.GetComponent<EntityAbilities>();
+
+        if (target.stateMachine == null) target.stateMachine = new FiniteStateMachine();
+        if (caster.stateMachine == null) caster.stateMachine = new FiniteStateMachine();
+
+        foreach (Ability ability in oldEntityAbilities.entityAbilities) AbilityCooldownManager.instance.CancelAbilityCooldown(ability);
+        foreach (Ability ability in oldEntityAbilities.entityAbilities) AbilityCooldownManager.instance.ResetAbilityCooldown(ability);
+
+        foreach (Ability ability in newEntityAbilities.entityAbilities) AbilityCooldownManager.instance.CancelAbilityCooldown(ability);
+        foreach (Ability ability in newEntityAbilities.entityAbilities) AbilityCooldownManager.instance.ResetAbilityCooldown(ability);
 
         target.type = EntityType.Player;
         caster.type = EntityType.Enemy;
 
-        newPlayerAbilities.SetAbilities();
+        Ability switchAbility = oldEntityAbilities.entityAbilities.Find(x => x.Type == AbilityType.Switch);
+        newEntityAbilities.AddAbility(switchAbility);
+        oldEntityAbilities.RemoveAbility(AbilityType.Switch);
 
-        foreach (Ability ability in oldPlayerAbilities.entityAbilities) AbilityCooldownManager.instance.CancelAbilityCooldown(ability);
+        newEntityAbilities.SetAbilities();
 
         CameraTarget.instance.SetTarget(target.transform);
 

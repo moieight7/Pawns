@@ -38,11 +38,12 @@ public class EntityAbilities : MonoBehaviour
 
     public void SetAbilities()
     {
-        if (FindAbilityByType(AbilityType.Primary) != null) playerAbilities.Add(new PlayerAbility(FindAbilityByType(AbilityType.Primary), primaryKey));
-        if (FindAbilityByType(AbilityType.Secondary) != null) playerAbilities.Add(new PlayerAbility(FindAbilityByType(AbilityType.Secondary), secondaryKey));
-        if (FindAbilityByType(AbilityType.Utility) != null) playerAbilities.Add(new PlayerAbility(FindAbilityByType(AbilityType.Utility), utilityKey));
-        if (FindAbilityByType(AbilityType.Special) != null) playerAbilities.Add(new PlayerAbility(FindAbilityByType(AbilityType.Special), specialKey));
-        if (FindAbilityByType(AbilityType.Switch) != null) playerAbilities.Add(new PlayerAbility(FindAbilityByType(AbilityType.Switch), switchKey));
+        if (playerAbilities.Count > 0) playerAbilities.Clear();
+        if (FindAbilityByType(AbilityType.Primary) != null) playerAbilities.Add(new PlayerAbility(FindAbilityByType(AbilityType.Primary), primaryKey, AbilityType.Primary));
+        if (FindAbilityByType(AbilityType.Secondary) != null) playerAbilities.Add(new PlayerAbility(FindAbilityByType(AbilityType.Secondary), secondaryKey, AbilityType.Secondary));
+        if (FindAbilityByType(AbilityType.Utility) != null) playerAbilities.Add(new PlayerAbility(FindAbilityByType(AbilityType.Utility), utilityKey, AbilityType.Utility));
+        if (FindAbilityByType(AbilityType.Special) != null) playerAbilities.Add(new PlayerAbility(FindAbilityByType(AbilityType.Special), specialKey, AbilityType.Special));
+        if (FindAbilityByType(AbilityType.Switch) != null) playerAbilities.Add(new PlayerAbility(FindAbilityByType(AbilityType.Switch), switchKey, AbilityType.Switch));
 
         foreach (PlayerAbility playerAbility in playerAbilities)
         {
@@ -70,6 +71,18 @@ public class EntityAbilities : MonoBehaviour
         else return playerAbility;
     }
 
+    public void AddAbility(Ability ability)
+    {
+        entityAbilities.Add(ability);
+    }
+
+    public void RemoveAbility(AbilityType type)
+    {
+        Ability abilityToRemove = FindAbilityByType(type);
+        abilityToRemove.OnRemove();
+        entityAbilities.Remove(abilityToRemove);
+    }
+
     private void OnAbilityTriggered(Entity entity)
     {
         Debug.Log("OnAbilityTriggered");
@@ -93,10 +106,12 @@ public class PlayerAbility
 {
     public Ability ability;
     public KeyCode keyCode;
+    public AbilityType type;
 
-    public PlayerAbility(Ability ability, KeyCode keyCode)
+    public PlayerAbility(Ability ability, KeyCode keyCode, AbilityType type)
     {
         this.ability = ability;
         this.keyCode = keyCode;
+        this.type = type;
     }
 }

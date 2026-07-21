@@ -16608,6 +16608,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyID: 0
+  health: 0
+  type: 0
+  firePoint: {fileID: 0}
   target: {fileID: 1723039268}
   entityData: {fileID: 11400000, guid: 00a05424c28c109429d2c97a252dd4da, type: 2}
   playDeathSound: 1
@@ -20649,7 +20652,6 @@ GameObject:
   - component: {fileID: 1271867257}
   - component: {fileID: 1271867256}
   - component: {fileID: 1271867255}
-  - component: {fileID: 1271867254}
   - component: {fileID: 1271867253}
   - component: {fileID: 1271867260}
   m_Layer: 9
@@ -20672,26 +20674,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyID: 0
+  health: 100
+  type: 2
+  firePoint: {fileID: 230278354}
   target: {fileID: 1723039268}
   entityData: {fileID: 11400000, guid: 00a05424c28c109429d2c97a252dd4da, type: 2}
   playDeathSound: 1
   seeThroughObstacles: 0
   IdleStateData: {fileID: 11400000, guid: 6404f9c9ce6fb2d4ba490d6df91803be, type: 2}
---- !u!114 &1271867254
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1271867252}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf785419dc87e37479139664762f3f10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 100
-  type: 2
-  firePoint: {fileID: 230278354}
 --- !u!61 &1271867255
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -20769,15 +20759,6 @@ MonoBehaviour:
     OnAbilityCoolDownEvent:
       _PersistentCalls: []
   - abilityData: {fileID: 11400000, guid: 80643ee46f0995645a83c90d154625ec, type: 2}
-    caster: {fileID: 0}
-    numberOfCharges: 0
-    cooldownLoopRunning: 0
-    usable: 1
-    OnAbilityTriggeredEvent:
-      _PersistentCalls: []
-    OnAbilityCoolDownEvent:
-      _PersistentCalls: []
-  - abilityData: {fileID: 11400000, guid: 9d63a338e9efd1c40a96101384a0cb58, type: 2}
     caster: {fileID: 0}
     numberOfCharges: 0
     cooldownLoopRunning: 0
@@ -20880,7 +20861,7 @@ Transform:
   m_GameObject: {fileID: 1271867252}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.5660932, y: 26.516933, z: 885.59955}
+  m_LocalPosition: {x: 0.099999905, y: 32.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -21347,12 +21328,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1723039266}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf785419dc87e37479139664762f3f10, type: 3}
+  m_Script: {fileID: 11500000, guid: 8e663d591c6c79c49a5a931da9dbaec0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyID: 0
   health: 100
   type: 1
   firePoint: {fileID: 179007965}
+  target: {fileID: 1723039268}
+  entityData: {fileID: 11400000, guid: 00a05424c28c109429d2c97a252dd4da, type: 2}
+  playDeathSound: 1
+  seeThroughObstacles: 0
+  IdleStateData: {fileID: 11400000, guid: 6404f9c9ce6fb2d4ba490d6df91803be, type: 2}
 --- !u!1 &1742874259
 GameObject:
   m_ObjectHideFlags: 0
@@ -21525,6 +21512,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyID: 0
+  health: 0
+  type: 0
+  firePoint: {fileID: 0}
   target: {fileID: 1723039268}
   entityData: {fileID: 11400000, guid: 00a05424c28c109429d2c97a252dd4da, type: 2}
   playDeathSound: 1

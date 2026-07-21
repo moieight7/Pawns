@@ -12,7 +12,7 @@ public class AttackState : State, IEnemyState
 
     public AttackState() { }
 
-    public AttackState(StateMachineEntity entity, FiniteStateMachine stateMachine, string animBoolName, D_AttackState stateData) : base(entity, stateMachine, animBoolName)
+    public AttackState(Entity entity, FiniteStateMachine stateMachine, string animBoolName, D_AttackState stateData) : base(entity, stateMachine, animBoolName)
     {
         this.stateData = stateData;
     }

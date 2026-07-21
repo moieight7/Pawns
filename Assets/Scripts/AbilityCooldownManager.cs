@@ -37,6 +37,12 @@ public class AbilityCooldownManager : MonoBehaviour
 
     public void CancelAbilityCooldown(Ability ability)
     {
+        if (ability.cooldownLoopRunning) StopCoroutine(ability.CooldownLoop());
         StopCoroutine(ability.Cooldown());
+    }
+
+    public void ResetAbilityCooldown(Ability ability)
+    {
+        ability.ResetCooldown();
     }
 }

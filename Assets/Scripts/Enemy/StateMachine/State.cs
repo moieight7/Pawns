@@ -5,7 +5,7 @@ using UnityEngine;
 public class State
 {
     protected FiniteStateMachine stateMachine;
-    protected StateMachineEntity entity;
+    protected Entity entity;
 
     public float startTime { get; protected set; }
 
@@ -13,7 +13,7 @@ public class State
 
     public State() { }
 
-    public State(StateMachineEntity entity, FiniteStateMachine stateMachine, string animBoolName)
+    public State(Entity entity, FiniteStateMachine stateMachine, string animBoolName)
     {
         this.entity = entity;
         this.stateMachine = stateMachine;

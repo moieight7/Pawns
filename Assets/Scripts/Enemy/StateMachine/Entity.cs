@@ -4,18 +4,20 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.AI;
 
-public class StateMachineEntity : MonoBehaviour
+public class Entity : MonoBehaviour
 {
     public int enemyID;
+    public float health;
+    public EntityType type;
 
     public FiniteStateMachine stateMachine;
 
-    public Transform target;
+    public Transform firePoint;
+    [HideInInspector] public Transform target;
     public D_Entity entityData;
 
     public Rigidbody2D rb { get; private set; }
     public Animator animator { get; private set; }
-    public Entity entityScript { get; private set; }
     public EntityAbilities abilities { get; private set; }
     public NavMeshAgent navMeshAgent { get; private set; }
     public AnimationToStateMachine atsm { get; private set; }
@@ -28,11 +30,13 @@ public class StateMachineEntity : MonoBehaviour
     private Vector3 velocityWorkspace;
     private static int id;
 
+    public delegate void EnemyKilledAction();
+    public static event EnemyKilledAction OnEnemyKilled;
+
     public virtual void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
         animator = gameObject.GetComponent<Animator>();
-        entityScript = gameObject.GetComponent<Entity>();
         abilities = gameObject.GetComponent<EntityAbilities>();
         navMeshAgent = gameObject.GetComponent<NavMeshAgent>();
         atsm = gameObject.GetComponent<AnimationToStateMachine>();
@@ -46,12 +50,26 @@ public class StateMachineEntity : MonoBehaviour
 
     public virtual void Update()
     {
-        stateMachine.currentState.LogicUpdate();
+        if (type == EntityType.Enemy) stateMachine.currentState.LogicUpdate();
     }
 
     public virtual void FixedUpdate()
     {
-        stateMachine.currentState.PhysicsUpdate();
+        if (type == EntityType.Enemy) stateMachine.currentState.PhysicsUpdate();
+    }
+
+    public void TakeDamage(float damage)
+    {
+        health -= damage;
+
+        if (health <= 0) Die();
+    }
+
+    private void Die()
+    {
+        if (type == EntityType.Enemy && OnEnemyKilled != null) OnEnemyKilled.Invoke();
+
+        Destroy(gameObject);
     }
 
     public virtual Vector3 SetDirection(Vector3 target)
@@ -168,7 +186,7 @@ public class StateMachineEntity : MonoBehaviour
         return Physics.OverlapSphere(gameObject.transform.position, entityData.closeRangeDist, entityData.whatIsPlayer).Length > 0;
     }
 
-    public virtual Transform FindPlayersLastPosition() //should they lose sight of them, walking enemies will try to go to the last known position of the player
+    public virtual Transform FindPlayersLastPosition()
     {
         return target.gameObject.transform;
     }
@@ -224,6 +242,8 @@ public class StateMachineEntity : MonoBehaviour
 
     public virtual void OnDrawGizmos()
     {
+        if (type == EntityType.Player) return;
+
         Vector3 groundCheckOrigin = transform.position + Vector3.up * 0.1f;
 
         Gizmos.DrawWireSphere(transform.position, entityData.closeRangeDist);
@@ -231,4 +251,11 @@ public class StateMachineEntity : MonoBehaviour
 
         Gizmos.DrawWireSphere(transform.position, entityData.playerMaxCheckDist);
     }
+}
+
+public enum EntityType
+{
+    None,
+    Player,
+    Enemy
 }
