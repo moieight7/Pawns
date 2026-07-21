@@ -29,78 +29,21 @@ public static class AbilityBehaviorManager
 
     public static void TestPrimary_UseEffect(Entity caster, GameObject bullet)
     {
-        GameObject projectile = null;
-        Projectile projectileComponent = null;
-
-        Vector3 diff = Vector3.zero;
-        float rotationZ, distance;
-        Vector2 direction = Vector2.zero;
-
-        projectile = GameObject.Instantiate(bullet, caster.firePoint.transform.position, Quaternion.Euler(0f, 0f, 0f));
-        projectileComponent = projectile.GetComponent<Projectile>();
-
-        projectileComponent.sender = caster.firePoint;
-
-        if (caster.type == EntityType.Player)
-        {
-            projectileComponent.target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            projectile.layer = LayerMask.NameToLayer("PlayerBullets");
-        }
-        else if (caster.type == EntityType.Enemy)
-        {
-            projectileComponent.target = player.transform.position;
-            projectile.layer = LayerMask.NameToLayer("EnemyBullets");
-        }
-        else Debug.LogError("AbilityBehaviorManager has a defined caster with an invalid EntityType");
-
-        diff = projectileComponent.target - caster.firePoint.position;
-        diff.Normalize();
-        rotationZ = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
-
-        distance = diff.magnitude;
-        direction = diff / distance;
-        direction.Normalize();
-
-        projectileComponent.SetDirection(direction, rotationZ);
-
-        projectile.GetComponent<Collider2D>().enabled = true;
+        BulletSpawner.SpawnBullet(caster, bullet);
     }
 
     public static void TestSecondary_UseEffect(Entity caster, GameObject bullet, int numberOfBullets = 3, float bulletSpread = 30)
     {
-        if (caster.type == EntityType.Player)
+        Projectile projectileComponent = null;
+        Vector2 direction = Vector2.zero;
+
+        for (int i = 0; i < numberOfBullets; i++)
         {
-            for (int i = 0; i < numberOfBullets; i++)
-            {
-                GameObject projectile = GameObject.Instantiate(bullet, caster.firePoint.transform.position, Quaternion.Euler(0f, 0f, 0f));
+            projectileComponent = BulletSpawner.SpawnBullet(caster, bullet);
 
-                Projectile projectileComponent = projectile.GetComponent<Projectile>();
-
-                projectileComponent.sender = caster.firePoint;
-                projectileComponent.target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-                Vector3 diff = Camera.main.ScreenToWorldPoint(Input.mousePosition) - caster.firePoint.position;
-                diff.Normalize();
-                float rotationZ = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
-
-                float distance = diff.magnitude;
-                Vector2 direction = diff / distance;
-                direction.Normalize();
-
-                Quaternion rot = Quaternion.AngleAxis(0f - bulletSpread + (bulletSpread * i), Vector3.forward);
-
-                direction = rot * direction;
-
-                projectileComponent.SetDirection(direction, rotationZ);
-
-                projectile.GetComponent<Collider2D>().enabled = true;
-            }
+            Quaternion rot = Quaternion.AngleAxis(0f - bulletSpread + (bulletSpread * i), Vector3.forward);
+            projectileComponent.RotateDirection(rot);
         }
-        else if (caster.type == EntityType.Enemy)
-        {
-
-        }
-        else Debug.LogError("AbilityBehaviorManager has a defined caster with an invalid EntityType");
     }
 
     public static void TestUtility_UseEffect()
@@ -171,6 +114,50 @@ public static class AbilityBehaviorManager
             this.caster = caster;
             this.ability = ability;
             this.persistentCall = persistentCall;
+        }
+    }
+
+    private static class BulletSpawner
+    {
+        public static Projectile SpawnBullet(Entity caster, GameObject bullet)
+        {
+            GameObject projectile = null;
+            Projectile projectileComponent = null;
+
+            Vector3 diff = Vector3.zero;
+            float rotationZ, distance;
+            Vector2 direction = Vector2.zero;
+
+            projectile = GameObject.Instantiate(bullet, caster.firePoint.transform.position, Quaternion.Euler(0f, 0f, 0f));
+            projectileComponent = projectile.GetComponent<Projectile>();
+
+            projectileComponent.sender = caster.firePoint;
+
+            if (caster.type == EntityType.Player)
+            {
+                projectileComponent.target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                projectile.layer = LayerMask.NameToLayer("PlayerBullets");
+            }
+            else if (caster.type == EntityType.Enemy)
+            {
+                projectileComponent.target = player.transform.position;
+                projectile.layer = LayerMask.NameToLayer("EnemyBullets");
+            }
+            else Debug.LogError("AbilityBehaviorManager has a defined caster with an invalid EntityType");
+
+            diff = projectileComponent.target - caster.firePoint.position;
+            diff.Normalize();
+            rotationZ = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
+
+            distance = diff.magnitude;
+            direction = diff / distance;
+            direction.Normalize();
+
+            projectileComponent.SetDirection(direction, rotationZ);
+
+            projectile.GetComponent<Collider2D>().enabled = true;
+
+            return projectileComponent;
         }
     }
 }

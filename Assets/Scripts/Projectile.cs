@@ -15,15 +15,16 @@ public class Projectile : MonoBehaviour
     public Vector3 target;
     protected Vector2 moveDir;
 
+    private Rigidbody2D rb;
+
     private float timer;
     [HideInInspector] public bool invisible = false;
 
     public UltEvent OnHitEvent;
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+        rb = GetComponent<Rigidbody2D>();
     }
 
     void Update()
@@ -54,32 +55,52 @@ public class Projectile : MonoBehaviour
 
         if (entity != null && entity.type == EntityType.Enemy) entity.TakeDamage(damage);
 
-        if (OnHitEvent != null) foreach (PersistentCall call in OnHitEvent.PersistentCallsList) SetOnHitPersistentCallArguments(call, collision);
-        OnHitEvent.Invoke();
+
+        if (OnHitEvent != null)
+        {
+            bool persistentCallsValid = true;
+            foreach (PersistentCall call in OnHitEvent.PersistentCallsList)
+            {
+                persistentCallsValid = SetOnHitPersistentCallArguments(call, collision);
+                if (!persistentCallsValid) break;
+            }
+            if (persistentCallsValid) OnHitEvent.Invoke();
+        }
 
         Destroy(gameObject);
     }
 
-    private void SetOnHitPersistentCallArguments(PersistentCall call, Collider2D collision)
+    private bool SetOnHitPersistentCallArguments(PersistentCall call, Collider2D collision)
     {
         if (call.PersistentArguments.Length > 0)
         {
             Entity senderEntity, targetEntity;
-        
-            if (!(senderEntity = sender.GetComponent<Entity>()))
-                if (!(senderEntity = sender.GetComponentInParent<Entity>())) return;
-            if (!(targetEntity = collision.gameObject.GetComponent<Entity>()))
-                if (!(targetEntity = collision.gameObject.GetComponentInParent<Entity>())) return;
 
-            if (senderEntity == null) Debug.LogError("Projectile " + gameObject.name + " has no defined sender entity.");
-            if (targetEntity == null) Debug.LogError("Projectile " + gameObject.name + " has no defined target entity.");
+            if (!(senderEntity = sender.GetComponent<Entity>()))
+                if (!(senderEntity = sender.GetComponentInParent<Entity>())) { return false; }
+            if (!(targetEntity = collision.gameObject.GetComponent<Entity>()))
+                if (!(targetEntity = collision.gameObject.GetComponentInParent<Entity>())) { return false; }
+
             call.SetArguments(senderEntity, targetEntity);
+            return true;
+        }
+        else
+        {
+            Debug.LogError("SetOnHitPersistentCallArguments tried to set PersistentArguments for a call with 0 parameters");
+            return false;
         }
     }
 
     public void SetDirection(Vector2 direction, float rotationZ)
     {
         gameObject.transform.rotation = Quaternion.Euler(0f, 0f, rotationZ);
-        GetComponent<Rigidbody2D>().velocity = direction * speed;
+        rb.velocity = direction * speed;
+    }
+
+    public void RotateDirection(Quaternion rotation)
+    {
+        Vector2 currentDirection = rb.velocity;
+        Vector2 newDirection = rotation * currentDirection;
+        rb.velocity = newDirection;
     }
 }
