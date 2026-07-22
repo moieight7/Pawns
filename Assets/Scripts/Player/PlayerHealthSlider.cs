@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HealthSlider : MonoBehaviour
+public class PlayerHealthSlider : MonoBehaviour
 {
     public Entity entity;
     public TextMeshProUGUI healthText;
@@ -12,7 +12,7 @@ public class HealthSlider : MonoBehaviour
     private Slider slider;
     private float velocity;
 
-    public static HealthSlider instance;
+    public static PlayerHealthSlider instance;
 
     private void Awake()
     {
@@ -34,7 +34,7 @@ public class HealthSlider : MonoBehaviour
     {
         slider = GetComponent<Slider>();
         SetEntity();
-        OnPlayerDamaged();
+        SetText();
     }
 
     void SetEntity()
@@ -58,7 +58,6 @@ public class HealthSlider : MonoBehaviour
     {
         SetText();
     }
-
     private void OnSwitch()
     {
         SetEntity();

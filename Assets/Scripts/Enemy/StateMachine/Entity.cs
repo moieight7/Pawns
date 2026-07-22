@@ -24,6 +24,8 @@ public class Entity : MonoBehaviour
     public NavMeshAgent navMeshAgent { get; private set; }
     public AnimationToStateMachine atsm { get; private set; }
 
+    [SerializeField] private EnemyHealthSlider healthSlider;
+
     [HideInInspector] public bool playDeathSound = true;
 
     [SerializeField] private bool seeThroughObstacles = false;
@@ -39,6 +41,9 @@ public class Entity : MonoBehaviour
 
     public delegate void PlayerDamagedAction();
     public static event PlayerDamagedAction OnPlayerDamaged;
+
+    public delegate void EntityDamagedAction(Entity entity);
+    public static event EntityDamagedAction OnEntityDamaged;
 
     public delegate void EnemyKilledAction();
     public static event EnemyKilledAction OnEnemyKilled;
@@ -57,6 +62,9 @@ public class Entity : MonoBehaviour
         abilities = gameObject.GetComponent<EntityAbilities>();
         navMeshAgent = gameObject.GetComponent<NavMeshAgent>();
         atsm = gameObject.GetComponent<AnimationToStateMachine>();
+
+        healthSlider = GetComponentInChildren<EnemyHealthSlider>();
+        if (type == EntityType.Player) healthSlider.Hide();
 
         stateMachine = new FiniteStateMachine();
 
@@ -80,7 +88,8 @@ public class Entity : MonoBehaviour
         health -= damage;
         if (health <= 0 && invincible) health = 1;
 
-        if (type == EntityType.Player) OnPlayerDamaged.Invoke();
+        if (type == EntityType.Player && OnPlayerDamaged != null) OnPlayerDamaged.Invoke();
+        if (OnEntityDamaged != null) { Debug.Log("OnEntityDamaged " + this.name); OnEntityDamaged.Invoke(this); }
 
         if (health <= 0) Die();
     }
@@ -284,18 +293,24 @@ public class Entity : MonoBehaviour
     public void OnSwitchedTo(Entity from)
     {
         invincible = from.invincible;
+
         gameObject.layer = LayerMask.NameToLayer("Player");
         gameObject.tag = "Player";
         type = EntityType.Player;
+
+        healthSlider.Hide();
     }
 
     public void OnSwitchedFrom(Entity to)
     {
         invincible = false;
+
         gameObject.layer = LayerMask.NameToLayer("Enemy");
         gameObject.tag = "Enemy";
         type = EntityType.Enemy;
+
         rb.velocity = Vector3.zero;
+        healthSlider.Show();
 
         OnSwitch.Invoke();
     }
