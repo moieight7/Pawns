@@ -52,9 +52,7 @@ public class Projectile : MonoBehaviour
         Debug.Log("Collided with " + collision.name);
 
         Entity entity = collision.GetComponent<Entity>();
-
-        if (entity != null && entity.type == EntityType.Enemy) entity.TakeDamage(damage);
-
+        if (entity != null) entity.TakeDamage(damage);
 
         if (OnHitEvent != null)
         {

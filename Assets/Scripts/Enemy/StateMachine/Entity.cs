@@ -8,6 +8,7 @@ public class Entity : MonoBehaviour
 {
     public int enemyID;
     public float health;
+    [HideInInspector] public float maxHealth;
     public EntityType type;
 
     public FiniteStateMachine stateMachine;
@@ -30,8 +31,16 @@ public class Entity : MonoBehaviour
     private Vector3 velocityWorkspace;
     private static int id;
 
+    public delegate void PlayerDamagedAction();
+    public static event PlayerDamagedAction OnPlayerDamaged;
+
     public delegate void EnemyKilledAction();
     public static event EnemyKilledAction OnEnemyKilled;
+
+    private void Awake()
+    {
+        maxHealth = health;
+    }
 
     public virtual void Start()
     {
@@ -61,6 +70,8 @@ public class Entity : MonoBehaviour
     public void TakeDamage(float damage)
     {
         health -= damage;
+
+        if (type == EntityType.Player) OnPlayerDamaged.Invoke();
 
         if (health <= 0) Die();
     }
