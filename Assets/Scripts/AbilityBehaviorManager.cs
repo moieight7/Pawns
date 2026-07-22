@@ -94,8 +94,8 @@ public static class AbilityBehaviorManager
         foreach (Ability ability in newEntityAbilities.entityAbilities) AbilityCooldownManager.instance.CancelAbilityCooldown(ability);
         foreach (Ability ability in newEntityAbilities.entityAbilities) AbilityCooldownManager.instance.ResetAbilityCooldown(ability);
 
-        target.type = EntityType.Player;
-        caster.type = EntityType.Enemy;
+        target.OnSwitchedTo(caster);
+        caster.OnSwitchedFrom(target);
 
         Ability switchAbility = oldEntityAbilities.entityAbilities.Find(x => x.Type == AbilityType.Switch);
         newEntityAbilities.AddAbility(switchAbility);
@@ -105,17 +105,9 @@ public static class AbilityBehaviorManager
 
         CameraTarget.instance.SetTarget(target.transform);
 
-        target.gameObject.layer = LayerMask.NameToLayer("Player");
-        caster.gameObject.layer = LayerMask.NameToLayer("Enemy");
-
-        target.gameObject.tag = "Player";
-        caster.gameObject.tag = "Enemy";
-
         float movementSpeed = oldPlayerMovement.movementSpeed;
         newPlayerMovement.movementSpeed = movementSpeed;
         GameObject.Destroy(oldPlayerMovement);
-
-        caster.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
 
         EnemyTargetSwitcher.instance.SetNewTarget();
     }

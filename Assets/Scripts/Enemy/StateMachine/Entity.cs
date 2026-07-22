@@ -1,7 +1,8 @@
+using IngameDebugConsole;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 using UnityEngine.AI;
 
 public class Entity : MonoBehaviour
@@ -28,8 +29,13 @@ public class Entity : MonoBehaviour
     [SerializeField] private bool seeThroughObstacles = false;
     private bool isKnockedBack = false;
 
+    private bool invincible = false;
+
     private Vector3 velocityWorkspace;
     private static int id;
+
+    public delegate void SwitchAction();
+    public static event SwitchAction OnSwitch;
 
     public delegate void PlayerDamagedAction();
     public static event PlayerDamagedAction OnPlayerDamaged;
@@ -40,6 +46,8 @@ public class Entity : MonoBehaviour
     private void Awake()
     {
         maxHealth = health;
+
+        DebugLogConsole.AddCommand("buddha", "Upon death sets player HP to 1, ensuring they can never die.", SetInvincibleFlag);
     }
 
     public virtual void Start()
@@ -70,6 +78,7 @@ public class Entity : MonoBehaviour
     public void TakeDamage(float damage)
     {
         health -= damage;
+        if (health <= 0 && invincible) health = 1;
 
         if (type == EntityType.Player) OnPlayerDamaged.Invoke();
 
@@ -261,6 +270,34 @@ public class Entity : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, entityData.playerMinCheckDist);
 
         Gizmos.DrawWireSphere(transform.position, entityData.playerMaxCheckDist);
+    }
+
+    private void SetInvincibleFlag()
+    {
+        if (type != EntityType.Player) return;
+
+        invincible = !invincible;
+        if (invincible) Debug.Log("Buddha Mode on...");
+        else if (invincible) Debug.Log("Buddha Mode off...");
+    }
+
+    public void OnSwitchedTo(Entity from)
+    {
+        invincible = from.invincible;
+        gameObject.layer = LayerMask.NameToLayer("Player");
+        gameObject.tag = "Player";
+        type = EntityType.Player;
+    }
+
+    public void OnSwitchedFrom(Entity to)
+    {
+        invincible = false;
+        gameObject.layer = LayerMask.NameToLayer("Enemy");
+        gameObject.tag = "Enemy";
+        type = EntityType.Enemy;
+        rb.velocity = Vector3.zero;
+
+        OnSwitch.Invoke();
     }
 }
 

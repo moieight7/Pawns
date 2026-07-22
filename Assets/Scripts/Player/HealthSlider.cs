@@ -12,8 +12,21 @@ public class HealthSlider : MonoBehaviour
     private Slider slider;
     private float velocity;
 
+    public static HealthSlider instance;
+
     private void Awake()
     {
+        if (instance != null)
+        {
+            Debug.LogWarning("An instance of HealthSlider already exists. Deleting the newest one...");
+            Destroy(gameObject);
+            return;
+        }
+
+        instance = this;
+        DontDestroyOnLoad(this.gameObject);
+
+        Entity.OnSwitch += OnSwitch;
         Entity.OnPlayerDamaged += OnPlayerDamaged;
     }
 
@@ -28,6 +41,7 @@ public class HealthSlider : MonoBehaviour
     {
         entity = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
         slider.maxValue = entity.maxHealth;
+        SetText();
     }
 
     void Update()
@@ -35,8 +49,18 @@ public class HealthSlider : MonoBehaviour
         slider.value = Mathf.SmoothDamp(slider.value, entity.health, ref velocity, 0.2f);
     }
 
-    private void OnPlayerDamaged()
+    private void SetText()
     {
         healthText.text = entity.health.ToString() + " / " + entity.maxHealth.ToString();
+    }
+
+    private void OnPlayerDamaged()
+    {
+        SetText();
+    }
+
+    private void OnSwitch()
+    {
+        SetEntity();
     }
 }
