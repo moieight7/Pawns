@@ -14,12 +14,15 @@ public class EntityAbilities : MonoBehaviour
 
     private Entity entity;
 
+    private bool canUseAbilites = true;
+
     void Start()
     {
         entity = GetComponent<Entity>();
 
         Ability.OnAbilityTriggered += OnAbilityTriggered;
         Ability.OnAbilityChargeCooldown += OnAbilityChargeCooldown;
+        Entity.OnPlayerKilled += OnPlayerKilled;
 
         SetAbilities();
 
@@ -28,6 +31,8 @@ public class EntityAbilities : MonoBehaviour
 
     void Update()
     {
+        if (!canUseAbilites) return;
+
         if (entity.type == EntityType.Player) {
             foreach (PlayerAbility playerAbility in playerAbilities)
             {
@@ -95,6 +100,11 @@ public class EntityAbilities : MonoBehaviour
     {
         Debug.Log("OnAbilityChargeCooldown");
         if (entity.type == EntityType.Player) AbilityUI.instance.SetAbilityUI();
+    }
+
+    private void OnPlayerKilled()
+    {
+        canUseAbilites = false;
     }
 
     private void ResetAllCooldowns()

@@ -10,6 +10,12 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 motion;
 
     private Crosshair crosshair;
+    private bool canMove = true;
+
+    private void Awake()
+    {
+        Entity.OnPlayerKilled += OnPlayerKilled;
+    }
 
     void Start()
     {
@@ -19,6 +25,8 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (!canMove) return;
+
         motion = new Vector2(Input.GetAxisRaw("Horizontal") * movementSpeed * Time.deltaTime, Input.GetAxisRaw("Vertical") * movementSpeed * Time.deltaTime);
 
         rb.velocity = motion;
@@ -28,5 +36,11 @@ public class PlayerMovement : MonoBehaviour
 
         /*if (rb.velocity.x < 0) GetComponent<SpriteRenderer>().flipX = true;
         else if (rb.velocity.x > 0) GetComponent<SpriteRenderer>().flipX = false;*/
+    }
+
+    public void OnPlayerKilled()
+    {
+        rb.velocity = Vector2.zero;
+        canMove = false;
     }
 }

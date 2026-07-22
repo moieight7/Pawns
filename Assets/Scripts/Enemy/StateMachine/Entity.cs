@@ -45,6 +45,9 @@ public class Entity : MonoBehaviour
     public delegate void EntityDamagedAction(Entity entity);
     public static event EntityDamagedAction OnEntityDamaged;
 
+    public delegate void PlayerKilledAction();
+    public static event PlayerKilledAction OnPlayerKilled;
+
     public delegate void EnemyKilledAction();
     public static event EnemyKilledAction OnEnemyKilled;
 
@@ -96,9 +99,16 @@ public class Entity : MonoBehaviour
 
     private void Die()
     {
-        if (type == EntityType.Enemy && OnEnemyKilled != null) OnEnemyKilled.Invoke();
-
-        Destroy(gameObject);
+        if (type == EntityType.Enemy)
+        {
+            if (OnEnemyKilled != null) OnEnemyKilled.Invoke();
+            Destroy(gameObject);
+        }
+        else if (type == EntityType.Player) 
+        {
+            if (OnPlayerKilled != null) OnPlayerKilled.Invoke();
+            PlayerDeath.instance.TriggerDeathSequence();
+        }
     }
 
     public virtual Vector3 SetDirection(Vector3 target)

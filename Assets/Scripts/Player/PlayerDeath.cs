@@ -1,0 +1,29 @@
+using DG.Tweening;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerDeath : MonoBehaviour
+{
+    public GameObject deathUI;
+
+    public static PlayerDeath instance { get; private set; }
+
+    void Awake()
+    {
+        if (instance != null)
+        {
+            Debug.Log("Found more than one PlayerDeath object! Destroying the newest one.");
+            Destroy(gameObject);
+            return;
+        }
+
+        instance = this;
+        DontDestroyOnLoad(this.gameObject);
+    }
+
+    public void TriggerDeathSequence()
+    {
+        SlowdownManager.instance.Slowdown(1, 0, 5, Ease.OutCirc);
+    }
+}
