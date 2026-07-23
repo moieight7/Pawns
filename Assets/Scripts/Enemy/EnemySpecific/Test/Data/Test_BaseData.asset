@@ -13,16 +13,16 @@ MonoBehaviour:
   m_Name: Test_BaseData
   m_EditorClassIdentifier: 
   playerMinCheckDist: 3
-  playerMaxCheckDist: 30
+  playerMaxCheckDist: 25
   closeRangeDist: 1
   rangeCheckOffset: 0.2
   knockbackStillThreshold: 0.05
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   whatIsWall:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 8

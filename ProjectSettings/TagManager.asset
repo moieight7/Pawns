@@ -16,8 +16,8 @@ TagManager:
   - PlayerBullets
   - EnemyBullets
   - Enemy
-  - 
-  - 
+  - Wall
+  - Trigger
   - 
   - 
   - 

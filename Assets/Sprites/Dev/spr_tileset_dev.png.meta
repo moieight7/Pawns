@@ -159,6 +159,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: spr_tileset_dev_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92f90603d293bbd4a8d571fe470cda6f
+      internalID: 1176478430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -173,6 +194,7 @@ TextureImporter:
       spr_tileset_dev_0: -702359340
       spr_tileset_dev_1: 1181515370
       spr_tileset_dev_2: -896254581
+      spr_tileset_dev_3: 1176478430
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

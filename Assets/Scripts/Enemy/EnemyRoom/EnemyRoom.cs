@@ -32,17 +32,17 @@ public class EnemyRoom : MonoBehaviour
         //Entity.OnPlayerRespawned -= ResetRoom;
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!enterTrigger && other.GetComponent<PlayerMovement>() && !roomPassed)
+        if (!enterTrigger && collision.GetComponent<Entity>().type == EntityType.Player && !roomPassed)
         {
             enterTrigger = true;
-            Debug.Log("OnRoomEnterEvent invoked by " + other.name);
+            Debug.Log("OnRoomEnterEvent invoked by " + collision.name);
             OnRoomEnterEvent.Invoke();
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerExit2D(Collider2D collision)
     {
         if (!roomPassed) return;
         Debug.Log("EnemyRoom OnTriggerExit invoked");
