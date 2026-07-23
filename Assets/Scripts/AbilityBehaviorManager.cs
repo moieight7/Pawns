@@ -30,7 +30,7 @@ public static class AbilityBehaviorManager
 
     public static void TestPrimary_UseEffect(Entity caster, GameObject bullet)
     {
-        BulletSpawner.SpawnBullet(caster, bullet);
+        AttackSpawner.SpawnBullet(caster, bullet);
     }
 
     public static void TestSecondary_UseEffect(Entity caster, GameObject bullet, int numberOfBullets = 3, float bulletSpread = 30)
@@ -40,16 +40,16 @@ public static class AbilityBehaviorManager
 
         for (int i = 0; i < numberOfBullets; i++)
         {
-            projectileComponent = BulletSpawner.SpawnBullet(caster, bullet);
+            projectileComponent = (Projectile)AttackSpawner.SpawnBullet(caster, bullet);
 
             Quaternion rot = Quaternion.AngleAxis(0f - bulletSpread + (bulletSpread * i), Vector3.forward);
             projectileComponent.RotateDirection(rot);
         }
     }
 
-    public static void TestUtility_UseEffect()
+    public static void TestUtility_UseEffect(Entity caster, float dashSpeed, float dashSmoothTime)
     {
-
+        
     }
 
     public static void TestSpecial_UseEffect()
@@ -57,24 +57,16 @@ public static class AbilityBehaviorManager
 
     }
 
+    public static void Sword_UseEffect(Entity caster, GameObject prefab)
+    {
+        Swing swing = AttackSpawner.SpawnSwing(caster, prefab);
+        swing.transform.parent = caster.firePoint.transform;
+    }
+
     public static void TestSwitch_UseEffect(Entity caster, GameObject bullet)
     {
-        GameObject projectile = GameObject.Instantiate(bullet, caster.firePoint.transform.position, Quaternion.Euler(0f, 0f, 0f));
-
-        Projectile projectileComponent = projectile.GetComponent<Projectile>();
-
-        projectileComponent.sender = caster.firePoint;
-        projectileComponent.target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-        Vector3 diff = Camera.main.ScreenToWorldPoint(Input.mousePosition) - caster.firePoint.position;
-        diff.Normalize();
-        float rotationZ = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
-
-        float distance = diff.magnitude;
-        Vector2 direction = diff / distance;
-        direction.Normalize();
-
-        projectileComponent.SetDirection(direction, rotationZ);
+        Projectile projectile = AttackSpawner.SpawnBullet(caster, bullet);
+        projectile.sender = caster.firePoint;
     }
 
     public static void SwitchCharacters(Entity caster, Entity target)
@@ -126,35 +118,62 @@ public static class AbilityBehaviorManager
         }
     }
 
-    private static class BulletSpawner
+    private static class AttackSpawner
     {
-        public static Projectile SpawnBullet(Entity caster, GameObject bullet)
+        public static Projectile SpawnBullet(Entity caster, GameObject prefab)
         {
             GameObject projectile = null;
             Projectile projectileComponent = null;
 
+            projectile = Instantiate(caster, prefab);
+            projectileComponent = projectile.GetComponent<Projectile>();
+
+            SetDirectionAndRotation(caster, projectileComponent);
+
+            projectile.GetComponent<Collider2D>().enabled = true;
+
+            return projectileComponent;
+        }
+
+        public static Swing SpawnSwing(Entity caster, GameObject prefab)
+        {
+            GameObject swing = null;
+            Swing swingComponent = null;
+
+            swing = Instantiate(caster, prefab);
+            swingComponent = swing.GetComponent<Swing>();
+
+            SetDirectionAndRotation(caster, swingComponent);
+
+            swing.GetComponent<Collider2D>().enabled = true;
+
+            return swingComponent;
+        }
+
+        private static GameObject Instantiate(Entity caster, GameObject prefab)
+        {
+            GameObject attack = null;
+            Attack attackComponent = null;
+
+            attack = GameObject.Instantiate(prefab, caster.firePoint.transform.position, Quaternion.Euler(0f, 0f, 0f));
+            attackComponent = attack.GetComponent<Attack>();
+            attackComponent.sender = caster.firePoint;
+
+            if (caster.type == EntityType.Player) attack.layer = LayerMask.NameToLayer("PlayerBullets");
+            else if (caster.type == EntityType.Enemy) attack.layer = LayerMask.NameToLayer("EnemyBullets");
+            else Debug.LogError("AbilityBehaviorManager has a defined caster with an invalid EntityType");
+
+            return attack;
+        }
+
+        private static void SetDirectionAndRotation(Entity caster, Attack attackComponent)
+        {
             Vector3 diff = Vector3.zero;
             float rotationZ, distance;
             Vector2 direction = Vector2.zero;
 
-            projectile = GameObject.Instantiate(bullet, caster.firePoint.transform.position, Quaternion.Euler(0f, 0f, 0f));
-            projectileComponent = projectile.GetComponent<Projectile>();
-
-            projectileComponent.sender = caster.firePoint;
-
-            if (caster.type == EntityType.Player)
-            {
-                projectileComponent.target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                projectile.layer = LayerMask.NameToLayer("PlayerBullets");
-            }
-            else if (caster.type == EntityType.Enemy)
-            {
-                projectileComponent.target = caster.target.transform.position;
-                projectile.layer = LayerMask.NameToLayer("EnemyBullets");
-            }
-            else Debug.LogError("AbilityBehaviorManager has a defined caster with an invalid EntityType");
-
-            diff = projectileComponent.target - caster.firePoint.position;
+            if (caster.type == EntityType.Player) diff = Camera.main.ScreenToWorldPoint(Input.mousePosition) - caster.firePoint.position;
+            else if (caster.type == EntityType.Enemy) diff = caster.target.transform.position - caster.firePoint.position;
             diff.Normalize();
             rotationZ = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
 
@@ -162,11 +181,7 @@ public static class AbilityBehaviorManager
             direction = diff / distance;
             direction.Normalize();
 
-            projectileComponent.SetDirection(direction, rotationZ);
-
-            projectile.GetComponent<Collider2D>().enabled = true;
-
-            return projectileComponent;
+            attackComponent.SetDirection(direction, rotationZ);
         }
     }
 }

@@ -23446,7 +23446,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entityAbilities:
-  - abilityData: {fileID: 11400000, guid: 2e089ba2e124fc144b42bb08f81b9fdb, type: 2}
+  - abilityData: {fileID: 11400000, guid: 72c2905d7dd981e448e25a33493fee2d, type: 2}
     caster: {fileID: 0}
     numberOfCharges: 0
     cooldownLoopRunning: 0
@@ -23456,15 +23456,6 @@ MonoBehaviour:
     OnAbilityCoolDownEvent:
       _PersistentCalls: []
   - abilityData: {fileID: 11400000, guid: 67ee83240715d2f40a704c53f7705197, type: 2}
-    caster: {fileID: 0}
-    numberOfCharges: 0
-    cooldownLoopRunning: 0
-    usable: 1
-    OnAbilityTriggeredEvent:
-      _PersistentCalls: []
-    OnAbilityCoolDownEvent:
-      _PersistentCalls: []
-  - abilityData: {fileID: 11400000, guid: 3bb8a358b70798744ae5ea430fb95150, type: 2}
     caster: {fileID: 0}
     numberOfCharges: 0
     cooldownLoopRunning: 0
