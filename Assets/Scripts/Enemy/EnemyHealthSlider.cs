@@ -16,6 +16,8 @@ public class EnemyHealthSlider : MonoBehaviour
 
     private void Awake()
     {
+        scale = transform.localScale;
+
         Entity.OnEntityDamaged += OnEntityDamaged;
     }
 
@@ -27,8 +29,6 @@ public class EnemyHealthSlider : MonoBehaviour
         slider.maxValue = entity.maxHealth;
 
         SetText();
-
-        scale = transform.localScale;
     }
 
     void Update()

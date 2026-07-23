@@ -33,13 +33,13 @@ public class PlayerHealthSlider : MonoBehaviour
     void Start()
     {
         slider = GetComponent<Slider>();
-        SetEntity();
+        SetEntity(GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>());
         SetText();
     }
 
-    void SetEntity()
+    void SetEntity(Entity to)
     {
-        entity = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
+        entity = to;
         slider.maxValue = entity.maxHealth;
         SetText();
     }
@@ -58,8 +58,8 @@ public class PlayerHealthSlider : MonoBehaviour
     {
         SetText();
     }
-    private void OnSwitch()
+    private void OnSwitch(Entity to, Entity from)
     {
-        SetEntity();
+        SetEntity(to);
     }
 }

@@ -3,15 +3,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraTarget : MonoBehaviour
+public class Target : MonoBehaviour
 {
-    [SerializeField] private Transform playerTransform;
+    [SerializeField] private Transform targetTransform;
     [SerializeField] private Camera mainCamera;
     [Range(2, 100)][SerializeField] private float cameraTargetDivider;
 
     private bool isPlayerAlive = true;
 
-    public static CameraTarget instance;
+    public Transform TargetTransform
+    {
+        get { return targetTransform; }
+        private set { targetTransform = value; }
+    }
+
+    public delegate void OnTargetSetAction();
+    public static event OnTargetSetAction OnTargetSet;
+
+    public static Target instance;
 
     private void Awake()
     {
@@ -28,23 +37,26 @@ public class CameraTarget : MonoBehaviour
         Entity.OnPlayerKilled += OnPlayerKilled;
     }
 
+    private void Start()
+    {
+        targetTransform = GameObject.FindGameObjectWithTag("Player").transform;
+    }
+
     private void Update()
     {
         if (isPlayerAlive)
         {
             var mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-            var cameraTargetPosition = (mousePosition + (cameraTargetDivider - 1) * playerTransform.position) / cameraTargetDivider;
+            var cameraTargetPosition = (mousePosition + (cameraTargetDivider - 1) * targetTransform.position) / cameraTargetDivider;
             transform.position = cameraTargetPosition;
         }
-        else
-        {
-            transform.position = playerTransform.position;
-        }
+        else transform.position = targetTransform.position;
     }
 
     public void SetTarget(Transform target)
     {
-        playerTransform = target;
+        this.targetTransform = target;
+        if (OnTargetSet != null) OnTargetSet.Invoke();
     }
 
     private void OnPlayerKilled()

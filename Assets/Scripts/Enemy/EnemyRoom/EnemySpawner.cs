@@ -28,6 +28,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void Awake()
     {
+        Entity.OnSwitch += OnSwitch;
         Entity.OnEnemyKilled += CheckWaveStatus;
     }
 
@@ -86,7 +87,6 @@ public class EnemySpawner : MonoBehaviour
     {
         waveActive = false;
         OnSpawningOver.Invoke();
-        //gameObject.SetActive(false);
     }
 
     public void ResetSpawner()
@@ -98,9 +98,7 @@ public class EnemySpawner : MonoBehaviour
         for (int i = 0; i < aliveEnemies.Count; i++)
         {
             Entity entity = aliveEnemies[i].GetComponent<Entity>();
-            //entity.playDeathSound = false;
             Destroy(entity.gameObject);
-            //aliveEnemies.Remove(aliveEnemies[i]);
         }
         aliveEnemies.Clear();
 
@@ -109,7 +107,6 @@ public class EnemySpawner : MonoBehaviour
 
     IEnumerator NextWave()
     {
-        //debug.log("NextWave");
         currentWave++;
 
         if (OnWaveChanged != null)
@@ -126,8 +123,6 @@ public class EnemySpawner : MonoBehaviour
         foreach (SpawnLocation point in spawn)
         {
             StartCoroutine(SpawnEnemyCoroutine(point.enemy, point.location));
-            /*point.enemy.SetActive(true);
-            point.enemy.transform.position = point.location.position;*/
             yield return new WaitForSeconds(Random.Range(randomSpawnDelayMin, randomSpawnDelayMax));
         }
 
@@ -144,52 +139,19 @@ public class EnemySpawner : MonoBehaviour
 
     IEnumerator SpawnEnemyCoroutine(GameObject enemy, Transform location)
     {
-        /*Animator silhouetteAnim;
-
-        GameObject alert = ObjectPoolManager.instance.SpawnObject(preSpawnAlert, location.position, Quaternion.identity, ObjectPoolManager.PoolType.GFX);
-        Animator alertAnim = alert.GetComponent<Animator>();
-        alertAnim.speed = 1;
-        alertAnim.speed /= spawnTimer;*/
-
-        //GameObject enemyObj = ObjectPoolManager.instance.SpawnObject(enemy, location.position, Quaternion.identity, ObjectPoolManager.PoolType.Enemies);
-        //TODO: uncomment this when enemies are properly pooled
-
         GameObject enemyObj = Instantiate(enemy, location.position, Quaternion.identity);
         aliveEnemies.Add(enemyObj);
         enemyObj.SetActive(false);
 
-        /*#region SilhouetteGFX
-        GameObject silhouette = ObjectPoolManager.instance.SpawnObject(enemySilhouette, location.position, Quaternion.identity, ObjectPoolManager.PoolType.GFX);
-        silhouetteAnim = silhouette.GetComponent<Animator>();
-        silhouetteAnim.speed = 1;
-        silhouetteAnim.speed /= spawnTimer;
-        ObjectPoolManager.instance.ReturnObjectToPool(silhouette, 3);
-
-        if (enemyObj.transform.Find("Alive"))
-        {
-            silhouette.GetComponent<SpriteRenderer>().sprite = enemyObj.transform.Find("Alive").GetComponent<SpriteRenderer>().sprite;
-            silhouette.transform.localScale = enemyObj.transform.Find("Alive").localScale;
-            silhouette.transform.localRotation = enemyObj.transform.Find("Alive").localRotation;
-        }
-        else
-        {
-            silhouette.GetComponent<SpriteRenderer>().sprite = enemyObj.transform.GetComponent<SpriteRenderer>().sprite;
-            silhouette.transform.localScale = enemyObj.transform.localScale;
-            silhouette.transform.localRotation = enemyObj.transform.localRotation;
-        }
-        #endregion*/
-
         yield return new WaitForSeconds(spawnTimer);
 
-        /*silhouetteAnim.Rebind();
-        silhouetteAnim.Update(0f);
-        silhouette.SetActive(false);*/
-
         enemyObj.SetActive(true);
+    }
 
-        /*alertAnim.Rebind();
-        alertAnim.Update(0f);
-        ObjectPoolManager.instance.ReturnObjectToPool(alert);*/
+    private void OnSwitch(Entity to, Entity from)
+    {
+        aliveEnemies.Remove(to.gameObject);
+        aliveEnemies.Add(from.gameObject);
     }
 
     [System.Serializable]

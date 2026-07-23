@@ -15,7 +15,7 @@ public class Entity : MonoBehaviour
     public FiniteStateMachine stateMachine;
 
     public Transform firePoint;
-    [HideInInspector] public Transform target;
+    public Transform target;
     public D_Entity entityData;
 
     public Rigidbody2D rb { get; private set; }
@@ -36,7 +36,7 @@ public class Entity : MonoBehaviour
     private Vector3 velocityWorkspace;
     private static int id;
 
-    public delegate void SwitchAction();
+    public delegate void SwitchAction(Entity to, Entity from);
     public static event SwitchAction OnSwitch;
 
     public delegate void PlayerDamagedAction();
@@ -55,6 +55,8 @@ public class Entity : MonoBehaviour
     {
         maxHealth = health;
 
+        Target.OnTargetSet += OnTargetSet;
+
         DebugLogConsole.AddCommand("buddha", "Upon death sets player HP to 1, ensuring they can never die.", SetInvincibleFlag);
     }
 
@@ -71,7 +73,7 @@ public class Entity : MonoBehaviour
 
         stateMachine = new FiniteStateMachine();
 
-        target = FindObjectOfType<PlayerMovement>().transform;
+        target = Target.instance.TargetTransform;
 
         enemyID = id++;
     }
@@ -302,6 +304,8 @@ public class Entity : MonoBehaviour
 
     public void OnSwitchedTo(Entity from)
     {
+        Debug.Log("OnSwitchedTo entity " + name + " from entity " + from.name);
+
         invincible = from.invincible;
 
         gameObject.layer = LayerMask.NameToLayer("Player");
@@ -313,6 +317,8 @@ public class Entity : MonoBehaviour
 
     public void OnSwitchedFrom(Entity to)
     {
+        Debug.Log("OnSwitchedFrom entity " + name + " to entity " + to.name);
+
         invincible = false;
 
         gameObject.layer = LayerMask.NameToLayer("Enemy");
@@ -322,7 +328,12 @@ public class Entity : MonoBehaviour
         rb.velocity = Vector3.zero;
         healthSlider.Show();
 
-        OnSwitch.Invoke();
+        OnSwitch.Invoke(to, this);
+    }
+
+    private void OnTargetSet()
+    {
+        target = Target.instance.TargetTransform;
     }
 }
 

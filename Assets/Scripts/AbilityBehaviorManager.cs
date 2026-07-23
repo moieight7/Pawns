@@ -103,7 +103,7 @@ public static class AbilityBehaviorManager
 
         newEntityAbilities.SetAbilities();
 
-        CameraTarget.instance.SetTarget(target.transform);
+        Target.instance.SetTarget(target.transform);
 
         float movementSpeed = oldPlayerMovement.movementSpeed;
         newPlayerMovement.movementSpeed = movementSpeed;
