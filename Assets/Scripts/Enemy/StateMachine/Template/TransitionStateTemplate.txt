@@ -4,7 +4,7 @@ public class STATE_NAME : PARENT_CLASS_NAME
 
     public STATE_NAME() { }
 
-    public STATE_NAME(StateMachineEntity entity, FiniteStateMachine stateMachine, string animBoolName, DATA_CONTAINER_CLASS_NAME stateData, ENEMY_CLASS_NAME enemy) : base(entity, stateMachine, animBoolName, stateData)
+    public STATE_NAME(Entity entity, FiniteStateMachine stateMachine, string animBoolName, DATA_CONTAINER_CLASS_NAME stateData, ENEMY_CLASS_NAME enemy) : base(entity, stateMachine, animBoolName, stateData)
     {
         this.enemy = enemy;
     }

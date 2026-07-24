@@ -55,6 +55,10 @@ public class Entity : MonoBehaviour
     {
         maxHealth = health;
 
+        navMeshAgent = gameObject.GetComponent<NavMeshAgent>();
+        navMeshAgent.updateRotation = false;
+        navMeshAgent.updateUpAxis = false;
+
         Target.OnTargetSet += OnTargetSet;
 
         DebugLogConsole.AddCommand("buddha", "Upon death sets player HP to 1, ensuring they can never die.", SetInvincibleFlag);
@@ -65,7 +69,7 @@ public class Entity : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody2D>();
         animator = gameObject.GetComponent<Animator>();
         abilities = gameObject.GetComponent<EntityAbilities>();
-        navMeshAgent = gameObject.GetComponent<NavMeshAgent>();
+
         atsm = gameObject.GetComponent<AnimationToStateMachine>();
 
         healthSlider = GetComponentInChildren<EnemyHealthSlider>();
@@ -312,6 +316,8 @@ public class Entity : MonoBehaviour
         gameObject.tag = "Player";
         type = EntityType.Player;
 
+        navMeshAgent.isStopped = true;
+
         healthSlider.Hide();
     }
 
@@ -327,6 +333,8 @@ public class Entity : MonoBehaviour
 
         rb.velocity = Vector3.zero;
         healthSlider.Show();
+
+        navMeshAgent.isStopped = false;
 
         OnSwitch.Invoke(to, this);
     }

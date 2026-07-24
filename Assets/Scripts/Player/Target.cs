@@ -40,7 +40,8 @@ public class Target : MonoBehaviour
 
     private void Start()
     {
-        targetTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        SetTarget(GameObject.FindGameObjectWithTag("Player").transform);
+        Debug.Log("targetTransform: " + targetTransform.name);
     }
 
     private void Update()
