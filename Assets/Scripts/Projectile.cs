@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class Projectile : Attack
 {
+    [Header("Projectile Stats")]
     public float speed;
 
     protected Vector2 moveDir;
-
-    private Rigidbody2D rb;
+    protected Rigidbody2D rb;
 
     void Awake()
     {

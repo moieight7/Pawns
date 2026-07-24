@@ -21,7 +21,29 @@ MonoBehaviour:
   inBetweenChargesCooldownTime: 0
   cooldownTime: 4
   maxCharges: 1
+  startUsable: 1
   OnAbilityTriggeredEvent:
-    _PersistentCalls: []
+    _PersistentCalls:
+    - _Target: {fileID: 0}
+      _MemberName: AbilityBehaviorManager, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null.TestPrimary_UseEffect
+      _PersistentArguments:
+      - _Type: 13
+        _Int: 0
+        _String: Entity, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+      - _Type: 13
+        _Int: 0
+        _String: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 6727068876973670815, guid: ce758677ebee1e044b69c763f49afc27, type: 3}
   OnAbilityCoolDownEvent:
     _PersistentCalls: []

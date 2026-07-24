@@ -23464,6 +23464,15 @@ MonoBehaviour:
       _PersistentCalls: []
     OnAbilityCoolDownEvent:
       _PersistentCalls: []
+  - abilityData: {fileID: 11400000, guid: 3bb8a358b70798744ae5ea430fb95150, type: 2}
+    caster: {fileID: 0}
+    numberOfCharges: 0
+    cooldownLoopRunning: 0
+    usable: 1
+    OnAbilityTriggeredEvent:
+      _PersistentCalls: []
+    OnAbilityCoolDownEvent:
+      _PersistentCalls: []
   - abilityData: {fileID: 11400000, guid: 80643ee46f0995645a83c90d154625ec, type: 2}
     caster: {fileID: 0}
     numberOfCharges: 0

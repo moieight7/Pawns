@@ -30,7 +30,7 @@ public static class AbilityBehaviorManager
 
     public static void TestPrimary_UseEffect(Entity caster, GameObject bullet)
     {
-        AttackSpawner.SpawnBullet(caster, bullet);
+        AttackSpawner.SpawnAttack(caster, bullet);
     }
 
     public static void TestSecondary_UseEffect(Entity caster, GameObject bullet, int numberOfBullets = 3, float bulletSpread = 30)
@@ -40,7 +40,7 @@ public static class AbilityBehaviorManager
 
         for (int i = 0; i < numberOfBullets; i++)
         {
-            projectileComponent = (Projectile)AttackSpawner.SpawnBullet(caster, bullet);
+            projectileComponent = (Projectile)AttackSpawner.SpawnAttack(caster, bullet);
 
             Quaternion rot = Quaternion.AngleAxis(0f - bulletSpread + (bulletSpread * i), Vector3.forward);
             projectileComponent.RotateDirection(rot);
@@ -59,13 +59,13 @@ public static class AbilityBehaviorManager
 
     public static void Sword_UseEffect(Entity caster, GameObject prefab)
     {
-        Swing swing = AttackSpawner.SpawnSwing(caster, prefab);
+        Swing swing = (Swing)AttackSpawner.SpawnAttack(caster, prefab);
         swing.transform.parent = caster.firePoint.transform;
     }
 
     public static void TestSwitch_UseEffect(Entity caster, GameObject bullet)
     {
-        Projectile projectile = AttackSpawner.SpawnBullet(caster, bullet);
+        Projectile projectile = (Projectile)AttackSpawner.SpawnAttack(caster, bullet);
         projectile.sender = caster.firePoint;
     }
 
@@ -120,34 +120,19 @@ public static class AbilityBehaviorManager
 
     private static class AttackSpawner
     {
-        public static Projectile SpawnBullet(Entity caster, GameObject prefab)
+        public static Attack SpawnAttack(Entity caster, GameObject prefab)
         {
-            GameObject projectile = null;
-            Projectile projectileComponent = null;
+            GameObject attack = null;
+            Attack attackComponent = null;
 
-            projectile = Instantiate(caster, prefab);
-            projectileComponent = projectile.GetComponent<Projectile>();
+            attack = Instantiate(caster, prefab);
+            attackComponent = attack.GetComponent<Attack>();
 
-            SetDirectionAndRotation(caster, projectileComponent);
+            SetDirectionAndRotation(caster, attackComponent);
 
-            projectile.GetComponent<Collider2D>().enabled = true;
+            attack.GetComponent<Collider2D>().enabled = true;
 
-            return projectileComponent;
-        }
-
-        public static Swing SpawnSwing(Entity caster, GameObject prefab)
-        {
-            GameObject swing = null;
-            Swing swingComponent = null;
-
-            swing = Instantiate(caster, prefab);
-            swingComponent = swing.GetComponent<Swing>();
-
-            SetDirectionAndRotation(caster, swingComponent);
-
-            swing.GetComponent<Collider2D>().enabled = true;
-
-            return swingComponent;
+            return attackComponent;
         }
 
         private static GameObject Instantiate(Entity caster, GameObject prefab)

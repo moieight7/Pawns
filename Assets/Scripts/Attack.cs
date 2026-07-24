@@ -13,19 +13,21 @@ public class Attack : MonoBehaviour
 
     [HideInInspector] public Transform sender;
 
-    private float timer;
+    public float timer;
+    private float invisTimer;
     [HideInInspector] public bool invisible = false;
 
     public UltEvent OnHitEvent;
 
-    void Update()
+    protected virtual void Update()
     {
+        timer += Time.deltaTime;
         if (invisible)
         {
-            timer += Time.deltaTime;
-            if (timer > timeUntilDelete) Destroy(gameObject);
+            invisTimer += Time.deltaTime;
+            if (invisTimer > timeUntilDelete) Destroy(gameObject);
         }
-        else timer = 0;
+        else invisTimer = 0;
     }
 
     public virtual void OnBecameInvisible()
