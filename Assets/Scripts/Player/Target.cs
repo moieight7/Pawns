@@ -5,9 +5,10 @@ using UnityEngine;
 
 public class Target : MonoBehaviour
 {
-    [SerializeField] private Transform targetTransform;
+    [SerializeField] private Transform targetTransform, firePointTransform;
     [SerializeField] private Camera mainCamera;
     [Range(2, 100)][SerializeField] private float cameraTargetDivider;
+    [Range(2, 100)][SerializeField] private float firePointDivider;
 
     private bool isPlayerAlive = true;
 
@@ -49,13 +50,17 @@ public class Target : MonoBehaviour
             var mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
             var cameraTargetPosition = (mousePosition + (cameraTargetDivider - 1) * targetTransform.position) / cameraTargetDivider;
             transform.position = cameraTargetPosition;
+
+            var firePointPosition = (mousePosition + (firePointDivider - 1) * targetTransform.position) / firePointDivider;
+            firePointTransform.position = firePointPosition;
         }
-        else transform.position = targetTransform.position;
+        else { transform.position = targetTransform.position; firePointTransform.position = targetTransform.position; }
     }
 
     public void SetTarget(Transform target)
     {
         this.targetTransform = target;
+        firePointTransform = target.Find("FirePoint");
         if (OnTargetSet != null) OnTargetSet.Invoke();
     }
 
