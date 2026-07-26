@@ -8,7 +8,7 @@ public class Projectile : Attack
     [Header("Projectile Stats")]
     public float speed;
 
-    protected Vector2 moveDir;
+    [HideInInspector] public Vector2 moveDir;
     protected Rigidbody2D rb;
 
     void Awake()
@@ -20,6 +20,7 @@ public class Projectile : Attack
     {
         base.SetDirection(direction, rotationZ);
         rb.velocity = direction * speed;
+        moveDir = rb.velocity.normalized;
     }
 
     public void RotateDirection(Quaternion rotation)
@@ -27,5 +28,6 @@ public class Projectile : Attack
         Vector2 currentDirection = rb.velocity;
         Vector2 newDirection = rotation * currentDirection;
         rb.velocity = newDirection;
+        moveDir = rb.velocity.normalized;
     }
 }

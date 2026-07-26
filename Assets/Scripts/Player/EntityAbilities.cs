@@ -70,6 +70,11 @@ public class EntityAbilities : MonoBehaviour
         playerAbilities[index].ability.TriggerAbility();
     }
 
+    public Ability FindAbilityByIndex(int index)
+    {
+        return playerAbilities[index].ability;
+    }
+
     private Ability FindAbilityByType(AbilityType type)
     {
         Ability playerAbility = entityAbilities.Find(x => x.Type == type);

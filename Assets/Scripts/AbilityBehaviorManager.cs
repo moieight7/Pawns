@@ -69,6 +69,15 @@ public static class AbilityBehaviorManager
         projectile.sender = caster.firePoint;
     }
 
+    public static void Dash_UseEffect(Entity caster, float force, float duration)
+    {
+        if (caster.type == EntityType.Player)
+        {
+            PlayerMovement playerMovement = caster.GetComponent<PlayerMovement>();
+            caster.Dash(playerMovement.motion.normalized * force, duration);
+        }
+    }
+
     public static void SwitchCharacters(Entity caster, Entity target)
     {
         PlayerMovement oldPlayerMovement = caster.GetComponent<PlayerMovement>();

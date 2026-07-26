@@ -32,7 +32,6 @@ public class IdleState : State, IEnemyState
     public override void Enter()
     {
         base.Enter();
-        entity.SetVelocity(0f);
 
         isIdleTimeOver = false;
         SetRandomIdleTime();

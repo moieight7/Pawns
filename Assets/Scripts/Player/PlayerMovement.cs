@@ -5,9 +5,10 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public float movementSpeed;
+    [HideInInspector] public Vector2 motion;
 
     private Rigidbody2D rb;
-    private Vector2 motion;
+    private Entity entity;
 
     private Crosshair crosshair;
     private bool canMove = true;
@@ -19,13 +20,14 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        entity = GetComponent<Entity>();
         rb = GetComponent<Rigidbody2D>();
         crosshair = FindAnyObjectByType<Crosshair>();
     }
 
     void FixedUpdate()
     {
-        if (!canMove) return;
+        if (!canMove || entity.isDashing) return;
 
         motion = new Vector2(Input.GetAxisRaw("Horizontal") * movementSpeed * Time.deltaTime, Input.GetAxisRaw("Vertical") * movementSpeed * Time.deltaTime);
 

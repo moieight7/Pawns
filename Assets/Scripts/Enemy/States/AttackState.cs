@@ -29,8 +29,6 @@ public class AttackState : State, IEnemyState
     {
         base.Enter();
 
-        entity.SetVelocity(0f);
-
         entity.atsm.attackState = this;
         animFinish = false;
     }

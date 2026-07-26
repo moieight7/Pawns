@@ -1,6 +1,7 @@
 using IngameDebugConsole;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
@@ -26,6 +27,7 @@ public class Entity : MonoBehaviour
 
     [SerializeField] private EnemyHealthSlider healthSlider;
 
+    [HideInInspector] public bool isDashing = false;
     [HideInInspector] public bool playDeathSound = true;
 
     [SerializeField] private bool seeThroughObstacles = false;
@@ -33,7 +35,7 @@ public class Entity : MonoBehaviour
 
     private bool invincible = false;
 
-    private Vector3 velocityWorkspace;
+    private Vector2 velocityWorkspace;
     private static int id;
 
     public delegate void SwitchAction(Entity to, Entity from);
@@ -124,16 +126,14 @@ public class Entity : MonoBehaviour
         return value;
     }
 
-    public virtual void SetVelocity(float vel)
+    public virtual void Dash(Vector2 dash, float duration = 0.4f)
     {
-        velocityWorkspace.Set(vel, rb.velocity.y, vel);
+        isDashing = true;
+        velocityWorkspace.Set(dash.x, dash.y);
         rb.velocity = velocityWorkspace;
-    }
+        navMeshAgent.isStopped = true;
 
-    public virtual void SetVelocity(float vel, Vector3 direction)
-    {
-        velocityWorkspace.Set(vel * direction.x, rb.velocity.y, vel * direction.z);
-        rb.velocity = velocityWorkspace;
+        StartCoroutine(DashCooldown(duration));
     }
 
     public void SetPosition(Transform point)
@@ -221,6 +221,32 @@ public class Entity : MonoBehaviour
         else CanSeePlayer = true;
     }
 
+    public virtual bool CheckDanger()
+    {
+        List<Collider2D> dangerous = new List<Collider2D>();
+        if (Physics2D.OverlapCircleAll(gameObject.transform.position, entityData.closeRangeDist, entityData.whatIsDanger).Length != 0) 
+        {
+            dangerous = Physics2D.OverlapCircleAll(gameObject.transform.position, entityData.closeRangeDist, entityData.whatIsDanger).ToList<Collider2D>();
+            Debug.Log("CheckDanger: " + Physics2D.OverlapCircleAll(gameObject.transform.position, entityData.closeRangeDist, entityData.whatIsDanger)[0].name);
+
+            List<Collider2D> nonFriendly = new List<Collider2D>();
+            foreach (Collider2D collider in dangerous)
+            {
+                if (!((entityData.whatIsFriendly | (1 << collider.transform.parent.gameObject.layer)) == entityData.whatIsFriendly)) nonFriendly.Add(collider);
+            }
+            if (nonFriendly.Count == 0) return false;
+
+            return true; 
+        }
+        else return false;
+    }
+
+    public virtual GameObject GetDangerousObject()
+    {
+        Debug.Log("GetDangerousObject: " + Physics2D.OverlapCircle(gameObject.transform.position, entityData.closeRangeDist, entityData.whatIsDanger).gameObject.name);
+        return Physics2D.OverlapCircle(gameObject.transform.position, entityData.closeRangeDist, entityData.whatIsDanger).gameObject;
+    }
+
     /*public void ToggleFacePlayer(bool toggle)
     {
         if (gameObject.GetComponent<FacePlayer>() != null) gameObject.GetComponent<FacePlayer>().enabled = toggle;
@@ -283,6 +309,15 @@ public class Entity : MonoBehaviour
         yield return null;
 
         isKnockedBack = false;
+    }
+
+    private IEnumerator DashCooldown(float cooldown)
+    {
+        yield return new WaitForSeconds(cooldown);
+        isDashing = false;
+        velocityWorkspace = Vector2.zero;
+        rb.velocity = Vector2.zero;
+        navMeshAgent.isStopped = false;
     }
 
     public virtual void OnDrawGizmos()

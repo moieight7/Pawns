@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb1e39277e6eae44b8aa073c6f68aa8f, type: 3}
+  m_Name: Test3_BaseData
+  m_EditorClassIdentifier: 
+  playerMinCheckDist: 3
+  playerMaxCheckDist: 5
+  closeRangeDist: 1.4
+  circleCastCheckRadius: 1
+  rangeCheckOffset: 0.2
+  knockbackStillThreshold: 0.05
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 64
+  whatIsWall:
+    serializedVersion: 2
+    m_Bits: 1024
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 8
+  whatIsDanger:
+    serializedVersion: 2
+    m_Bits: 4096
+  whatIsFriendly:
+    serializedVersion: 2
+    m_Bits: 768
+  spawnSound: {fileID: 0}
+  hurtSound: {fileID: 0}
+  deathSound: {fileID: 0}

@@ -16,6 +16,8 @@ public class D_Entity : ScriptableObject, IEnemyDataContainer
     public LayerMask whatIsGround;
     public LayerMask whatIsWall;
     public LayerMask whatIsPlayer;
+    public LayerMask whatIsDanger;
+    public LayerMask whatIsFriendly;
 
     public AudioClip spawnSound, hurtSound, deathSound;
 }
