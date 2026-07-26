@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6347535271642d540a4f7fcdfebf32aa, type: 3}
   m_Name: Test3_DashStateData
   m_EditorClassIdentifier: 
-  dashForce: 7
+  dashForce: 8
   dashDuration: 0.25

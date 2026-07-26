@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerMinCheckDist: 3
   playerMaxCheckDist: 5
-  closeRangeDist: 1.4
+  closeRangeDist: 1.2
   circleCastCheckRadius: 1
   rangeCheckOffset: 0.2
   knockbackStillThreshold: 0.05

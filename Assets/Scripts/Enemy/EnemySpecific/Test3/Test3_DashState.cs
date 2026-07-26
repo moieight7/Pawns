@@ -32,7 +32,8 @@ public class Test3_DashState : DashState
             Debug.Log("AttackToAvoid projectile");
 
             Projectile projectile = (Projectile)attackToAvoid;
-            dashDir = Vector2.Perpendicular(projectile.moveDir);
+            //dashDir = Vector2.Perpendicular(projectile.moveDir);
+            dashDir = new Vector2(projectile.moveDir.y, -projectile.moveDir.x);
 
             dashDir.x *= dashDir.x * stateData.dashForce;
             dashDir.y *= dashDir.y * stateData.dashForce;
@@ -41,6 +42,19 @@ public class Test3_DashState : DashState
         else if (attackToAvoid is Swing)
         {
             Debug.Log("AttackToAvoid swing");
+
+            Swing swing = (Swing)attackToAvoid;
+
+            dashDir = swing.sender.transform.position - enemy.transform.position;
+            dashDir.Normalize();
+
+            dashDir.x *= dashDir.x * stateData.dashForce;
+            dashDir.y *= dashDir.y * stateData.dashForce;
+
+            if (swing.sender.transform.position.x > enemy.transform.position.x) dashDir.x *= -1;
+            if (swing.sender.transform.position.y > enemy.transform.position.y) dashDir.y *= -1;
+
+            enemy.Dash(dashDir, stateData.dashDuration);
         }
     }
 
