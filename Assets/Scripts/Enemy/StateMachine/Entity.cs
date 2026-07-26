@@ -35,6 +35,8 @@ public class Entity : MonoBehaviour
 
     private bool invincible = false;
 
+    private Coroutine dashCooldown;
+
     private Vector2 velocityWorkspace;
     private static int id;
 
@@ -86,6 +88,7 @@ public class Entity : MonoBehaviour
 
     public virtual void Update()
     {
+        Debug.Log(name + " navMeshAgent.isStopped: " + navMeshAgent.isStopped);
         if (type == EntityType.Enemy) stateMachine.currentState.LogicUpdate();
     }
 
@@ -133,7 +136,7 @@ public class Entity : MonoBehaviour
         rb.velocity = velocityWorkspace;
         navMeshAgent.isStopped = true;
 
-        StartCoroutine(DashCooldown(duration));
+        dashCooldown = StartCoroutine(DashCooldown(duration));
     }
 
     public void SetPosition(Transform point)
@@ -352,6 +355,9 @@ public class Entity : MonoBehaviour
         type = EntityType.Player;
 
         navMeshAgent.isStopped = true;
+
+        StopCoroutine(dashCooldown);
+        isDashing = false;
 
         healthSlider.Hide();
     }
