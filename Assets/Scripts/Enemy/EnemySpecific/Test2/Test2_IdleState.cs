@@ -1,3 +1,5 @@
+using UnityEngine.AI;
+
 public class Test2_IdleState : IdleState
 {
     private Test2 enemy;
@@ -17,6 +19,7 @@ public class Test2_IdleState : IdleState
     public override void Enter()
     {
         base.Enter();
+        enemy.navMeshAgent.isStopped = true;
     }
 
     public override void Exit()
@@ -28,7 +31,7 @@ public class Test2_IdleState : IdleState
     {
         base.LogicUpdate();
 
-        if (enemy.CheckPlayerMaxRange())
+        if (enemy.CheckPlayerMaxRange() && enemy.CanSeePlayerWithClearLineOfSight)
         {
             enemy.abilities.TriggerAbilityByIndex(0);
         }

@@ -17,6 +17,11 @@ public class Test2_MoveState : MoveState
     public override void Enter()
     {
         base.Enter();
+
+        enemy.navMeshAgent.isStopped = false;
+        enemy.navMeshAgent.speed = stateData.moveSpeed;
+        enemy.navMeshAgent.acceleration = stateData.acceleration;
+        enemy.navMeshAgent.stoppingDistance = stateData.stoppingDistance;
     }
 
     public override void Exit()
@@ -28,9 +33,9 @@ public class Test2_MoveState : MoveState
     {
         base.LogicUpdate();
         enemy.navMeshAgent.SetDestination(enemy.target.position);
-        if (enemy.CheckPlayerMaxRange())
+        if (enemy.CheckPlayerMaxRange() && enemy.CanSeePlayerWithClearLineOfSight)
         {
-            stateMachine.ChangeState(enemy.MoveState);
+            stateMachine.ChangeState(enemy.IdleState);
         }
     }
 

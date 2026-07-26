@@ -212,10 +212,10 @@ public class Entity : MonoBehaviour
 
         Debug.DrawRay(transform.position, target.gameObject.transform.position - gameObject.transform.position, Color.yellow);
 
-        RaycastHit[] hits = Physics.RaycastAll(gameObject.transform.position, direction, distance, entityData.whatIsGround);
+        RaycastHit2D[] hits = Physics2D.CircleCastAll(gameObject.transform.position, entityData.circleCastCheckRadius, direction, distance, entityData.whatIsWall);
         for (int i = 0; i < hits.Length; i++) Debug.Log(gameObject.name + " hit " + hits[i].collider.gameObject.name + ", which is on layer " + hits[i].collider.gameObject.layer.ToString());
 
-        bool hit = Physics.Raycast(gameObject.transform.position, direction, distance, entityData.whatIsGround);
+        bool hit = Physics2D.CircleCast(gameObject.transform.position, entityData.circleCastCheckRadius, direction, distance, entityData.whatIsWall);
 
         if (hit) CanSeePlayer = false;
         else CanSeePlayer = true;
