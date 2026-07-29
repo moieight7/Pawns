@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c92bf4f4d35a9444487b49b6788044aa, type: 3}
+  m_Name: Ability_Wizard_Firebolt
+  m_EditorClassIdentifier: 
+  name: Firebolt
+  description: Explosive bolt that detonates after a short delay.
+  icon: {fileID: 21300000, guid: aff74750ef3833840a6da03dcfd39596, type: 3}
+  color: {r: 1, g: 1, b: 1, a: 1}
+  offColor: {r: 0.54901963, g: 0.54901963, b: 0.54901963, a: 0.50980395}
+  type: 2
+  inBetweenChargesCooldownTime: 0.5
+  cooldownTime: 7
+  maxCharges: 1
+  startUsable: 1
+  OnAbilityTriggeredEvent:
+    _PersistentCalls:
+    - _Target: {fileID: 0}
+      _MemberName: AbilityBehaviorManager, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null.TestPrimary_UseEffect
+      _PersistentArguments:
+      - _Type: 13
+        _Int: 0
+        _String: Entity, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+      - _Type: 13
+        _Int: 0
+        _String: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 6727068876973670815, guid: ce758677ebee1e044b69c763f49afc27, type: 3}
+  OnAbilityCoolDownEvent:
+    _PersistentCalls: []

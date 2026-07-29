@@ -5,6 +5,7 @@ using System.Linq;
 using UltEvents;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 
 public static class AbilityBehaviorManager
 {
@@ -75,6 +76,34 @@ public static class AbilityBehaviorManager
         {
             PlayerMovement playerMovement = caster.GetComponent<PlayerMovement>();
             caster.Dash(playerMovement.motion.normalized * force, duration);
+        }
+    }
+
+    public static void Teleport_UseEffect(Entity caster)
+    {
+        if (caster.type == EntityType.Player)
+        {
+            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            caster.transform.position = mousePosition;
+        }
+        else if (caster.type == EntityType.Enemy)
+        {
+            if (caster is Wizard)
+            {
+                Wizard wizardObject = (Wizard)caster;
+                float teleportRadius = wizardObject.GetTeleportRadius();
+
+                Vector3 circlePos = Vector3.zero;
+                bool isValidPosition;
+                NavMeshHit hit;
+                do
+                {
+                    circlePos = Random.insideUnitSphere * teleportRadius;
+                    isValidPosition = NavMesh.SamplePosition(circlePos, out hit, 0.1f, 1 << NavMesh.GetAreaFromName("Walkable"));
+                } while (!isValidPosition);
+
+                caster.transform.position = hit.position;
+            }
         }
     }
 

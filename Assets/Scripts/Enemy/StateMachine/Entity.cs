@@ -2,6 +2,7 @@ using IngameDebugConsole;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
@@ -29,6 +30,7 @@ public class Entity : MonoBehaviour
 
     [HideInInspector] public bool isDashing = false;
     [HideInInspector] public bool playDeathSound = true;
+    [HideInInspector] public List<ScriptableObject> dataObjects = new List<ScriptableObject>();
 
     private bool isKnockedBack = false;
 
@@ -355,7 +357,7 @@ public class Entity : MonoBehaviour
 
         navMeshAgent.isStopped = true;
 
-        StopCoroutine(dashCooldown);
+        if (dashCooldown != null) StopCoroutine(dashCooldown);
         isDashing = false;
 
         healthSlider.Hide();
