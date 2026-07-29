@@ -9,8 +9,6 @@ using UnityEngine.AI;
 
 public static class AbilityBehaviorManager
 {
-    private static GameObject player = GameObject.FindGameObjectWithTag("Player");
-
     public static string AbilityTriggerLog(Ability ability) { return ability.Name + " triggered by " + ability.caster + ". " + NumberOfChargesLog(ability); }
     public static string CooldownFinishLog(Ability ability) { return ability.Name + " cooldown finished by " + ability.caster + ". " + NumberOfChargesLog(ability); }
     public static string NumberOfChargesLog(Ability ability) { return "Number of charges: " + ability.numberOfCharges + " / " + ability.MaxCharges; }
@@ -85,6 +83,18 @@ public static class AbilityBehaviorManager
             attackToAvoid = caster.GetDangerousObject().GetComponentInParent<Attack>();
             if (attackToAvoid == null) return;
 
+            D_DashState dashStateData = null;
+            if (caster is Spider)
+            {
+                Spider spiderObject = (Spider)caster;
+                dashStateData = spiderObject.GetDashStateData();
+            }
+            else if (caster is LesserKnight)
+            {
+                LesserKnight lesserKnightObject = (LesserKnight)caster;
+                dashStateData = lesserKnightObject.GetDashStateData();
+            }
+
             Vector2 dashDir = Vector2.zero;
             if (attackToAvoid is Projectile)
             {
@@ -93,15 +103,9 @@ public static class AbilityBehaviorManager
                 Projectile projectile = (Projectile)attackToAvoid;
                 dashDir = new Vector2(projectile.moveDir.y, -projectile.moveDir.x);
 
-                if (caster is Spider)
-                {
-                    Spider spiderObject = (Spider)caster;
-                    D_DashState dashStateData = spiderObject.GetDashStateData();
-
-                    dashDir.x *= dashDir.x * dashStateData.dashForce;
-                    dashDir.y *= dashDir.y * dashStateData.dashForce;
-                    caster.Dash(dashDir, dashStateData.dashDuration);
-                }
+                dashDir.x *= dashDir.x * dashStateData.dashForce;
+                dashDir.y *= dashDir.y * dashStateData.dashForce;
+                caster.Dash(dashDir, dashStateData.dashDuration);
             }
             else if (attackToAvoid is Swing)
             {
@@ -109,22 +113,16 @@ public static class AbilityBehaviorManager
 
                 Swing swing = (Swing)attackToAvoid;
 
-                if (caster is Spider)
-                {
-                    Spider spiderObject = (Spider)caster;
-                    D_DashState dashStateData = spiderObject.GetDashStateData();
+                dashDir = swing.sender.transform.position - caster.transform.position;
+                dashDir.Normalize();
 
-                    dashDir = swing.sender.transform.position - caster.transform.position;
-                    dashDir.Normalize();
+                dashDir.x *= dashDir.x * dashStateData.dashForce;
+                dashDir.y *= dashDir.y * dashStateData.dashForce;
 
-                    dashDir.x *= dashDir.x * dashStateData.dashForce;
-                    dashDir.y *= dashDir.y * dashStateData.dashForce;
+                if (swing.sender.transform.position.x > caster.transform.position.x) dashDir.x *= -1;
+                if (swing.sender.transform.position.y > caster.transform.position.y) dashDir.y *= -1;
 
-                    if (swing.sender.transform.position.x > caster.transform.position.x) dashDir.x *= -1;
-                    if (swing.sender.transform.position.y > caster.transform.position.y) dashDir.y *= -1;
-
-                    caster.Dash(dashDir, dashStateData.dashDuration);
-                }
+                caster.Dash(dashDir, dashStateData.dashDuration);
             }
         }
     }

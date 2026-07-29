@@ -1,10 +1,8 @@
-public class Spider_MoveState : MoveState
+public class LesserKnight_MoveState : MoveState
 {
-    private Spider enemy;
+    private LesserKnight enemy;
 
-    public Spider_MoveState() { }
-
-    public Spider_MoveState(Entity entity, FiniteStateMachine stateMachine, string animBoolName, D_MoveState stateData, Spider enemy) : base(entity, stateMachine, animBoolName, stateData)
+    public LesserKnight_MoveState(Entity entity, FiniteStateMachine stateMachine, string animBoolName, D_MoveState stateData, LesserKnight enemy) : base(entity, stateMachine, animBoolName, stateData)
     {
         this.enemy = enemy;
     }
@@ -38,13 +36,16 @@ public class Spider_MoveState : MoveState
             enemy.abilities.TriggerAbilityByIndex(2);
             stateMachine.ChangeState(enemy.DashState);
         }
-        else if (enemy.CheckPlayerMaxRange() && enemy.abilities.FindAbilityByIndex(1).numberOfCharges > 0 && enemy.CanSeePlayerWithClearLineOfSight)
+        else if (enemy.CheckPlayerMaxRange() && enemy.abilities.FindAbilityByIndex(1).numberOfCharges > 0 && !enemy.CheckPlayerMinRange() && enemy.CanSeePlayerWithClearLineOfSight)
         {
             enemy.abilities.TriggerAbilityByIndex(1);
         }
         else if (enemy.CheckPlayerMinRange() && enemy.abilities.FindAbilityByIndex(0).numberOfCharges > 0 && enemy.CanSeePlayerWithClearLineOfSight)
         {
             enemy.abilities.TriggerAbilityByIndex(0);
+        }
+        else if (enemy.CheckPlayerMinRange() && enemy.CanSeePlayerWithClearLineOfSight)
+        {
             stateMachine.ChangeState(enemy.IdleState);
         }
     }

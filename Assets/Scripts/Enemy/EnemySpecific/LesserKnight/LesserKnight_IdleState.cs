@@ -1,10 +1,8 @@
-public class Spider_MoveState : MoveState
+public class LesserKnight_IdleState : IdleState
 {
-    private Spider enemy;
+    private LesserKnight enemy;
 
-    public Spider_MoveState() { }
-
-    public Spider_MoveState(Entity entity, FiniteStateMachine stateMachine, string animBoolName, D_MoveState stateData, Spider enemy) : base(entity, stateMachine, animBoolName, stateData)
+    public LesserKnight_IdleState(Entity entity, FiniteStateMachine stateMachine, string animBoolName, D_IdleState stateData, LesserKnight enemy) : base(entity, stateMachine, animBoolName, stateData)
     {
         this.enemy = enemy;
     }
@@ -17,11 +15,7 @@ public class Spider_MoveState : MoveState
     public override void Enter()
     {
         base.Enter();
-
-        enemy.navMeshAgent.isStopped = false;
-        enemy.navMeshAgent.speed = entity.entityData.navMeshAgentMovementSpeed;
-        enemy.navMeshAgent.acceleration = stateData.acceleration;
-        enemy.navMeshAgent.stoppingDistance = stateData.stoppingDistance;
+        enemy.navMeshAgent.isStopped = true;
     }
 
     public override void Exit()
@@ -32,7 +26,7 @@ public class Spider_MoveState : MoveState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        enemy.navMeshAgent.SetDestination(enemy.target.position);
+
         if (enemy.CheckDanger() && enemy.abilities.FindAbilityByIndex(2).numberOfCharges > 0 && !enemy.isDashing)
         {
             enemy.abilities.TriggerAbilityByIndex(2);
@@ -45,8 +39,8 @@ public class Spider_MoveState : MoveState
         else if (enemy.CheckPlayerMinRange() && enemy.abilities.FindAbilityByIndex(0).numberOfCharges > 0 && enemy.CanSeePlayerWithClearLineOfSight)
         {
             enemy.abilities.TriggerAbilityByIndex(0);
-            stateMachine.ChangeState(enemy.IdleState);
         }
+        else stateMachine.ChangeState(enemy.MoveState);
     }
 
     public override void PhysicsUpdate()
