@@ -9,7 +9,7 @@ using UnityEngine.AI;
 public class Entity : MonoBehaviour
 {
     public int enemyID;
-    public float health;
+    [HideInInspector] public float health;
     [HideInInspector] public float maxHealth;
     public EntityType type;
 
@@ -30,7 +30,6 @@ public class Entity : MonoBehaviour
     [HideInInspector] public bool isDashing = false;
     [HideInInspector] public bool playDeathSound = true;
 
-    [SerializeField] private bool seeThroughObstacles = false;
     private bool isKnockedBack = false;
 
     private bool invincible = false;
@@ -57,6 +56,7 @@ public class Entity : MonoBehaviour
 
     private void Awake()
     {
+        health = entityData.health;
         maxHealth = health;
 
         navMeshAgent = gameObject.GetComponent<NavMeshAgent>();
@@ -88,7 +88,6 @@ public class Entity : MonoBehaviour
 
     public virtual void Update()
     {
-        Debug.Log(name + " navMeshAgent.isStopped: " + navMeshAgent.isStopped);
         if (type == EntityType.Enemy) stateMachine.currentState.LogicUpdate();
     }
 
@@ -200,7 +199,7 @@ public class Entity : MonoBehaviour
 
     private void SeesPlayer()
     {
-        if (!seeThroughObstacles)
+        if (!entityData.seeThroughObstacles)
         {
             SeesPlayerWithNoObstructions();
         }
@@ -320,7 +319,7 @@ public class Entity : MonoBehaviour
         isDashing = false;
         velocityWorkspace = Vector2.zero;
         rb.velocity = Vector2.zero;
-        navMeshAgent.isStopped = false;
+        if (type != EntityType.Player) navMeshAgent.isStopped = false;
     }
 
     public virtual void OnDrawGizmos()

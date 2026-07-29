@@ -492,7 +492,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30a795335fc23a34bac39d438b0e90f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyName: Test3
+  enemyName: Spider
   states:
   - stateName: IdleState
     stateToInherit: IdleState
@@ -509,14 +509,14 @@ MonoBehaviour:
   - AttackState
   - IdleState
   dataContainers:
-  - D_IdleState
-  - D_DashState
   - D_AttackState
-  - D_Entity
   - D_MoveState
-  enemyDataPath: Assets/Scripts/Enemy/EnemySpecific/Test3/Data/
+  - D_Entity
+  - D_DashState
+  - D_IdleState
+  enemyDataPath: Assets/Scripts/Enemy/EnemySpecific/Spider/Data/
   enemySpecificFolder: Assets/Scripts/Enemy/EnemySpecific
-  combined: Assets/Scripts/Enemy/EnemySpecific/Test3
+  combined: Assets/Scripts/Enemy/EnemySpecific/Spider
   template: {fileID: 5263030469592724361, guid: cb2fd5cdc5ed3d649b54f2ee6791d0f7, type: 3}
   stateFileFolder: Assets/Scripts/Enemy/EnemySpecific
   animationControllerFolder: Assets/Animations/Controllers/Enemies
@@ -15381,17 +15381,7 @@ CompositeCollider2D:
   m_GeometryType: 0
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths:
-  - m_Collider: {fileID: 534297601}
-    m_ColliderPaths:
-    - - X: 180000000
-        Y: -80000000
-      - X: 130000000
-        Y: -80000000
-      - X: 130000000
-        Y: -90000000
-      - X: 180000000
-        Y: -90000000
+  m_ColliderPaths: []
   m_CompositePaths:
     m_Paths:
     - - {x: 17.999971, y: -9}
@@ -15730,17 +15720,7 @@ CompositeCollider2D:
   m_GeometryType: 0
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths:
-  - m_Collider: {fileID: 612763126}
-    m_ColliderPaths:
-    - - X: 180000000
-        Y: 250000000
-      - X: 130000000
-        Y: 250000000
-      - X: 130000000
-        Y: 240000000
-      - X: 180000000
-        Y: 240000000
+  m_ColliderPaths: []
   m_CompositePaths:
     m_Paths:
     - - {x: 17.999971, y: 24}
@@ -16264,6 +16244,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -110.899994}
   m_SizeDelta: {x: 160, y: 71.600006}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &700417566 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7004092634031912755, guid: 79c53d29a427e5d4b8fe331c3b852438, type: 3}
+  m_PrefabInstance: {fileID: 5201172771322737361}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &738681326
 GameObject:
   m_ObjectHideFlags: 0
@@ -20456,17 +20441,7 @@ CompositeCollider2D:
   m_GeometryType: 0
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths:
-  - m_Collider: {fileID: 1112202328}
-    m_ColliderPaths:
-    - - X: -30000000
-        Y: 110000000
-      - X: -40000000
-        Y: 110000000
-      - X: -40000000
-        Y: 50000000
-      - X: -30000000
-        Y: 50000000
+  m_ColliderPaths: []
   m_CompositePaths:
     m_Paths:
     - - {x: -3.0000293, y: 5}
@@ -22551,7 +22526,7 @@ MonoBehaviour:
         _Y: 0
         _Z: 0
         _W: 0
-        _Object: {fileID: 8423773473601135872, guid: 80c30259424ea1d41b4be18c0d5edf7c, type: 3}
+        _Object: {fileID: 700417566}
       - _Type: 13
         _Int: 0
         _String: UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0,
@@ -22572,7 +22547,7 @@ MonoBehaviour:
         _Y: 0
         _Z: 0
         _W: 0
-        _Object: {fileID: 8423773473601135872, guid: 80c30259424ea1d41b4be18c0d5edf7c, type: 3}
+        _Object: {fileID: 700417566}
       - _Type: 13
         _Int: 0
         _String: UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0,
@@ -22599,7 +22574,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1641082706
 Transform:
   m_ObjectHideFlags: 0
@@ -23088,7 +23063,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entityAbilities:
-  - abilityData: {fileID: 11400000, guid: 72c2905d7dd981e448e25a33493fee2d, type: 2}
+  - abilityData: {fileID: 11400000, guid: 2e089ba2e124fc144b42bb08f81b9fdb, type: 2}
     caster: {fileID: 0}
     numberOfCharges: 0
     cooldownLoopRunning: 0
@@ -23204,7 +23179,6 @@ MonoBehaviour:
   healthSlider: {fileID: 0}
   isDashing: 0
   playDeathSound: 1
-  seeThroughObstacles: 0
   IdleStateData: {fileID: 11400000, guid: 4aa40a4fe152a1342ac298e87b9e287e, type: 2}
   MoveStateData: {fileID: 11400000, guid: a7e7766e7999ad148946f2b0d6ce59bf, type: 2}
   DashStateData: {fileID: 11400000, guid: ed817bd8d4faa26419549edc758d826b, type: 2}
@@ -23949,17 +23923,7 @@ CompositeCollider2D:
   m_GeometryType: 0
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths:
-  - m_Collider: {fileID: 2080575983}
-    m_ColliderPaths:
-    - - X: 430000000
-        Y: 110000000
-      - X: 420000000
-        Y: 110000000
-      - X: 420000000
-        Y: 50000000
-      - X: 430000000
-        Y: 50000000
+  m_ColliderPaths: []
   m_CompositePaths:
     m_Paths:
     - - {x: 42.999973, y: 5}
@@ -24273,6 +24237,71 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 79c53d29a427e5d4b8fe331c3b852438, type: 3}
+--- !u!1001 &6112218543114033412
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1222037235960383279, guid: fccac045eeef5724c9578694d20930ba, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1222037235960383279, guid: fccac045eeef5724c9578694d20930ba, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4504804321772797764, guid: fccac045eeef5724c9578694d20930ba, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 15.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4504804321772797764, guid: fccac045eeef5724c9578694d20930ba, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 15.900001
+      objectReference: {fileID: 0}
+    - target: {fileID: 4504804321772797764, guid: fccac045eeef5724c9578694d20930ba, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4504804321772797764, guid: fccac045eeef5724c9578694d20930ba, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4504804321772797764, guid: fccac045eeef5724c9578694d20930ba, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4504804321772797764, guid: fccac045eeef5724c9578694d20930ba, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4504804321772797764, guid: fccac045eeef5724c9578694d20930ba, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4504804321772797764, guid: fccac045eeef5724c9578694d20930ba, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4504804321772797764, guid: fccac045eeef5724c9578694d20930ba, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4504804321772797764, guid: fccac045eeef5724c9578694d20930ba, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5183414180587685762, guid: fccac045eeef5724c9578694d20930ba, type: 3}
+      propertyPath: m_Name
+      value: Spider
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: fccac045eeef5724c9578694d20930ba, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -24294,3 +24323,4 @@ SceneRoots:
   - {fileID: 1441173464}
   - {fileID: 1641082706}
   - {fileID: 5201172771322737361}
+  - {fileID: 6112218543114033412}
