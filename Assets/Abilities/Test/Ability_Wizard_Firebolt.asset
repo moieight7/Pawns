@@ -26,7 +26,7 @@ MonoBehaviour:
     _PersistentCalls:
     - _Target: {fileID: 0}
       _MemberName: AbilityBehaviorManager, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null.TestPrimary_UseEffect
+        PublicKeyToken=null.Firebolt_UseEffect
       _PersistentArguments:
       - _Type: 13
         _Int: 0

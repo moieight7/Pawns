@@ -79,6 +79,19 @@ public static class AbilityBehaviorManager
         }
     }
 
+    public static void Firebolt_UseEffect(Entity caster, GameObject bullet)
+    {
+        Explosive firebolt = (Explosive)AttackSpawner.SpawnAttack(caster, bullet);
+
+        if (caster.type == EntityType.Enemy)
+        {
+            Transform target = caster.target;
+
+            float distanceFromTarget = (target.position - caster.transform.position).magnitude;
+            firebolt.SetMovementTween((distanceFromTarget / firebolt.speed) * 1.2f);
+        }
+    }
+
     public static void Teleport_UseEffect(Entity caster)
     {
         if (caster.type == EntityType.Player)

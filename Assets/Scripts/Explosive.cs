@@ -14,10 +14,11 @@ public class Explosive : Projectile
     public Color explosionOutlineStartColor, explosionOutlineEndColor;
 
     private DrawCircle explosionOutline;
+    private Tween movementTween;
 
     void Start()
     {
-        DOTween.To(() => rb.velocity, x => rb.velocity = x, Vector2.zero, 2).SetEase(Ease.OutSine);
+        movementTween = DOTween.To(() => rb.velocity, x => rb.velocity = x, Vector2.zero, 2).SetEase(Ease.OutSine);
 
         explosionOutline = GetComponent<DrawCircle>();
         explosionOutline.SetCircleRadius(0, 0);
@@ -32,6 +33,12 @@ public class Explosive : Projectile
     {
         base.Update();
         if (timer > explodeTime) { Destroy(gameObject); }
+    }
+
+    public void SetMovementTween(float mult)
+    {
+        if (movementTween != null) movementTween.Kill();
+        movementTween = DOTween.To(() => rb.velocity * mult, x => rb.velocity = x, Vector2.zero, 2).SetEase(Ease.OutSine);
     }
 
     private void OnDestroy()

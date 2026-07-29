@@ -16122,7 +16122,7 @@ MonoBehaviour:
   m_OverrideTileSize: 1
   m_TileSize: 16
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.33333334
+  m_VoxelSize: 0.5
   m_BuildHeightMesh: 0
   m_MinRegionArea: 0
   m_HideEditorLogs: 0
@@ -24319,7 +24319,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 342224844793630011, guid: 98b21567ac169594e93afb5f14bcc343, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 16.1
+      value: 15.600025
       objectReference: {fileID: 0}
     - target: {fileID: 342224844793630011, guid: 98b21567ac169594e93afb5f14bcc343, type: 3}
       propertyPath: m_LocalPosition.y
@@ -24360,6 +24360,10 @@ PrefabInstance:
     - target: {fileID: 7215567664082147558, guid: 98b21567ac169594e93afb5f14bcc343, type: 3}
       propertyPath: m_Name
       value: Wizard
+      objectReference: {fileID: 0}
+    - target: {fileID: 7215567664082147558, guid: 98b21567ac169594e93afb5f14bcc343, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7829269697237205399, guid: 98b21567ac169594e93afb5f14bcc343, type: 3}
       propertyPath: m_AnchorMax.x
