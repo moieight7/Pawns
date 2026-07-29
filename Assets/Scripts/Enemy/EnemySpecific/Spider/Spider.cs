@@ -25,4 +25,6 @@ public class Spider : Entity
         
         stateMachine.Initialize(IdleState);
     }
+
+    public D_DashState GetDashStateData() {  return DashStateData; }
 }

@@ -134,10 +134,19 @@ public class Entity : MonoBehaviour
     {
         isDashing = true;
         velocityWorkspace.Set(dash.x, dash.y);
+
+        if (!CheckForObstaclesInDashDirection(velocityWorkspace, duration)) velocityWorkspace.Set(-dash.x, -dash.y);
+
         rb.velocity = velocityWorkspace;
         navMeshAgent.isStopped = true;
 
         dashCooldown = StartCoroutine(DashCooldown(duration));
+    }
+
+    private bool CheckForObstaclesInDashDirection(Vector2 dash, float duration)
+    {
+        List<RaycastHit2D> wallCheck = Physics2D.RaycastAll(gameObject.transform.position, dash.normalized, (dash * duration).magnitude, entityData.whatIsWall).ToList();
+        return wallCheck.Count == 0;
     }
 
     public void SetPosition(Transform point)

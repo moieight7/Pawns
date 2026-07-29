@@ -77,6 +77,56 @@ public static class AbilityBehaviorManager
             PlayerMovement playerMovement = caster.GetComponent<PlayerMovement>();
             caster.Dash(playerMovement.motion.normalized * force, duration);
         }
+        else if (caster.type == EntityType.Enemy)
+        {
+            Attack attackToAvoid;
+            caster.isDashing = true;
+
+            attackToAvoid = caster.GetDangerousObject().GetComponentInParent<Attack>();
+            if (attackToAvoid == null) return;
+
+            Vector2 dashDir = Vector2.zero;
+            if (attackToAvoid is Projectile)
+            {
+                Debug.Log("AttackToAvoid projectile");
+
+                Projectile projectile = (Projectile)attackToAvoid;
+                dashDir = new Vector2(projectile.moveDir.y, -projectile.moveDir.x);
+
+                if (caster is Spider)
+                {
+                    Spider spiderObject = (Spider)caster;
+                    D_DashState dashStateData = spiderObject.GetDashStateData();
+
+                    dashDir.x *= dashDir.x * dashStateData.dashForce;
+                    dashDir.y *= dashDir.y * dashStateData.dashForce;
+                    caster.Dash(dashDir, dashStateData.dashDuration);
+                }
+            }
+            else if (attackToAvoid is Swing)
+            {
+                Debug.Log("AttackToAvoid swing");
+
+                Swing swing = (Swing)attackToAvoid;
+
+                if (caster is Spider)
+                {
+                    Spider spiderObject = (Spider)caster;
+                    D_DashState dashStateData = spiderObject.GetDashStateData();
+
+                    dashDir = swing.sender.transform.position - caster.transform.position;
+                    dashDir.Normalize();
+
+                    dashDir.x *= dashDir.x * dashStateData.dashForce;
+                    dashDir.y *= dashDir.y * dashStateData.dashForce;
+
+                    if (swing.sender.transform.position.x > caster.transform.position.x) dashDir.x *= -1;
+                    if (swing.sender.transform.position.y > caster.transform.position.y) dashDir.y *= -1;
+
+                    caster.Dash(dashDir, dashStateData.dashDuration);
+                }
+            }
+        }
     }
 
     public static void Firebolt_UseEffect(Entity caster, GameObject bullet)
