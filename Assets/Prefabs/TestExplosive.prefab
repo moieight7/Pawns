@@ -250,9 +250,10 @@ MonoBehaviour:
   OnHitEvent:
     _PersistentCalls: []
   speed: 10
+  moveDir: {x: 0, y: 0}
   explodeDamageMin: 10
   explodeDamageMax: 80
-  explodeRadius: 5
+  explodeRadius: 4
   explodeTime: 2.5
   explosionOutlineStartColor: {r: 0.99607843, g: 0.44313726, b: 0, a: 0}
   explosionOutlineEndColor: {r: 0.99607843, g: 0.44313726, b: 0, a: 1}

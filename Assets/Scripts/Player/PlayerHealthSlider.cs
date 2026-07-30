@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class PlayerHealthSlider : MonoBehaviour
 {
     public Entity entity;
-    public TextMeshProUGUI healthText;
+    public UIText healthText;
 
     private Slider slider;
     private float velocity;
@@ -51,7 +51,7 @@ public class PlayerHealthSlider : MonoBehaviour
 
     private void SetText()
     {
-        healthText.text = entity.health.ToString() + " / " + entity.maxHealth.ToString();
+        healthText.SetText(entity.health.ToString() + " / " + entity.maxHealth.ToString());
     }
 
     private void OnPlayerDamaged()

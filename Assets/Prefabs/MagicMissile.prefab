@@ -180,7 +180,7 @@ MonoBehaviour:
   invisible: 0
   OnHitEvent:
     _PersistentCalls: []
-  speed: 15
+  speed: 12
   moveDir: {x: 0, y: 0}
 --- !u!1 &5443830064191505211
 GameObject:

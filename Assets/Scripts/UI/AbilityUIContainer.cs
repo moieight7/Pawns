@@ -11,14 +11,14 @@ public class AbilityUIContainer : MonoBehaviour
 
     public Image abilityIcon, abilityOffIcon;
     public Image abilityBorder;
-    public TextMeshProUGUI abilityChargeNum;
+    public UIText abilityChargeNum;
 
     private Tween cooldownAnimation = null;
 
     public void SetAbilityNumText()
     {
-        if (ability != null) abilityChargeNum.text = ability.numberOfCharges.ToString();
-        else abilityChargeNum.text = "";
+        if (ability != null) abilityChargeNum.SetText(ability.numberOfCharges.ToString());
+        else abilityChargeNum.SetText("");
     }
 
     public void SetAbilityIcons()
