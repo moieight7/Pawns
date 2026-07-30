@@ -447,7 +447,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entityAbilities:
-  - abilityData: {fileID: 11400000, guid: 2e089ba2e124fc144b42bb08f81b9fdb, type: 2}
+  - abilityData: {fileID: 11400000, guid: 7d7bd4f266701b041ad63c73833c1d7a, type: 2}
     caster: {fileID: 0}
     numberOfCharges: 0
     cooldownLoopRunning: 0
@@ -456,7 +456,7 @@ MonoBehaviour:
       _PersistentCalls: []
     OnAbilityCoolDownEvent:
       _PersistentCalls: []
-  - abilityData: {fileID: 11400000, guid: 67ee83240715d2f40a704c53f7705197, type: 2}
+  - abilityData: {fileID: 11400000, guid: eb6512fc076c0ab47a0f1feebee2b822, type: 2}
     caster: {fileID: 0}
     numberOfCharges: 0
     cooldownLoopRunning: 0
@@ -465,7 +465,7 @@ MonoBehaviour:
       _PersistentCalls: []
     OnAbilityCoolDownEvent:
       _PersistentCalls: []
-  - abilityData: {fileID: 11400000, guid: 82bfe0c89a7442648805eaa4656e0471, type: 2}
+  - abilityData: {fileID: 11400000, guid: 29eb62d4d2767b640adbecf864bb4ada, type: 2}
     caster: {fileID: 0}
     numberOfCharges: 0
     cooldownLoopRunning: 0
@@ -568,7 +568,7 @@ MonoBehaviour:
   healthSlider: {fileID: 0}
   isDashing: 0
   playDeathSound: 1
-  seeThroughObstacles: 0
+  dataObjects: []
   IdleStateData: {fileID: 11400000, guid: bd194a7766fe23445863251b3801caed, type: 2}
   MoveStateData: {fileID: 11400000, guid: f4202bfac14978f49ab4d1a0b3249f5c, type: 2}
   DashStateData: {fileID: 11400000, guid: bbd7919168f35c642a37c3e8e3ad814e, type: 2}

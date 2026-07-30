@@ -42,6 +42,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnPlayerKilled()
     {
+        if (rb == null) rb = GetComponent<Rigidbody2D>();
         rb.velocity = Vector2.zero;
         canMove = false;
     }

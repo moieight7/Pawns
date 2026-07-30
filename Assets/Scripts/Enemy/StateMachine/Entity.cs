@@ -100,6 +100,8 @@ public class Entity : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        if (health <= 0 && !invincible) return;
+
         health -= damage;
         if (health <= 0 && invincible) health = 1;
 

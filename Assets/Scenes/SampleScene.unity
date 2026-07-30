@@ -14941,7 +14941,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waves:
   - enemies:
-    - enemy: {fileID: 7004092634031912755, guid: 79c53d29a427e5d4b8fe331c3b852438, type: 3}
+    - enemy: {fileID: 4125757722190910676, guid: 94faf3425b90c1746b1d1e2fa9998efd, type: 3}
       location: {fileID: 1557915613}
     spawnTime: 0.5
     spawnDelay: 1
@@ -14953,9 +14953,9 @@ MonoBehaviour:
     aliveEnemiesPercentage: 0
     currentMidTrigger: 0
   - enemies:
-    - enemy: {fileID: 7004092634031912755, guid: 79c53d29a427e5d4b8fe331c3b852438, type: 3}
+    - enemy: {fileID: 5183414180587685762, guid: fccac045eeef5724c9578694d20930ba, type: 3}
       location: {fileID: 1459575204}
-    - enemy: {fileID: 7004092634031912755, guid: 79c53d29a427e5d4b8fe331c3b852438, type: 3}
+    - enemy: {fileID: 4125757722190910676, guid: 94faf3425b90c1746b1d1e2fa9998efd, type: 3}
       location: {fileID: 1707023655}
     spawnTime: 0.5
     spawnDelay: 1
@@ -14967,11 +14967,11 @@ MonoBehaviour:
     aliveEnemiesPercentage: 0
     currentMidTrigger: 0
   - enemies:
-    - enemy: {fileID: 7004092634031912755, guid: 79c53d29a427e5d4b8fe331c3b852438, type: 3}
+    - enemy: {fileID: 7215567664082147558, guid: 98b21567ac169594e93afb5f14bcc343, type: 3}
       location: {fileID: 1557915613}
-    - enemy: {fileID: 7004092634031912755, guid: 79c53d29a427e5d4b8fe331c3b852438, type: 3}
+    - enemy: {fileID: 7215567664082147558, guid: 98b21567ac169594e93afb5f14bcc343, type: 3}
       location: {fileID: 998608823}
-    - enemy: {fileID: 7004092634031912755, guid: 79c53d29a427e5d4b8fe331c3b852438, type: 3}
+    - enemy: {fileID: 4125757722190910676, guid: 94faf3425b90c1746b1d1e2fa9998efd, type: 3}
       location: {fileID: 1707023655}
     spawnTime: 0.5
     spawnDelay: 1
@@ -22528,7 +22528,7 @@ MonoBehaviour:
         _Y: 0
         _Z: 0
         _W: 0
-        _Object: {fileID: 0}
+        _Object: {fileID: 5183414180587685762, guid: fccac045eeef5724c9578694d20930ba, type: 3}
       - _Type: 13
         _Int: 0
         _String: UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0,
@@ -22549,7 +22549,7 @@ MonoBehaviour:
         _Y: 0
         _Z: 0
         _W: 0
-        _Object: {fileID: 0}
+        _Object: {fileID: 5183414180587685762, guid: fccac045eeef5724c9578694d20930ba, type: 3}
       - _Type: 13
         _Int: 0
         _String: UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0,
@@ -23065,7 +23065,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entityAbilities:
-  - abilityData: {fileID: 11400000, guid: 72c2905d7dd981e448e25a33493fee2d, type: 2}
+  - abilityData: {fileID: 11400000, guid: 89203bc7b722db64d9f90855de79b7b6, type: 2}
     caster: {fileID: 0}
     numberOfCharges: 0
     cooldownLoopRunning: 0
