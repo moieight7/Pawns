@@ -32,8 +32,9 @@ public class Entity : MonoBehaviour
     [HideInInspector] public bool playDeathSound = true;
     [HideInInspector] public List<ScriptableObject> dataObjects = new List<ScriptableObject>();
 
-    private bool isKnockedBack = false;
+    private float iFrameTimer = 0;
 
+    private bool isKnockedBack = false;
     private bool invincible = false;
 
     private Coroutine dashCooldown;
@@ -87,6 +88,8 @@ public class Entity : MonoBehaviour
 
     public virtual void Update()
     {
+        iFrameTimer -= Time.deltaTime;
+        iFrameTimer = Mathf.Clamp(iFrameTimer, 0, entityData.iFrameTime);
         if (type == EntityType.Enemy) stateMachine.currentState.LogicUpdate();
     }
 
@@ -97,12 +100,17 @@ public class Entity : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        if (health < 0 && !invincible) return;
+        if (health < 0 && !invincible || iFrameTimer > 0) return;
 
         health -= damage;
         if (health <= 0 && invincible) health = 1;
 
-        if (type == EntityType.Player && OnPlayerDamaged != null) OnPlayerDamaged.Invoke();
+        if (type == EntityType.Player)
+        {
+            if (OnPlayerDamaged != null) OnPlayerDamaged.Invoke();
+            iFrameTimer = entityData.iFrameTime;
+            GetComponent<IFrameAnimation>().DoIFrameAnim(entityData.iFrameTime);
+        }
         if (OnEntityDamaged != null) OnEntityDamaged.Invoke(this);
 
         if (health <= 0) Die();
@@ -368,6 +376,8 @@ public class Entity : MonoBehaviour
         isDashing = false;
 
         healthSlider.Hide();
+
+        iFrameTimer = entityData.iFrameTime;
     }
 
     public void OnSwitchedFrom(Entity to)

@@ -5,6 +5,7 @@ using UnityEngine;
 public class D_Entity : ScriptableObject, IEnemyDataContainer
 {
     public float health = 100;
+    public float iFrameTime = 1.3f;
     public float playerMovementSpeed = 6;
     public float navMeshAgentMovementSpeed = 6;
     public bool seeThroughObstacles = false;
