@@ -13,11 +13,6 @@ public class PlayerMovement : MonoBehaviour
     private Crosshair crosshair;
     private bool canMove = true;
 
-    private void Awake()
-    {
-        Entity.OnPlayerKilled += OnPlayerKilled;
-    }
-
     void Start()
     {
         entity = GetComponent<Entity>();

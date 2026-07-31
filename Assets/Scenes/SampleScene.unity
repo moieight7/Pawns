@@ -15522,17 +15522,7 @@ CompositeCollider2D:
   m_GeometryType: 0
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths:
-  - m_Collider: {fileID: 534297601}
-    m_ColliderPaths:
-    - - X: 180000000
-        Y: -80000000
-      - X: 130000000
-        Y: -80000000
-      - X: 130000000
-        Y: -90000000
-      - X: 180000000
-        Y: -90000000
+  m_ColliderPaths: []
   m_CompositePaths:
     m_Paths:
     - - {x: 17.999971, y: -9}
@@ -15871,17 +15861,7 @@ CompositeCollider2D:
   m_GeometryType: 0
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths:
-  - m_Collider: {fileID: 612763126}
-    m_ColliderPaths:
-    - - X: 180000000
-        Y: 250000000
-      - X: 130000000
-        Y: 250000000
-      - X: 130000000
-        Y: 240000000
-      - X: 180000000
-        Y: 240000000
+  m_ColliderPaths: []
   m_CompositePaths:
     m_Paths:
     - - {x: 17.999971, y: 24}
@@ -20785,17 +20765,7 @@ CompositeCollider2D:
   m_GeometryType: 0
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths:
-  - m_Collider: {fileID: 1112202328}
-    m_ColliderPaths:
-    - - X: -30000000
-        Y: 110000000
-      - X: -40000000
-        Y: 110000000
-      - X: -40000000
-        Y: 50000000
-      - X: -30000000
-        Y: 50000000
+  m_ColliderPaths: []
   m_CompositePaths:
     m_Paths:
     - - {x: -3.0000293, y: 5}
@@ -22982,7 +22952,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1641082706
 Transform:
   m_ObjectHideFlags: 0
@@ -24332,17 +24302,7 @@ CompositeCollider2D:
   m_GeometryType: 0
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths:
-  - m_Collider: {fileID: 2080575983}
-    m_ColliderPaths:
-    - - X: 430000000
-        Y: 110000000
-      - X: 420000000
-        Y: 110000000
-      - X: 420000000
-        Y: 50000000
-      - X: 430000000
-        Y: 50000000
+  m_ColliderPaths: []
   m_CompositePaths:
     m_Paths:
     - - {x: 42.999973, y: 5}
@@ -24666,11 +24626,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1222037235960383279, guid: fccac045eeef5724c9578694d20930ba, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1222037235960383279, guid: fccac045eeef5724c9578694d20930ba, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2170535873694356856, guid: fccac045eeef5724c9578694d20930ba, type: 3}
       propertyPath: m_SortingOrder
@@ -24678,7 +24638,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4504804321772797764, guid: fccac045eeef5724c9578694d20930ba, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 15.6
+      value: 26.800001
       objectReference: {fileID: 0}
     - target: {fileID: 4504804321772797764, guid: fccac045eeef5724c9578694d20930ba, type: 3}
       propertyPath: m_LocalPosition.y
@@ -24722,7 +24682,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5183414180587685762, guid: fccac045eeef5724c9578694d20930ba, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8068074755716902124, guid: fccac045eeef5724c9578694d20930ba, type: 3}
       propertyPath: m_LocalPosition.x
@@ -24747,11 +24707,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 342224844793630011, guid: 98b21567ac169594e93afb5f14bcc343, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 15.600025
+      value: 2.1999884
       objectReference: {fileID: 0}
     - target: {fileID: 342224844793630011, guid: 98b21567ac169594e93afb5f14bcc343, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 16.7
+      value: 15.9
       objectReference: {fileID: 0}
     - target: {fileID: 342224844793630011, guid: 98b21567ac169594e93afb5f14bcc343, type: 3}
       propertyPath: m_LocalPosition.z
@@ -24791,15 +24751,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7215567664082147558, guid: 98b21567ac169594e93afb5f14bcc343, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7829269697237205399, guid: 98b21567ac169594e93afb5f14bcc343, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7829269697237205399, guid: 98b21567ac169594e93afb5f14bcc343, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

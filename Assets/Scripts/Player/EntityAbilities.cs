@@ -22,7 +22,6 @@ public class EntityAbilities : MonoBehaviour
 
         Ability.OnAbilityTriggered += OnAbilityTriggered;
         Ability.OnAbilityChargeCooldown += OnAbilityChargeCooldown;
-        Entity.OnPlayerKilled += OnPlayerKilled;
 
         SetAbilities();
 
@@ -107,7 +106,7 @@ public class EntityAbilities : MonoBehaviour
         if (entity.type == EntityType.Player) AbilityUI.instance.SetAbilityUI();
     }
 
-    private void OnPlayerKilled()
+    public void OnPlayerKilled()
     {
         canUseAbilites = false;
     }

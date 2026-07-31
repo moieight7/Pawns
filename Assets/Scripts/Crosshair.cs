@@ -9,11 +9,6 @@ public class Crosshair : MonoBehaviour
 
     private bool isPlayerAlive = true;
 
-    private void Awake()
-    {
-        Entity.OnPlayerKilled += OnPlayerKilled;
-    }
-
     void Start()
     {
         image = GetComponent<Image>();
@@ -29,7 +24,7 @@ public class Crosshair : MonoBehaviour
         gameObject.transform.position = target;
     }
 
-    private void OnPlayerKilled()
+    public void OnPlayerKilled()
     {
         image.enabled = false;
         Cursor.visible = true;

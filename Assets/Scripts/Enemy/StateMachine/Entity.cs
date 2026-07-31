@@ -50,9 +50,6 @@ public class Entity : MonoBehaviour
     public delegate void EntityDamagedAction(Entity entity);
     public static event EntityDamagedAction OnEntityDamaged;
 
-    public delegate void PlayerKilledAction();
-    public static event PlayerKilledAction OnPlayerKilled;
-
     public delegate void EnemyKilledAction();
     public static event EnemyKilledAction OnEnemyKilled;
 
@@ -106,7 +103,7 @@ public class Entity : MonoBehaviour
         if (health <= 0 && invincible) health = 1;
 
         if (type == EntityType.Player && OnPlayerDamaged != null) OnPlayerDamaged.Invoke();
-        if (OnEntityDamaged != null) { Debug.Log("OnEntityDamaged " + this.name); OnEntityDamaged.Invoke(this); }
+        if (OnEntityDamaged != null) OnEntityDamaged.Invoke(this);
 
         if (health <= 0) Die();
     }
@@ -120,8 +117,7 @@ public class Entity : MonoBehaviour
         }
         else if (type == EntityType.Player) 
         {
-            if (OnPlayerKilled != null) OnPlayerKilled.Invoke();
-            PlayerDeath.instance.TriggerDeathSequence();
+            PlayerDeath.instance.TriggerDeathSequence(this);
         }
     }
 
@@ -349,11 +345,11 @@ public class Entity : MonoBehaviour
 
     private void SetInvincibleFlag()
     {
-        if (type != EntityType.Player) return;
+        Entity player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
 
-        invincible = !invincible;
-        if (invincible) Debug.Log("Buddha Mode on...");
-        else if (invincible) Debug.Log("Buddha Mode off...");
+        player.invincible = !player.invincible;
+        if (player.invincible) Debug.Log("Buddha Mode on...");
+        else if (!player.invincible) Debug.Log("Buddha Mode off...");
     }
 
     public void OnSwitchedTo(Entity from)

@@ -34,8 +34,6 @@ public class Target : MonoBehaviour
 
         instance = this;
         DontDestroyOnLoad(this.gameObject);
-
-        Entity.OnPlayerKilled += OnPlayerKilled;
     }
 
     private void Start()
@@ -65,7 +63,7 @@ public class Target : MonoBehaviour
         if (OnTargetSet != null) OnTargetSet.Invoke();
     }
 
-    private void OnPlayerKilled()
+    public void OnPlayerKilled()
     {
         isPlayerAlive = false;
     }

@@ -22,8 +22,17 @@ public class PlayerDeath : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
 
-    public void TriggerDeathSequence()
+    public void TriggerDeathSequence(Entity entity)
     {
+        OnPlayerKilledCalls(entity);
         SlowdownManager.instance.Slowdown(1, 0, 5, Ease.OutCirc);
+    }
+
+    private void OnPlayerKilledCalls(Entity entity)
+    {
+        entity.GetComponent<PlayerMovement>().OnPlayerKilled();
+        entity.GetComponent<EntityAbilities>().OnPlayerKilled();
+        FindObjectOfType<Crosshair>().OnPlayerKilled();
+        Target.instance.OnPlayerKilled();
     }
 }
