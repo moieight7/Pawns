@@ -20,7 +20,7 @@ public class Ability
 
     private bool isCoolingDown = false;
 
-	[SerializeField] private bool usable = true;
+    public bool usable = true;
 
     [SerializeField] public UltEvent OnAbilityTriggeredEvent, OnAbilityCoolDownEvent;
 

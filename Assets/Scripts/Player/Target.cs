@@ -67,4 +67,9 @@ public class Target : MonoBehaviour
     {
         isPlayerAlive = false;
     }
+
+    public void OnPlayerRevived()
+    {
+        isPlayerAlive = true;
+    }
 }

@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!canMove || entity.isDashing) return;
+        if (!canMove || entity.isDashing || entity.type != EntityType.Player) return;
 
         motion = new Vector2(Input.GetAxisRaw("Horizontal") * movementSpeed * Time.deltaTime, Input.GetAxisRaw("Vertical") * movementSpeed * Time.deltaTime);
 
@@ -40,5 +40,10 @@ public class PlayerMovement : MonoBehaviour
         if (rb == null) rb = GetComponent<Rigidbody2D>();
         rb.velocity = Vector2.zero;
         canMove = false;
+    }
+
+    public void OnPlayerRevived()
+    {
+        canMove = true;
     }
 }

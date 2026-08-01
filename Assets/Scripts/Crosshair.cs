@@ -30,4 +30,11 @@ public class Crosshair : MonoBehaviour
         Cursor.visible = true;
         isPlayerAlive = false;
     }
+
+    public void OnPlayerRevived()
+    {
+        image.enabled = true;
+        Cursor.visible = false;
+        isPlayerAlive = true;
+    }
 }

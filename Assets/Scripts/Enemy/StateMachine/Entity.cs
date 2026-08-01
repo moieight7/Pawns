@@ -37,6 +37,8 @@ public class Entity : MonoBehaviour
     private bool isKnockedBack = false;
     private bool invincible = false;
 
+    private bool playerEntityDead = false;
+
     private Coroutine dashCooldown;
 
     private Vector2 velocityWorkspace;
@@ -66,6 +68,7 @@ public class Entity : MonoBehaviour
         Target.OnTargetSet += OnTargetSet;
 
         DebugLogConsole.AddCommand("buddha", "Upon death sets player HP to 1, ensuring they can never die.", SetInvincibleFlag);
+        DebugLogConsole.AddCommand<float>("hurt", "Deals damage to the player entity.", TakeDamageConsole);
     }
 
     public virtual void Start()
@@ -125,6 +128,7 @@ public class Entity : MonoBehaviour
         }
         else if (type == EntityType.Player) 
         {
+            playerEntityDead = true;
             PlayerDeath.instance.TriggerDeathSequence(this);
         }
     }
@@ -360,6 +364,13 @@ public class Entity : MonoBehaviour
         else if (!player.invincible) Debug.Log("Buddha Mode off...");
     }
 
+    private void TakeDamageConsole(float damage)
+    {
+        Entity player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
+
+        player.TakeDamage(damage);
+    }
+
     public void OnSwitchedTo(Entity from)
     {
         Debug.Log("OnSwitchedTo entity " + name + " from entity " + from.name);
@@ -378,11 +389,19 @@ public class Entity : MonoBehaviour
         healthSlider.Hide();
 
         iFrameTimer = entityData.iFrameTime;
+
+        if (from.health <= 0) from.Die();
     }
 
     public void OnSwitchedFrom(Entity to)
     {
         Debug.Log("OnSwitchedFrom entity " + name + " to entity " + to.name);
+
+        if (playerEntityDead)
+        {
+            PlayerDeath.instance.EndDeathSequence(this);
+            playerEntityDead = false;
+        }
 
         invincible = false;
 

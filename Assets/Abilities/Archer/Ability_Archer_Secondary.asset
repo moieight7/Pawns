@@ -18,7 +18,7 @@ MonoBehaviour:
   color: {r: 1, g: 1, b: 1, a: 1}
   offColor: {r: 0.54901963, g: 0.54901963, b: 0.54901963, a: 0.50980395}
   type: 2
-  inBetweenChargesCooldownTime: 0
+  inBetweenChargesCooldownTime: 0.5
   cooldownTime: 8
   maxCharges: 1
   startUsable: 1

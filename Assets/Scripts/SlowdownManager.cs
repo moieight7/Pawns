@@ -48,6 +48,11 @@ public class SlowdownManager : MonoBehaviour
         DOTween.To(() => Time.timeScale, x => Time.timeScale = x, 1, multiplier).SetEase(easeType).SetUpdate(true);
     }
 
+    public void CancelSlowdown()
+    {
+        DOTween.To(() => Time.timeScale, x => Time.timeScale = x, 1, multiplier).SetEase(Ease.Linear).SetUpdate(true);
+    }
+
     public void Pause()
     {
         lastTimeScale = Time.timeScale;

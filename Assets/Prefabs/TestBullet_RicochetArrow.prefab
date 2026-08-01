@@ -180,9 +180,9 @@ MonoBehaviour:
   invisible: 0
   OnHitEvent:
     _PersistentCalls: []
-  speed: 15
+  speed: 13
   moveDir: {x: 0, y: 0}
-  numberOfBounces: 999
+  numberOfBounces: 3
   bounceOffMask:
     serializedVersion: 2
     m_Bits: 1024

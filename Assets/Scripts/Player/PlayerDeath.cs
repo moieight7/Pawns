@@ -28,11 +28,25 @@ public class PlayerDeath : MonoBehaviour
         SlowdownManager.instance.Slowdown(1, 0, 5, Ease.OutCirc);
     }
 
+    public void EndDeathSequence(Entity entity)
+    {
+        OnPlayerRevivedCalls(entity);
+        SlowdownManager.instance.CancelSlowdown();
+    }
+
     private void OnPlayerKilledCalls(Entity entity)
     {
         entity.GetComponent<PlayerMovement>().OnPlayerKilled();
         entity.GetComponent<EntityAbilities>().OnPlayerKilled();
         FindObjectOfType<Crosshair>().OnPlayerKilled();
         Target.instance.OnPlayerKilled();
+    }
+
+    private void OnPlayerRevivedCalls(Entity entity)
+    {
+        entity.GetComponent<PlayerMovement>().OnPlayerRevived();
+        entity.GetComponent<EntityAbilities>().OnPlayerRevived();
+        FindObjectOfType<Crosshair>().OnPlayerRevived();
+        Target.instance.OnPlayerRevived();
     }
 }

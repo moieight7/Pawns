@@ -20,7 +20,7 @@ public class EntityAbilities : MonoBehaviour
     void Start()
     {
         entity = GetComponent<Entity>();
-        entityAbilities = new List<Ability>(entity.entityData.entityAbilities);
+        //entityAbilities = new List<Ability>(entity.entityData.entityAbilities);
 
         Ability.OnAbilityTriggered += OnAbilityTriggered;
         Ability.OnAbilityChargeCooldown += OnAbilityChargeCooldown;
@@ -57,7 +57,7 @@ public class EntityAbilities : MonoBehaviour
             playerAbility.ability.caster = gameObject.GetComponent<Entity>();
             playerAbility.ability.cooldownLoopRunning = false;
             
-            if (playerAbility.ability.StartUsable) playerAbility.ability.numberOfCharges = playerAbility.ability.MaxCharges;
+            if (playerAbility.ability.StartUsable) { playerAbility.ability.numberOfCharges = playerAbility.ability.MaxCharges; playerAbility.ability.usable = true; }
             else { playerAbility.ability.numberOfCharges = 0; AbilityCooldownManager.instance.QueueCooldown(playerAbility.ability); }
 
             playerAbility.ability.SetEvents();
@@ -112,6 +112,11 @@ public class EntityAbilities : MonoBehaviour
     public void OnPlayerKilled()
     {
         canUseAbilites = false;
+    }
+
+    public void OnPlayerRevived()
+    {
+        canUseAbilites = true;
     }
 
     private void ResetAllCooldowns()
