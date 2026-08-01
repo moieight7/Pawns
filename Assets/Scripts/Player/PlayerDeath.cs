@@ -1,11 +1,14 @@
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using UltEvents;
 using UnityEngine;
 
 public class PlayerDeath : MonoBehaviour
 {
     public GameObject deathUI;
+
+    public UltEvent OnDeathEvent;
 
     public static PlayerDeath instance { get; private set; }
 
@@ -26,6 +29,8 @@ public class PlayerDeath : MonoBehaviour
     {
         OnPlayerKilledCalls(entity);
         SlowdownManager.instance.Slowdown(1, 0, 5, Ease.OutCirc);
+
+        OnDeathEvent.Invoke();
     }
 
     public void EndDeathSequence(Entity entity)
