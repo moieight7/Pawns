@@ -12,10 +12,20 @@ public class ScrollingBackground : MonoBehaviour
     private void Start()
     {
         image = GetComponent<RawImage>();
+
+        //StartCoroutine(Scroll());
     }
 
     void Update()
     {
-        image.uvRect = new Rect(image.uvRect.position + new Vector2(x, y) * Time.deltaTime, image.uvRect.size);
+        image.uvRect = new Rect(image.uvRect.position + new Vector2(x, y) * Time.unscaledDeltaTime, image.uvRect.size);
+    }
+
+    IEnumerator Scroll()
+    {
+        while (true)
+        {
+            image.uvRect = new Rect(image.uvRect.position + new Vector2(x, y) * Time.unscaledDeltaTime, image.uvRect.size);
+        }
     }
 }
