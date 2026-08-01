@@ -109,7 +109,7 @@ public class Entity : MonoBehaviour
         {
             if (OnPlayerDamaged != null) OnPlayerDamaged.Invoke();
             iFrameTimer = entityData.iFrameTime;
-            GetComponent<IFrameAnimation>().DoIFrameAnim(entityData.iFrameTime);
+            if (GetComponent<IFrameAnimation>() != null) GetComponent<IFrameAnimation>().DoIFrameAnim(entityData.iFrameTime);
         }
         if (OnEntityDamaged != null) OnEntityDamaged.Invoke(this);
 
@@ -246,7 +246,7 @@ public class Entity : MonoBehaviour
         if (Physics2D.OverlapCircleAll(gameObject.transform.position, entityData.closeRangeDist, entityData.whatIsDanger).Length != 0) 
         {
             dangerous = Physics2D.OverlapCircleAll(gameObject.transform.position, entityData.closeRangeDist, entityData.whatIsDanger).ToList<Collider2D>();
-            Debug.Log("CheckDanger: " + Physics2D.OverlapCircleAll(gameObject.transform.position, entityData.closeRangeDist, entityData.whatIsDanger)[0].name);
+            //Debug.Log("CheckDanger: " + Physics2D.OverlapCircleAll(gameObject.transform.position, entityData.closeRangeDist, entityData.whatIsDanger)[0].name);
 
             List<Collider2D> nonFriendly = new List<Collider2D>();
             foreach (Collider2D collider in dangerous)
@@ -262,7 +262,7 @@ public class Entity : MonoBehaviour
 
     public virtual GameObject GetDangerousObject()
     {
-        Debug.Log("GetDangerousObject: " + Physics2D.OverlapCircle(gameObject.transform.position, entityData.closeRangeDist, entityData.whatIsDanger).gameObject.name);
+        //Debug.Log("GetDangerousObject: " + Physics2D.OverlapCircle(gameObject.transform.position, entityData.closeRangeDist, entityData.whatIsDanger).gameObject.name);
         return Physics2D.OverlapCircle(gameObject.transform.position, entityData.closeRangeDist, entityData.whatIsDanger).gameObject;
     }
 

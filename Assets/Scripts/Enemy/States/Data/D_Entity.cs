@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 //Enemy data
@@ -26,4 +27,6 @@ public class D_Entity : ScriptableObject, IEnemyDataContainer
     public LayerMask whatIsFriendly;
 
     public AudioClip spawnSound, hurtSound, deathSound;
+
+    public List<Ability> entityAbilities;
 }

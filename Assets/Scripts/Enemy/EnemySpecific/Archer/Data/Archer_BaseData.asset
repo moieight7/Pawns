@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fb1e39277e6eae44b8aa073c6f68aa8f, type: 3}
-  m_Name: Wizard_BaseData
+  m_Name: Archer_BaseData
   m_EditorClassIdentifier: 
-  health: 50
+  health: 75
   iFrameTime: 1.3
-  playerMovementSpeed: 300
-  navMeshAgentMovementSpeed: 3
+  playerMovementSpeed: 400
+  navMeshAgentMovementSpeed: 6
   seeThroughObstacles: 0
-  playerMinCheckDist: 5
+  playerMinCheckDist: 3
   playerMaxCheckDist: 15
   closeRangeDist: 1
   circleCastCheckRadius: 1
@@ -42,10 +42,10 @@ MonoBehaviour:
   hurtSound: {fileID: 0}
   deathSound: {fileID: 0}
   entityAbilities:
-  - abilityData: {fileID: 11400000, guid: 124d36c638a02e041a72bc65764803e1, type: 2}
+  - abilityData: {fileID: 11400000, guid: 72e8875a5c6ba794b95de13081cb99a5, type: 2}
     caster: {fileID: 0}
     numberOfCharges: 1
-    cooldownLoopRunning: 0
+    cooldownLoopRunning: 1
     usable: 1
     OnAbilityTriggeredEvent:
       _PersistentCalls:
@@ -69,10 +69,10 @@ MonoBehaviour:
           _Y: 0
           _Z: 0
           _W: 0
-          _Object: {fileID: 41337451440972637, guid: e81de568c8571854c8ce4cb7ce79bbf9, type: 3}
+          _Object: {fileID: 41337451440972637, guid: 76865ac315994ed4a9a19be5221cfbce, type: 3}
     OnAbilityCoolDownEvent:
       _PersistentCalls: []
-  - abilityData: {fileID: 11400000, guid: c25a8f88e57408e4f90e779dd2eec198, type: 2}
+  - abilityData: {fileID: 11400000, guid: 7290bf60d9cc57f41ad51d8907c45629, type: 2}
     caster: {fileID: 0}
     numberOfCharges: 0
     cooldownLoopRunning: 1
@@ -81,7 +81,7 @@ MonoBehaviour:
       _PersistentCalls:
       - _Target: {fileID: 0}
         _MemberName: AbilityBehaviorManager, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-          PublicKeyToken=null.Firebolt_UseEffect
+          PublicKeyToken=null.TestPrimary_UseEffect
         _PersistentArguments:
         - _Type: 13
           _Int: 0
@@ -99,24 +99,36 @@ MonoBehaviour:
           _Y: 0
           _Z: 0
           _W: 0
-          _Object: {fileID: 6727068876973670815, guid: ce758677ebee1e044b69c763f49afc27, type: 3}
-    OnAbilityCoolDownEvent:
-      _PersistentCalls: []
-  - abilityData: {fileID: 11400000, guid: eb7e12ae2acf2074eaa098c3823cd0ed, type: 2}
-    caster: {fileID: 0}
-    numberOfCharges: 0
-    cooldownLoopRunning: 0
-    usable: 1
-    OnAbilityTriggeredEvent:
-      _PersistentCalls: []
+          _Object: {fileID: 41337451440972637, guid: 71c06f3a544f8e642a09b8cab6d4543b, type: 3}
     OnAbilityCoolDownEvent:
       _PersistentCalls: []
   - abilityData: {fileID: 11400000, guid: 9d63a338e9efd1c40a96101384a0cb58, type: 2}
     caster: {fileID: 0}
     numberOfCharges: 0
-    cooldownLoopRunning: 0
+    cooldownLoopRunning: 1
     usable: 1
     OnAbilityTriggeredEvent:
-      _PersistentCalls: []
+      _PersistentCalls:
+      - _Target: {fileID: 0}
+        _MemberName: AbilityBehaviorManager, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+          PublicKeyToken=null.TestSwitch_UseEffect
+        _PersistentArguments:
+        - _Type: 13
+          _Int: 0
+          _String: Entity, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+          _X: 0
+          _Y: 0
+          _Z: 0
+          _W: 0
+          _Object: {fileID: 0}
+        - _Type: 13
+          _Int: 0
+          _String: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          _X: 0
+          _Y: 0
+          _Z: 0
+          _W: 0
+          _Object: {fileID: 6718963880191780741, guid: 0996731b64ec3b141a1ed1b5c29de79b, type: 3}
     OnAbilityCoolDownEvent:
       _PersistentCalls: []

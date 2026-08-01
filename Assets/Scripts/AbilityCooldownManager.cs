@@ -21,8 +21,10 @@ public class AbilityCooldownManager : MonoBehaviour
 
     public void QueueCooldown(Ability ability)
     {
+        Debug.Log("QueueCooldown on " + ability.Name);
         ability.cooldownCoroutines.Add(ability.Cooldown());
         if (!ability.cooldownLoopRunning) StartCoroutine(ability.CooldownLoop());
+        else Debug.Log("QueueCooldown on " + ability.Name + " - cooldownLoopRunning");
     }
 
     public void TriggerAbilityCooldown(IEnumerator coroutine)

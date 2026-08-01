@@ -1,6 +1,7 @@
 using IngameDebugConsole;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,6 +20,7 @@ public class EntityAbilities : MonoBehaviour
     void Start()
     {
         entity = GetComponent<Entity>();
+        entityAbilities = new List<Ability>(entity.entityData.entityAbilities);
 
         Ability.OnAbilityTriggered += OnAbilityTriggered;
         Ability.OnAbilityChargeCooldown += OnAbilityChargeCooldown;
@@ -53,6 +55,7 @@ public class EntityAbilities : MonoBehaviour
         foreach (PlayerAbility playerAbility in playerAbilities)
         {
             playerAbility.ability.caster = gameObject.GetComponent<Entity>();
+            playerAbility.ability.cooldownLoopRunning = false;
             
             if (playerAbility.ability.StartUsable) playerAbility.ability.numberOfCharges = playerAbility.ability.MaxCharges;
             else { playerAbility.ability.numberOfCharges = 0; AbilityCooldownManager.instance.QueueCooldown(playerAbility.ability); }

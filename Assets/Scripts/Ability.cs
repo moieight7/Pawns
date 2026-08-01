@@ -16,7 +16,7 @@ public class Ability
 
     [HideInInspector] public List<IEnumerator> cooldownCoroutines = new List<IEnumerator>();
 
-    [HideInInspector] public bool cooldownLoopRunning = false;
+    public bool cooldownLoopRunning = false;
 
     private bool isCoolingDown = false;
 
@@ -119,15 +119,19 @@ public class Ability
 
     public IEnumerator CooldownLoop()
     {
+        Debug.Log("Enter CooldownLoop() on " + Name);
         cooldownLoopRunning = true;
         while (cooldownCoroutines.Count > 0)
         {
+            Debug.Log("Enter CooldownLoop while on " + Name);
             yield return new WaitUntil(() => cooldownCoroutines.Count > 0);
+            Debug.Log("CooldownLoop " + Name + " passed first yield");
             AbilityCooldownManager.instance.TriggerAbilityCooldown(cooldownCoroutines.First());
             cooldownCoroutines.Remove(cooldownCoroutines.First());
             yield return new WaitUntil(() => isCoolingDown == false);
         }
         cooldownLoopRunning = false;
+        Debug.Log("Exit CooldownLoop() on " + Name);
     }
 
 	public IEnumerator Cooldown()
