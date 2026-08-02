@@ -65,6 +65,8 @@ public class Entity : MonoBehaviour
         navMeshAgent.updateRotation = false;
         navMeshAgent.updateUpAxis = false;
 
+        if (type == EntityType.Player) navMeshAgent.enabled = false;
+
         Target.OnTargetSet += OnTargetSet;
 
         DebugLogConsole.AddCommand("buddha", "Upon death sets player HP to 1, ensuring they can never die.", SetInvincibleFlag);
@@ -382,6 +384,7 @@ public class Entity : MonoBehaviour
         type = EntityType.Player;
 
         navMeshAgent.isStopped = true;
+        navMeshAgent.enabled = false;
 
         if (dashCooldown != null) StopCoroutine(dashCooldown);
         isDashing = false;
@@ -413,6 +416,7 @@ public class Entity : MonoBehaviour
         healthSlider.Show();
 
         navMeshAgent.isStopped = false;
+        navMeshAgent.enabled = true;
 
         OnSwitch.Invoke(to, this);
     }

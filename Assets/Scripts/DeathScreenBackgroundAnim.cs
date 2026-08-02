@@ -6,11 +6,6 @@ using UnityEngine;
 
 public class DeathScreenBackgroundAnim : MonoBehaviour
 {
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.P)) DoAnimation();
-    }
-
     public void DoAnimation()
     {
         int numberOfRepetitions = 3, num = 0;
