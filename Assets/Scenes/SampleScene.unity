@@ -15174,6 +15174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c45f2dd3210a0c4286b6a9170692270, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemySilhouette: {fileID: 0}
   waves:
   - enemies:
     - enemy: {fileID: 4125757722190910676, guid: 94faf3425b90c1746b1d1e2fa9998efd, type: 3}
@@ -15691,7 +15692,7 @@ Camera:
   far clip plane: 5000
   field of view: 40
   orthographic: 1
-  orthographic size: 0
+  orthographic size: 11.25
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -24482,12 +24483,15 @@ MonoBehaviour:
   maxHealth: 0
   type: 1
   firePoint: {fileID: 179007965}
-  target: {fileID: 0}
   entityData: {fileID: 11400000, guid: 712d61a0f0a17e7498fa1ed367cbb4b1, type: 2}
-  healthSlider: {fileID: 0}
+  target: {fileID: 0}
   isDashing: 0
   playDeathSound: 1
   dataObjects: []
+  OnSwitchedToEvent:
+    _PersistentCalls: []
+  OnSwitchedFromEvent:
+    _PersistentCalls: []
   IdleStateData: {fileID: 11400000, guid: 4aa40a4fe152a1342ac298e87b9e287e, type: 2}
   MoveStateData: {fileID: 11400000, guid: a7e7766e7999ad148946f2b0d6ce59bf, type: 2}
   DashStateData: {fileID: 11400000, guid: ed817bd8d4faa26419549edc758d826b, type: 2}
@@ -26251,7 +26255,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &387681202032351704
 GameObject:
   m_ObjectHideFlags: 0
@@ -26499,7 +26503,7 @@ RectTransform:
   m_Father: {fileID: 1160874707234236420}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -27409,15 +27413,27 @@ PrefabInstance:
       value: Archer
       objectReference: {fileID: 0}
     - target: {fileID: 1556226796937128160, guid: dc8286e0b967a4c40ae5417926bc85a2, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1556226796937128160, guid: dc8286e0b967a4c40ae5417926bc85a2, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1556226796937128160, guid: dc8286e0b967a4c40ae5417926bc85a2, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 3733028291006295398, guid: dc8286e0b967a4c40ae5417926bc85a2, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3733028291006295398, guid: dc8286e0b967a4c40ae5417926bc85a2, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4223379539481748470, guid: dc8286e0b967a4c40ae5417926bc85a2, type: 3}
+      propertyPath: type
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
