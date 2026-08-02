@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
+    [Header("Pre-Spawn Alert")]
+    public GameObject enemySilhouette;
+
     [Header("Lists")]
     public List<Wave> waves;
 
@@ -143,7 +146,23 @@ public class EnemySpawner : MonoBehaviour
         aliveEnemies.Add(enemyObj);
         enemyObj.SetActive(false);
 
+        #region SilhouetteGFX
+        Animator silhouetteAnim;
+        GameObject silhouette = Instantiate(enemySilhouette, location.position, Quaternion.identity);
+        silhouetteAnim = silhouette.GetComponent<Animator>();
+        silhouetteAnim.speed = 1;
+        silhouetteAnim.speed /= spawnTimer;
+
+        silhouette.GetComponent<SpriteRenderer>().sprite = enemyObj.transform.GetComponent<SpriteRenderer>().sprite;
+        silhouette.transform.localScale = enemyObj.transform.localScale;
+        silhouette.transform.localRotation = enemyObj.transform.localRotation;
+        #endregion
+
         yield return new WaitForSeconds(spawnTimer);
+
+        silhouetteAnim.Rebind();
+        silhouetteAnim.Update(0f);
+        silhouette.SetActive(false);
 
         enemyObj.SetActive(true);
     }
