@@ -6,7 +6,8 @@ public class Archer : Entity
 {
     public Archer_IdleState IdleState { get; private set; }
     public Archer_MoveState MoveState { get; private set; }
-    
+
+    [Header("State Data")]
     [SerializeField]
     private D_IdleState IdleStateData;
     [SerializeField]

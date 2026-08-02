@@ -58,6 +58,7 @@ public class PlayerHealthSlider : MonoBehaviour
     {
         SetText();
     }
+
     private void OnSwitch(Entity to, Entity from)
     {
         SetEntity(to);

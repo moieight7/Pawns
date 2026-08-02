@@ -48,9 +48,9 @@ GameObject:
   - component: {fileID: 8037203024772471398}
   - component: {fileID: 4223379539481748470}
   - component: {fileID: 3626415024471089222}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: Archer
-  m_TagString: Player
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -363,7 +363,7 @@ MonoBehaviour:
   enemyID: 0
   health: 0
   maxHealth: 0
-  type: 1
+  type: 2
   firePoint: {fileID: 1985366728340065442}
   target: {fileID: 0}
   entityData: {fileID: 11400000, guid: fd2e42abdce0af442b497a638c997d64, type: 2}

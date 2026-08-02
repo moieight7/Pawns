@@ -7,7 +7,8 @@ public class Spider : Entity
     public Spider_IdleState IdleState { get; private set; }
     public Spider_MoveState MoveState { get; private set; }
     public Spider_DashState DashState { get; private set; }
-    
+
+    [Header("State Data")]
     [SerializeField]
     private D_IdleState IdleStateData;
     [SerializeField]

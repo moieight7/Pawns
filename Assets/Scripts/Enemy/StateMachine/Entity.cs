@@ -9,6 +9,7 @@ using UnityEngine.AI;
 
 public class Entity : MonoBehaviour
 {
+    [Header("Entity Data")]
     public int enemyID;
     [HideInInspector] public float health;
     [HideInInspector] public float maxHealth;
@@ -17,8 +18,8 @@ public class Entity : MonoBehaviour
     public FiniteStateMachine stateMachine;
 
     public Transform firePoint;
-    public Transform target;
     public D_Entity entityData;
+    [HideInInspector] public Transform target;
 
     public Rigidbody2D rb { get; private set; }
     public Animator animator { get; private set; }
@@ -26,7 +27,7 @@ public class Entity : MonoBehaviour
     public NavMeshAgent navMeshAgent { get; private set; }
     public AnimationToStateMachine atsm { get; private set; }
 
-    [SerializeField] private EnemyHealthSlider healthSlider;
+    private EnemyHealthSlider healthSlider;
 
     [HideInInspector] public bool isDashing = false;
     [HideInInspector] public bool playDeathSound = true;
@@ -39,10 +40,16 @@ public class Entity : MonoBehaviour
 
     private bool playerEntityDead = false;
 
+    private bool pauseStateMachine = false;
+
     private Coroutine dashCooldown;
 
     private Vector2 velocityWorkspace;
     private static int id;
+
+    [Header("Events")]
+    public UltEvents.UltEvent OnSwitchedToEvent;
+    public UltEvents.UltEvent OnSwitchedFromEvent;
 
     public delegate void SwitchAction(Entity to, Entity from);
     public static event SwitchAction OnSwitch;
@@ -95,12 +102,14 @@ public class Entity : MonoBehaviour
     {
         iFrameTimer -= Time.deltaTime;
         iFrameTimer = Mathf.Clamp(iFrameTimer, 0, entityData.iFrameTime);
-        if (type == EntityType.Enemy) stateMachine.currentState.LogicUpdate();
+        if (type == EntityType.Enemy && !pauseStateMachine) 
+            stateMachine.currentState.LogicUpdate();
     }
 
     public virtual void FixedUpdate()
     {
-        if (type == EntityType.Enemy) stateMachine.currentState.PhysicsUpdate();
+        if (type == EntityType.Enemy && !pauseStateMachine) 
+            stateMachine.currentState.PhysicsUpdate();
     }
 
     public void TakeDamage(float damage)
@@ -373,6 +382,23 @@ public class Entity : MonoBehaviour
         player.TakeDamage(damage);
     }
 
+    public void PauseNavMeshAgent()
+    {
+        navMeshAgent.isStopped = true;
+        navMeshAgent.enabled = false;
+    }
+
+    public void UnpauseNavMeshAgent()
+    {
+        navMeshAgent.isStopped = false;
+        navMeshAgent.enabled = true;
+    }
+
+    public void PauseStateMachine(bool pause)
+    {
+        pauseStateMachine = pause;
+    }
+
     public void OnSwitchedTo(Entity from)
     {
         Debug.Log("OnSwitchedTo entity " + name + " from entity " + from.name);
@@ -394,6 +420,8 @@ public class Entity : MonoBehaviour
         iFrameTimer = entityData.iFrameTime;
 
         if (from.health <= 0) from.Die();
+
+        OnSwitchedToEvent.Invoke();
     }
 
     public void OnSwitchedFrom(Entity to)
@@ -418,6 +446,7 @@ public class Entity : MonoBehaviour
         navMeshAgent.isStopped = false;
         navMeshAgent.enabled = true;
 
+        OnSwitchedFromEvent.Invoke();
         OnSwitch.Invoke(to, this);
     }
 

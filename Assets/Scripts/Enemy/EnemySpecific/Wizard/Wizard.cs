@@ -7,7 +7,8 @@ public class Wizard : Entity
     public Wizard_IdleState IdleState { get; private set; }
     public Wizard_MoveState MoveState { get; private set; }
     public Wizard_TeleportState TeleportState { get; private set; }
-    
+
+    [Header("State Data")]
     [SerializeField]
     private D_IdleState IdleStateData;
     [SerializeField]

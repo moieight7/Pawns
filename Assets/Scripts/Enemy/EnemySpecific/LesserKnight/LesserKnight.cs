@@ -8,7 +8,8 @@ public class LesserKnight : Entity
     public LesserKnight_MoveState MoveState { get; private set; }
     public LesserKnight_DashState DashState { get; private set; }
     public LesserKnight_StaggerState StaggerState { get; private set; }
-    
+
+    [Header("State Data")]
     [SerializeField]
     private D_IdleState IdleStateData;
     [SerializeField]
