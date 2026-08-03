@@ -26932,7 +26932,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 22400762, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.0000076293945
+      value: -0.000019073486
       objectReference: {fileID: 0}
     - target: {fileID: 22426080, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -27923,9 +27923,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseUI: {fileID: 1146254292}
-  resetConfirm: {fileID: 0}
-  quitConfirm: {fileID: 0}
-  paused: 0
+  content: {fileID: 1031337862}
+  resetConfirm: {fileID: 1040800755}
+  quitConfirm: {fileID: 821022875}
 --- !u!223 &1022006692
 Canvas:
   m_ObjectHideFlags: 0
@@ -30487,19 +30487,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Event:
     _PersistentCalls:
-    - _Target: {fileID: 0}
-      _MemberName: DOTweenAnimationManager, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null.BlendableLocalMoveBy
+    - _Target: {fileID: 1022006691}
+      _MemberName: MoveMenu
       _PersistentArguments:
-      - _Type: 13
-        _Int: 0
-        _String: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-        _X: 0
-        _Y: 0
-        _Z: 0
-        _W: 0
-        _Object: {fileID: 1031337862}
       - _Type: 7
         _Int: 0
         _String: 
@@ -30519,14 +30509,6 @@ MonoBehaviour:
       - _Type: 4
         _Int: 4
         _String: DG.Tweening.Ease, DOTween, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-        _X: 0
-        _Y: 0
-        _Z: 0
-        _W: 0
-        _Object: {fileID: 0}
-      - _Type: 1
-        _Int: 1
-        _String: 
         _X: 0
         _Y: 0
         _Z: 0
@@ -34033,19 +34015,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Event:
     _PersistentCalls:
-    - _Target: {fileID: 0}
-      _MemberName: DOTweenAnimationManager, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null.BlendableLocalMoveBy
+    - _Target: {fileID: 1022006691}
+      _MemberName: MoveMenu
       _PersistentArguments:
-      - _Type: 13
-        _Int: 0
-        _String: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-        _X: 0
-        _Y: 0
-        _Z: 0
-        _W: 0
-        _Object: {fileID: 1031337862}
       - _Type: 7
         _Int: 0
         _String: 
@@ -34065,14 +34037,6 @@ MonoBehaviour:
       - _Type: 4
         _Int: 4
         _String: DG.Tweening.Ease, DOTween, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-        _X: 0
-        _Y: 0
-        _Z: 0
-        _W: 0
-        _Object: {fileID: 0}
-      - _Type: 1
-        _Int: 1
-        _String: 
         _X: 0
         _Y: 0
         _Z: 0

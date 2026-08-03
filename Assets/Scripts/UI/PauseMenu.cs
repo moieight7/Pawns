@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,9 +7,10 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    public GameObject pauseUI, resetConfirm, quitConfirm;
+    public GameObject pauseUI, content, resetConfirm, quitConfirm;
 
     private bool paused = false;
+    private Tween moveTween;
 
     public bool Paused
     {
@@ -45,6 +47,11 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
+    public void MoveMenu(Vector3 vector, float duration, Ease ease = Ease.Linear)
+    {
+        moveTween = content.transform.DOBlendableLocalMoveBy(vector, duration).SetEase(ease).SetUpdate(true);
+    }
+
     public void Pause()
     {
         paused = true;
@@ -57,6 +64,9 @@ public class PauseMenu : MonoBehaviour
         paused = false;
         pauseUI.SetActive(false);
         SlowdownManager.instance.UnPause();
+
+        moveTween.Kill(true);
+        content.transform.localPosition = new Vector3(0, 65, 0);
     }
 
     public void ResetScene()
