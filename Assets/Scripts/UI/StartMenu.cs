@@ -40,7 +40,7 @@ public class StartMenu : MonoBehaviour
     {
         startMenuOpen = true;
         startUI.transform.position = new Vector3(startUI.transform.position.x, startUI.transform.position.y, 0);
-        //SlowdownManager.instance.Pause();
+        SlowdownManager.instance.Pause();
     }
 
     public void Play()
@@ -49,7 +49,7 @@ public class StartMenu : MonoBehaviour
         startUI.transform.DOLocalMove(new Vector3(0, 390.2f, 0), 1.5f).SetEase(Ease.InSine).SetUpdate(true).OnComplete(() =>
         {
             startMenuOpen = false;
-            //SlowdownManager.instance.UnPause();
+            SlowdownManager.instance.UnPause();
         });
     }
 

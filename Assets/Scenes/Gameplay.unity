@@ -26932,7 +26932,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 22400762, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.000019073486
+      value: 0.0000076293945
       objectReference: {fileID: 0}
     - target: {fileID: 22426080, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -27925,6 +27925,7 @@ MonoBehaviour:
   pauseUI: {fileID: 1146254292}
   resetConfirm: {fileID: 0}
   quitConfirm: {fileID: 0}
+  paused: 0
 --- !u!223 &1022006692
 Canvas:
   m_ObjectHideFlags: 0
