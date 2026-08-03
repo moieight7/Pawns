@@ -14,7 +14,7 @@ public class DeathScreenBackgroundAnim : MonoBehaviour
         if (gameObject.GetComponentInParent<StartMenu>() == null) FindObjectOfType<StartMenu>().GetComponentInChildren<DeathScreenBackgroundAnim>().DoAnimation();
 
         int numberOfRepetitions = 2, num = 0;
-        float moveY = -363;
+        float moveY = -376;
         float upDuration = 1, downDuration = 0.8f;
 
         Up();

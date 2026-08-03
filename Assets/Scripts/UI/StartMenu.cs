@@ -56,7 +56,7 @@ public class StartMenu : MonoBehaviour
     public void SnapTo()
     {
         startMenuOpen = true;
-        DOTweenAnimationManager.Move(startUI, new Vector3(0, 0, startUI.transform.position.z), 0.01f, Ease.Linear, true);
+        DOTweenAnimationManager.LocalMove(startUI, new Vector3(0, startUI.transform.localPosition.y, startUI.transform.position.z), 0.01f, Ease.Linear, true);
     }
 
     public void Quit()
