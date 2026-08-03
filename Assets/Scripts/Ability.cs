@@ -92,7 +92,7 @@ public class Ability
 
     public void TriggerAbility() 
 	{
-		if (numberOfCharges <= 0 || !usable) return;
+		if (numberOfCharges <= 0 || !usable || PauseMenu.instance.Paused) return;
 
         if (abilityData.maxCharges > 1) AbilityCooldownManager.instance.TriggerAbilityInBetweenChargesCooldown(this);
         AbilityCooldownManager.instance.QueueCooldown(this);

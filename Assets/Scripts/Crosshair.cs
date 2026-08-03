@@ -16,7 +16,7 @@ public class Crosshair : MonoBehaviour
         Cursor.visible = false;
     }
 
-    void FixedUpdate()
+    void Update()
     {
         if (!isPlayerAlive) return;
 
