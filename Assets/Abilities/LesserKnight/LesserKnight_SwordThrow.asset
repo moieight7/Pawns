@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LesserKnight_SwordThrow
   m_EditorClassIdentifier: 
   name: Sword Throw
-  description: Throw sword...
+  description: Throws a sword in the direction you're looking.
   icon: {fileID: 21300000, guid: aff74750ef3833840a6da03dcfd39596, type: 3}
   color: {r: 1, g: 1, b: 1, a: 1}
   offColor: {r: 0.54901963, g: 0.54901963, b: 0.54901963, a: 0.50980395}

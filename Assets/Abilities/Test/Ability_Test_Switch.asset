@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c92bf4f4d35a9444487b49b6788044aa, type: 3}
   m_Name: Ability_Test_Switch
   m_EditorClassIdentifier: 
-  name: Test Switch
-  description: This is a test ability for the Switch slot.
+  name: Switch
+  description: Hit an enemy with this to take control!
   icon: {fileID: 21300000, guid: 4c1bdb65db5dce34aa847c8a5f0147a5, type: 3}
   color: {r: 1, g: 0.84050083, b: 0, a: 1}
   offColor: {r: 0.8018868, g: 0.67295605, b: 0, a: 0.4627451}

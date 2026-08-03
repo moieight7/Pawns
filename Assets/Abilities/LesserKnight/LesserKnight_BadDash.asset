@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LesserKnight_BadDash
   m_EditorClassIdentifier: 
   name: Dash
-  description: Dash a short distance, then fall over
+  description: Dash a short distance, then fall over.
   icon: {fileID: 21300000, guid: 26ec46a6e836bec4b9b7193679635081, type: 3}
   color: {r: 1, g: 1, b: 1, a: 1}
   offColor: {r: 0.54901963, g: 0.54901963, b: 0.54901963, a: 0.50980395}

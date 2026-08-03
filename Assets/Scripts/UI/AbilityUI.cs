@@ -50,6 +50,17 @@ public class AbilityUI : MonoBehaviour
         }
 
         SetAbilityUI();
+
+        /*foreach (ClickableObject clickableObject in shopPurchaseableObjects)
+        {
+            var call = clickableObject.OnHoverEvent.AddPersistentCall((Action)shopPurchaseableDynamicScreens[i].SetShopInfo);
+            call = clickableObject.OnHoverEvent.AddPersistentCall((Action)shopPurchaseableDynamicScreens[i].SetHover);
+            clickableObject.OnHoverStopEvent.AddPersistentCall((Action)shopPurchaseableDynamicScreens[i].UnsetHover);
+
+            clickableObject.OnClickEvent.AddPersistentCall((Action)shopPurchaseableDynamicScreens[i].PurchaseItem);
+
+            i++;
+        }*/
     }
 
     public void SetAbilityUI()
@@ -58,6 +69,7 @@ public class AbilityUI : MonoBehaviour
         {
             ability.SetAbilityNumText();
             ability.SetAbilityIcons();
+            ability.SetAbilityKeyText();
         }
     }
 

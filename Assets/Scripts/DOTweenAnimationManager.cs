@@ -27,8 +27,8 @@ public static class DOTweenAnimationManager
         image.DOFade(endValue, duration).SetEase(ease).SetUpdate(ignoreTimescale);
     }
 
-    public static void CanvasGroupFade(CanvasGroup canvasGroup, float endValue, float duration = 1, Ease ease = Ease.Linear, bool ignoreTimescale = false)
+    public static Tween CanvasGroupFade(CanvasGroup canvasGroup, float endValue, float duration = 1, Ease ease = Ease.Linear, bool ignoreTimescale = false)
     {
-        canvasGroup.DOFade(endValue, duration).SetEase(ease).SetUpdate(ignoreTimescale);
+        return canvasGroup.DOFade(endValue, duration).SetEase(ease).SetUpdate(ignoreTimescale);
     }
 }
