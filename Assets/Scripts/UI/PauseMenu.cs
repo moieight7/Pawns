@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -55,5 +56,16 @@ public class PauseMenu : MonoBehaviour
         paused = false;
         pauseUI.SetActive(false);
         SlowdownManager.instance.UnPause();
+    }
+
+    public void ResetScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Unpause();
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
     }
 }
