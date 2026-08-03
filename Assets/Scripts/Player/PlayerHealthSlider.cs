@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerHealthSlider : MonoBehaviour
@@ -28,6 +29,8 @@ public class PlayerHealthSlider : MonoBehaviour
 
         Entity.OnSwitch += OnSwitch;
         Entity.OnPlayerDamaged += OnPlayerDamaged;
+
+        SceneManager.sceneLoaded += OnLevelReset;
     }
 
     void Start()
@@ -62,5 +65,12 @@ public class PlayerHealthSlider : MonoBehaviour
     private void OnSwitch(Entity to, Entity from)
     {
         SetEntity(to);
+    }
+
+    private void OnLevelReset(Scene arg0, LoadSceneMode arg1)
+    {
+        slider = GetComponent<Slider>();
+        SetEntity(GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>());
+        SetText();
     }
 }

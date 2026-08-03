@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -37,7 +38,7 @@ public class PauseMenu : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && !StartMenu.instance.StartMenuOpen)
         {
             if (!paused) Pause();
             else Unpause();
@@ -60,12 +61,13 @@ public class PauseMenu : MonoBehaviour
 
     public void ResetScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        LevelReset.Reset();
         Unpause();
     }
 
     public void Quit()
     {
-        Application.Quit();
+        StartMenu.instance.SnapTo();
+        SceneManager.LoadScene("StartMenu");
     }
 }

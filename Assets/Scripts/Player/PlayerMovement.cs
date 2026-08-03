@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -13,11 +14,16 @@ public class PlayerMovement : MonoBehaviour
     private Crosshair crosshair;
     private bool canMove = true;
 
+    private void Awake()
+    {
+        SceneManager.sceneLoaded += OnLevelReset;
+    }
+
     void Start()
     {
         entity = GetComponent<Entity>();
         rb = GetComponent<Rigidbody2D>();
-        crosshair = FindAnyObjectByType<Crosshair>();
+        crosshair = FindObjectOfType<Crosshair>();
     }
 
     void FixedUpdate()
@@ -45,5 +51,10 @@ public class PlayerMovement : MonoBehaviour
     public void OnPlayerRevived()
     {
         canMove = true;
+    }
+
+    private void OnLevelReset(Scene arg0, LoadSceneMode arg1)
+    {
+        crosshair = FindObjectOfType<Crosshair>();
     }
 }
