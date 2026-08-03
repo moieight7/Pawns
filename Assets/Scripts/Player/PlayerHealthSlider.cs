@@ -67,8 +67,9 @@ public class PlayerHealthSlider : MonoBehaviour
         SetEntity(to);
     }
 
-    private void OnLevelReset(Scene arg0, LoadSceneMode arg1)
+    private void OnLevelReset(Scene scene, LoadSceneMode arg1)
     {
+        if (scene.name != "Gameplay") { return; }
         slider = GetComponent<Slider>();
         SetEntity(GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>());
         SetText();

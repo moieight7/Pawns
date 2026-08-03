@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 public class StartMenu : MonoBehaviour
 {
     public GameObject startUI, quitConfirm;
+    public CanvasGroup contentCanvasGroup;
 
     private bool startMenuOpen = false;
 
@@ -38,6 +39,7 @@ public class StartMenu : MonoBehaviour
     void Start()
     {
         startMenuOpen = true;
+        startUI.transform.position = new Vector3(startUI.transform.position.x, startUI.transform.position.y, 0);
         //SlowdownManager.instance.Pause();
     }
 
@@ -54,7 +56,7 @@ public class StartMenu : MonoBehaviour
     public void SnapTo()
     {
         startMenuOpen = true;
-        DOTweenAnimationManager.Move(startUI, new Vector3(0, 0, 0), 0.01f, Ease.Linear, true);
+        DOTweenAnimationManager.Move(startUI, new Vector3(0, 0, startUI.transform.position.z), 0.01f, Ease.Linear, true);
     }
 
     public void Quit()
@@ -62,8 +64,11 @@ public class StartMenu : MonoBehaviour
         Application.Quit();
     }
 
-    private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        if (scene.name == "StartMenu") { contentCanvasGroup.DOFade(1, 1).SetUpdate(true); StartMenu.instance.SnapTo(); }
+        else if (scene.name == "Gameplay") contentCanvasGroup.DOFade(0, 1).SetUpdate(true);
+        Debug.Log("OnSceneLoaded");
         GetComponent<Canvas>().worldCamera = Camera.main;
     }
 }
