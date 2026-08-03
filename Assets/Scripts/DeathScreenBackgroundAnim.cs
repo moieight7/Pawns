@@ -8,7 +8,7 @@ public class DeathScreenBackgroundAnim : MonoBehaviour
 {
     public void DoAnimation()
     {
-        int numberOfRepetitions = 3, num = 0;
+        int numberOfRepetitions = 2, num = 0;
         float moveY = -363;
         float upDuration = 1, downDuration = 0.8f;
 

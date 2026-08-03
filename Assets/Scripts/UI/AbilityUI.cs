@@ -61,6 +61,16 @@ public class AbilityUI : MonoBehaviour
         }
     }
 
+    public void Hide()
+    {
+        foreach (AbilityUIContainer abilityUIContainer in abilityUIContainers) abilityUIContainer.gameObject.SetActive(false);
+    }
+
+    public void Show()
+    {
+        foreach (AbilityUIContainer abilityUIContainer in abilityUIContainers) abilityUIContainer.gameObject.SetActive(true);
+    }
+
     public void CooldownAnimation(Ability ability)
     {
         AbilityUIContainer abilityUIContainer = abilityUIContainers.Find(x => x.ability == ability);

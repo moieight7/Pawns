@@ -32,7 +32,7 @@ public class EntityAbilities : MonoBehaviour
 
     void Update()
     {
-        if (!canUseAbilites) return;
+        if (!canUseAbilites || PauseMenu.instance.Paused) return;
 
         if (entity.type == EntityType.Player) {
             foreach (PlayerAbility playerAbility in playerAbilities)
