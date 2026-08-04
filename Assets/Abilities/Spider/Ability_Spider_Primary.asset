@@ -20,13 +20,13 @@ MonoBehaviour:
   type: 1
   inBetweenChargesCooldownTime: 0.5
   cooldownTime: 2
-  maxCharges: 3
+  maxCharges: 1
   startUsable: 1
   OnAbilityTriggeredEvent:
     _PersistentCalls:
     - _Target: {fileID: 0}
       _MemberName: AbilityBehaviorManager, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null.TestPrimary_UseEffect
+        PublicKeyToken=null.SpiderPrimary_UseEffect
       _PersistentArguments:
       - _Type: 13
         _Int: 0
@@ -44,6 +44,22 @@ MonoBehaviour:
         _Y: 0
         _Z: 0
         _W: 0
-        _Object: {fileID: 41337451440972637, guid: ff7ee0741d2feee4ab9e70ef3437a733, type: 3}
+        _Object: {fileID: 41337451440972637, guid: 7f944f3bd03825c438902ffdab5adcd8, type: 3}
+      - _Type: 5
+        _Int: 0
+        _String: 
+        _X: 3
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+      - _Type: 5
+        _Int: 0
+        _String: 
+        _X: 0.4
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
   OnAbilityCoolDownEvent:
     _PersistentCalls: []

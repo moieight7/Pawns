@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   acceleration: 80
-  stoppingDistance: 1.9
+  stoppingDistance: 4

@@ -34,8 +34,8 @@ public class PlayerMovement : MonoBehaviour
 
         rb.velocity = motion;
 
-        if (gameObject.transform.position.x > crosshair.gameObject.transform.position.x) GetComponent<SpriteRenderer>().flipX = true;
-        else if (gameObject.transform.position.x < crosshair.gameObject.transform.position.x) GetComponent<SpriteRenderer>().flipX = false;
+        if (gameObject.transform.position.x > crosshair.gameObject.transform.position.x && entity.entityData.flipX) GetComponent<SpriteRenderer>().flipX = true;
+        else if (gameObject.transform.position.x < crosshair.gameObject.transform.position.x && entity.entityData.flipX) GetComponent<SpriteRenderer>().flipX = false;
 
         /*if (rb.velocity.x < 0) GetComponent<SpriteRenderer>().flipX = true;
         else if (rb.velocity.x > 0) GetComponent<SpriteRenderer>().flipX = false;*/

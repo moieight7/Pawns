@@ -16,7 +16,7 @@ MonoBehaviour:
   lifedrainDuration: 27
   iFrameTime: 1.3
   playerMovementSpeed: 460
-  navMeshAgentMovementSpeed: 7
+  navMeshAgentMovementSpeed: 6
   seeThroughObstacles: 0
   playerMinCheckDist: 5
   playerMaxCheckDist: 10

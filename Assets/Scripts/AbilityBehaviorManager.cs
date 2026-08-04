@@ -29,7 +29,7 @@ public static class AbilityBehaviorManager
 
     public static void TestPrimary_UseEffect(Entity caster, GameObject bullet)
     {
-        AttackSpawner.SpawnAttack(caster, bullet);
+        AttackSpawner.instance.SpawnAttack(caster, bullet);
     }
 
     public static void TestSecondary_UseEffect(Entity caster, GameObject bullet, int numberOfBullets = 3, float bulletSpread = 30)
@@ -39,33 +39,28 @@ public static class AbilityBehaviorManager
 
         for (int i = 0; i < numberOfBullets; i++)
         {
-            projectileComponent = (Projectile)AttackSpawner.SpawnAttack(caster, bullet);
+            projectileComponent = (Projectile)AttackSpawner.instance.SpawnAttack(caster, bullet);
 
             Quaternion rot = Quaternion.AngleAxis(0f - bulletSpread + (bulletSpread * i), Vector3.forward);
             projectileComponent.RotateDirection(rot);
         }
     }
 
-    public static void TestUtility_UseEffect(Entity caster, float dashSpeed, float dashSmoothTime)
-    {
-        
-    }
-
-    public static void TestSpecial_UseEffect()
-    {
-
-    }
-
     public static void Sword_UseEffect(Entity caster, GameObject prefab)
     {
-        Swing swing = (Swing)AttackSpawner.SpawnAttack(caster, prefab);
+        Swing swing = (Swing)AttackSpawner.instance.SpawnAttack(caster, prefab);
         swing.transform.parent = caster.firePoint.transform;
     }
 
     public static void TestSwitch_UseEffect(Entity caster, GameObject bullet)
     {
-        Projectile projectile = (Projectile)AttackSpawner.SpawnAttack(caster, bullet);
+        Projectile projectile = (Projectile)AttackSpawner.instance.SpawnAttack(caster, bullet);
         projectile.sender = caster.firePoint;
+    }
+
+    public static void SpiderPrimary_UseEffect(Entity caster, GameObject bullet, float numberOfBullets, float delay)
+    {
+        for (int i = 0; i < numberOfBullets; i++) AttackSpawner.instance.SpawnAttack(caster, bullet, delay * i);
     }
 
     public static void Dash_UseEffect(Entity caster, float force, float duration)
@@ -129,7 +124,7 @@ public static class AbilityBehaviorManager
 
     public static void Firebolt_UseEffect(Entity caster, GameObject bullet)
     {
-        Explosive firebolt = (Explosive)AttackSpawner.SpawnAttack(caster, bullet);
+        Explosive firebolt = (Explosive)AttackSpawner.instance.SpawnAttack(caster, bullet);
 
         if (caster.type == EntityType.Enemy)
         {
@@ -214,58 +209,6 @@ public static class AbilityBehaviorManager
             this.caster = caster;
             this.ability = ability;
             this.persistentCall = persistentCall;
-        }
-    }
-
-    private static class AttackSpawner
-    {
-        public static Attack SpawnAttack(Entity caster, GameObject prefab)
-        {
-            GameObject attack = null;
-            Attack attackComponent = null;
-
-            attack = Instantiate(caster, prefab);
-            attackComponent = attack.GetComponent<Attack>();
-
-            SetDirectionAndRotation(caster, attackComponent);
-
-            attack.GetComponent<Collider2D>().enabled = true;
-
-            return attackComponent;
-        }
-
-        private static GameObject Instantiate(Entity caster, GameObject prefab)
-        {
-            GameObject attack = null;
-            Attack attackComponent = null;
-
-            attack = GameObject.Instantiate(prefab, caster.firePoint.transform.position, Quaternion.Euler(0f, 0f, 0f));
-            attackComponent = attack.GetComponent<Attack>();
-            attackComponent.sender = caster.firePoint;
-
-            if (caster.type == EntityType.Player) attack.layer = LayerMask.NameToLayer("PlayerBullets");
-            else if (caster.type == EntityType.Enemy) attack.layer = LayerMask.NameToLayer("EnemyBullets");
-            else Debug.LogError("AbilityBehaviorManager has a defined caster with an invalid EntityType");
-
-            return attack;
-        }
-
-        private static void SetDirectionAndRotation(Entity caster, Attack attackComponent)
-        {
-            Vector3 diff = Vector3.zero;
-            float rotationZ, distance;
-            Vector2 direction = Vector2.zero;
-
-            if (caster.type == EntityType.Player) diff = Camera.main.ScreenToWorldPoint(Input.mousePosition) - caster.firePoint.position;
-            else if (caster.type == EntityType.Enemy) diff = caster.target.transform.position - caster.firePoint.position;
-            diff.Normalize();
-            rotationZ = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
-
-            distance = diff.magnitude;
-            direction = diff / distance;
-            direction.Normalize();
-
-            attackComponent.SetDirection(direction, rotationZ);
         }
     }
 }

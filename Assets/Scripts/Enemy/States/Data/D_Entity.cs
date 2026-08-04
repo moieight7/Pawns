@@ -11,6 +11,7 @@ public class D_Entity : ScriptableObject, IEnemyDataContainer
     public float playerMovementSpeed = 6;
     public float navMeshAgentMovementSpeed = 6;
     public bool seeThroughObstacles = false;
+    public bool flipX = true;
 
     public float playerMinCheckDist = 3f;
     public float playerMaxCheckDist = 5f;

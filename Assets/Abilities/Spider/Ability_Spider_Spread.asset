@@ -19,7 +19,7 @@ MonoBehaviour:
   offColor: {r: 0.54901963, g: 0.54901963, b: 0.54901963, a: 0.50980395}
   type: 2
   inBetweenChargesCooldownTime: 1
-  cooldownTime: 2
+  cooldownTime: 5
   maxCharges: 2
   startUsable: 1
   OnAbilityTriggeredEvent:
