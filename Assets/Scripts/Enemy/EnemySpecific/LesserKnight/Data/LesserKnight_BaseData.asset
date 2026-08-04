@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: LesserKnight_BaseData
   m_EditorClassIdentifier: 
   health: 100
+  lifedrainDuration: 35
   iFrameTime: 1.3
-  playerMovementSpeed: 400
-  navMeshAgentMovementSpeed: 6
+  playerMovementSpeed: 370
+  navMeshAgentMovementSpeed: 5
   seeThroughObstacles: 0
   playerMinCheckDist: 3
   playerMaxCheckDist: 10

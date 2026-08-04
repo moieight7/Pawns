@@ -9,7 +9,7 @@ using System.Linq;
 
 public class ClickObject : MonoBehaviour
 {
-    private GameObject lastHovered;
+    public GameObject lastHovered;
 
     void Update()
     {
@@ -19,6 +19,7 @@ public class ClickObject : MonoBehaviour
             Debug.Log("ClickObject - OnHoverEvent " + hoverTarget.name);
             hoverTarget.GetComponent<ClickableObject>().OnHoverEvent.Invoke();
             hoverTarget.GetComponent<ClickableObject>().hoverFlag = true;
+            if (lastHovered != null) lastHovered.GetComponent<ClickableObject>().hoverFlag = false;
             lastHovered = hoverTarget;
         }
         else if (hoverTarget == null || (hoverTarget != null && hoverTarget.GetComponent<ClickableObject>() == null))
@@ -58,7 +59,7 @@ public class ClickObject : MonoBehaviour
         ped.position = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Input.mousePosition.z);
         List<RaycastResult> results = new List<RaycastResult>();
         EventSystem.current.RaycastAll(ped, results);
-        Debug.Log("ClickObject - IsPointerOverObject results count: " + results.Count);
+
         return results.Count > 0;
     }
 }

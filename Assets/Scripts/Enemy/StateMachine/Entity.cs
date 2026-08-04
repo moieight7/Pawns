@@ -1,3 +1,4 @@
+using DG.Tweening;
 using IngameDebugConsole;
 using System.Collections;
 using System.Collections.Generic;
@@ -42,7 +43,11 @@ public class Entity : MonoBehaviour
 
     private bool pauseStateMachine = false;
 
-    private Coroutine dashCooldown;
+    [SerializeField] private bool lifedrain = false;
+    private float lifedrainDuration = 30;
+    private float lifedrainStep;
+
+    private Coroutine dashCooldown, lifedrainCoroutine;
 
     private Vector2 velocityWorkspace;
     private static int id;
@@ -78,6 +83,7 @@ public class Entity : MonoBehaviour
 
         DebugLogConsole.AddCommand("buddha", "Upon death sets player HP to 1, ensuring they can never die.", SetInvincibleFlag);
         DebugLogConsole.AddCommand<float>("hurt", "Deals damage to the player entity.", TakeDamageConsole);
+        DebugLogConsole.AddCommand("dracula", "Enables/disables the lifedrain flag on the player entity.", SetLifedrainFlagConsole);
     }
 
     public virtual void Start()
@@ -112,7 +118,7 @@ public class Entity : MonoBehaviour
             stateMachine.currentState.PhysicsUpdate();
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, bool canKill = true, bool triggerIframe = true)
     {
         if (health < 0 && !invincible || iFrameTimer > 0) return;
 
@@ -122,12 +128,21 @@ public class Entity : MonoBehaviour
         if (type == EntityType.Player)
         {
             if (OnPlayerDamaged != null) OnPlayerDamaged.Invoke();
-            iFrameTimer = entityData.iFrameTime;
-            if (GetComponent<IFrameAnimation>() != null) GetComponent<IFrameAnimation>().DoIFrameAnim(entityData.iFrameTime);
+            if (triggerIframe)
+            {
+                iFrameTimer = entityData.iFrameTime;
+                if (GetComponent<IFrameAnimation>() != null) GetComponent<IFrameAnimation>().DoIFrameAnim(entityData.iFrameTime);
+            }
         }
         if (OnEntityDamaged != null) OnEntityDamaged.Invoke(this);
 
-        if (health <= 0) Die();
+        if (health <= 0 && canKill) Die();
+    }
+
+    private void SetHealth(float setTo)
+    {
+        health = setTo;
+        if (OnPlayerDamaged != null) OnPlayerDamaged.Invoke();
     }
 
     private void Die()
@@ -141,6 +156,17 @@ public class Entity : MonoBehaviour
         {
             playerEntityDead = true;
             PlayerDeath.instance.TriggerDeathSequence(this);
+        }
+    }
+
+    private IEnumerator LifedrainCoroutine()
+    {
+        while (lifedrain)
+        {
+            yield return new WaitForSeconds(1.5f);
+            if (health == 1) continue;
+            if (health - Mathf.Abs(lifedrainStep) < 1) { Debug.Log("LifedrainCoroutine: " + (lifedrainStep - health)); SetHealth(1); }
+            else if (health > 1) TakeDamage(lifedrainStep, false, false);
         }
     }
 
@@ -382,6 +408,49 @@ public class Entity : MonoBehaviour
         player.TakeDamage(damage);
     }
 
+    public void SetLifedrainFlagConsole()
+    {
+        Entity player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
+
+        player.lifedrain = !player.lifedrain;
+        if (player.lifedrain) 
+        { 
+            Debug.Log("Lifedrain on...");
+            lifedrainDuration = entityData.lifedrainDuration;
+
+            lifedrainStep = entityData.health / lifedrainDuration;
+            
+            if (lifedrainCoroutine != null) StopCoroutine(lifedrainCoroutine);
+            lifedrainCoroutine = StartCoroutine(LifedrainCoroutine());
+        }
+        else if (!player.lifedrain)
+        {
+            Debug.Log("Lifedrain off...");
+            if (lifedrainCoroutine != null) StopCoroutine(lifedrainCoroutine);
+        }
+    }
+
+    public void SetLifedrainFlag(bool set)
+    {
+        if (set)
+        {
+            Debug.Log("Lifedrain on...");
+            lifedrain = true;
+            lifedrainDuration = entityData.lifedrainDuration;
+
+            lifedrainStep = entityData.health / lifedrainDuration;
+
+            if (lifedrainCoroutine != null) StopCoroutine(lifedrainCoroutine);
+            lifedrainCoroutine = StartCoroutine(LifedrainCoroutine());
+        }
+        else if (!set)
+        {
+            lifedrain = false;
+            Debug.Log("Lifedrain off...");
+            if (lifedrainCoroutine != null) StopCoroutine(lifedrainCoroutine);
+        }
+    }
+
     public void PauseNavMeshAgent()
     {
         navMeshAgent.isStopped = true;
@@ -404,6 +473,7 @@ public class Entity : MonoBehaviour
         Debug.Log("OnSwitchedTo entity " + name + " from entity " + from.name);
 
         invincible = from.invincible;
+        SetLifedrainFlag(from.lifedrain);
 
         gameObject.layer = LayerMask.NameToLayer("Player");
         gameObject.tag = "Player";
@@ -435,6 +505,7 @@ public class Entity : MonoBehaviour
         }
 
         invincible = false;
+        SetLifedrainFlag(false);
 
         gameObject.layer = LayerMask.NameToLayer("Enemy");
         gameObject.tag = "Enemy";

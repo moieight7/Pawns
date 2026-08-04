@@ -48,7 +48,7 @@ public class EnemyHealthSlider : MonoBehaviour
 
     private void SetText()
     {
-        healthText.SetText(entity.health.ToString() + " / " + entity.maxHealth.ToString());
+        healthText.SetText(Mathf.RoundToInt(entity.health).ToString() + " / " + entity.maxHealth.ToString());
     }
 
     private void OnEntityDamaged(Entity entity)
