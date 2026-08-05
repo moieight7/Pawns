@@ -1,4 +1,5 @@
 using IngameDebugConsole;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,8 +15,9 @@ public class EntityAbilities : MonoBehaviour
     [SerializeField] private List<PlayerAbility> playerAbilities = new List<PlayerAbility>();
 
     private Entity entity;
+    private Coroutine delayedAbility;
 
-    private bool canUseAbilites = true;
+    private bool canUseAbilites = true, isCasting = false;
 
     void Start()
     {
@@ -69,7 +71,28 @@ public class EntityAbilities : MonoBehaviour
 
     public void TriggerAbilityByIndex(int index)
     {
+        if (isCasting) return;
+        isCasting = true;
         playerAbilities[index].ability.TriggerAbility();
+        isCasting = false;
+    }
+
+    public void TriggerAbilityByIndex(int index, float delay)
+    {
+        if (isCasting) return;
+        EnemyAttackTelegraphAnimation enemyAttackTelegraphAnimation = entity.GetComponent<EnemyAttackTelegraphAnimation>();
+        if (enemyAttackTelegraphAnimation != null) enemyAttackTelegraphAnimation.DoTelegraphAnim(playerAbilities[index].ability.TelegraphColor, delay);
+        delayedAbility = StartCoroutine(TriggerAbilityDelay(index, delay));
+    }
+
+    private IEnumerator TriggerAbilityDelay(int index, float delay)
+    {
+        Debug.Log("TriggerAbilityDelay 1");
+        isCasting = true;
+        yield return new WaitForSeconds(delay);
+        Debug.Log("TriggerAbilityDelay 2");
+        playerAbilities[index].ability.TriggerAbility();
+        isCasting = false;
     }
 
     public Ability FindAbilityByIndex(int index)
@@ -82,6 +105,14 @@ public class EntityAbilities : MonoBehaviour
         Ability playerAbility = entityAbilities.Find(x => x.Type == type);
         if (playerAbility == null) return null;
         else return playerAbility;
+    }
+
+    public void CancelAbility()
+    {
+        if (delayedAbility != null) StopCoroutine(delayedAbility);
+        EnemyAttackTelegraphAnimation enemyAttackTelegraphAnimation = entity.GetComponent<EnemyAttackTelegraphAnimation>();
+        if (enemyAttackTelegraphAnimation != null) enemyAttackTelegraphAnimation.StopTelegraphAnim();
+        isCasting = false;
     }
 
     public void AddAbility(Ability ability)

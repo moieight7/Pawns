@@ -44,14 +44,14 @@ public class Ability
 
     public Color Color
     {
-        get => abilityData.color;
-        private set => abilityData.color = value;
+        get => abilityData.UIcolor;
+        private set => abilityData.UIcolor = value;
     }
 
     public Color OffColor
     {
-        get => abilityData.offColor;
-        private set => abilityData.offColor = value;
+        get => abilityData.UIoffColor;
+        private set => abilityData.UIoffColor = value;
     }
 
     public AbilityType Type
@@ -66,6 +66,12 @@ public class Ability
         private set => abilityData.cooldownTime = value;
     }
 
+    public float EnemyCastDelayTime
+    {
+        get => abilityData.enemyCastDelayTime;
+        private set => abilityData.enemyCastDelayTime = value;
+    }
+
     public int MaxCharges
     {
         get => abilityData.maxCharges;
@@ -76,6 +82,12 @@ public class Ability
     {
         get => abilityData.startUsable;
         private set => abilityData.startUsable = value;
+    }
+
+    public Color TelegraphColor
+    {
+        get => abilityData.telegraphColor;
+        private set => abilityData.telegraphColor = value;
     }
 
     public delegate void OnAbilityTriggeredAction(Entity entity);

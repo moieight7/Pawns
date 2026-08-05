@@ -15,11 +15,13 @@ MonoBehaviour:
   name: Firebolt
   description: Fires an explosive bolt that detonates after a short delay.
   icon: {fileID: 21300000, guid: aff74750ef3833840a6da03dcfd39596, type: 3}
-  color: {r: 1, g: 1, b: 1, a: 1}
-  offColor: {r: 0.54901963, g: 0.54901963, b: 0.54901963, a: 0.50980395}
+  UIcolor: {r: 1, g: 1, b: 1, a: 1}
+  UIoffColor: {r: 0.54901963, g: 0.54901963, b: 0.54901963, a: 0.54901963}
+  telegraphColor: {r: 1, g: 0.46893463, b: 0, a: 1}
   type: 2
   inBetweenChargesCooldownTime: 0.5
   cooldownTime: 7
+  enemyCastDelayTime: 1.25
   maxCharges: 1
   startUsable: 1
   OnAbilityTriggeredEvent:

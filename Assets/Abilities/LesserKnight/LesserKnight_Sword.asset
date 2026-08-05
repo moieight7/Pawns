@@ -15,8 +15,9 @@ MonoBehaviour:
   name: Sword
   description: It's a sword. Swinging it hurts people. It's not magic.
   icon: {fileID: 21300000, guid: cb6fbf122c536b74b906ca257609b0dc, type: 3}
-  color: {r: 1, g: 1, b: 1, a: 1}
-  offColor: {r: 0.54901963, g: 0.54901963, b: 0.54901963, a: 0.50980395}
+  UIcolor: {r: 1, g: 1, b: 1, a: 1}
+  UIoffColor: {r: 0.54901963, g: 0.54901963, b: 0.54901963, a: 0.54901963}
+  telegraphColor: {r: 1, g: 1, b: 1, a: 1}
   type: 1
   inBetweenChargesCooldownTime: 0.75
   cooldownTime: 0.75

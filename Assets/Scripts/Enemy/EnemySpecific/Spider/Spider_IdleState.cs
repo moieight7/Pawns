@@ -34,9 +34,13 @@ public class Spider_IdleState : IdleState
             enemy.abilities.TriggerAbilityByIndex(2);
             stateMachine.ChangeState(enemy.DashState);
         }
+        else if (enemy.CheckPlayerMinRange() && enemy.abilities.FindAbilityByIndex(1).numberOfCharges > 0 && enemy.CanSeePlayerWithClearLineOfSight)
+        {
+            enemy.abilities.TriggerAbilityByIndex(1, enemy.abilities.entityAbilities[1].EnemyCastDelayTime);
+        }
         else if (enemy.CheckPlayerMinRange() && enemy.CanSeePlayerWithClearLineOfSight)
         {
-            enemy.abilities.TriggerAbilityByIndex(1);
+            enemy.abilities.TriggerAbilityByIndex(0, enemy.abilities.entityAbilities[0].EnemyCastDelayTime);
         }
         else stateMachine.ChangeState(enemy.MoveState);
     }

@@ -38,11 +38,7 @@ public class LesserKnight_MoveState : MoveState
         }
         else if (enemy.CheckPlayerMaxRange() && enemy.abilities.FindAbilityByIndex(1).numberOfCharges > 0 && !enemy.CheckPlayerMinRange() && enemy.CanSeePlayerWithClearLineOfSight)
         {
-            enemy.abilities.TriggerAbilityByIndex(1);
-        }
-        else if (enemy.CheckPlayerMinRange() && enemy.abilities.FindAbilityByIndex(0).numberOfCharges > 0 && enemy.CanSeePlayerWithClearLineOfSight)
-        {
-            enemy.abilities.TriggerAbilityByIndex(0);
+            enemy.abilities.TriggerAbilityByIndex(1, 1f);
         }
         else if (enemy.CheckPlayerMinRange() && enemy.CanSeePlayerWithClearLineOfSight)
         {

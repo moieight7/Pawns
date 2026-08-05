@@ -35,8 +35,8 @@ public class Wizard_IdleState : IdleState
         }
         else if (enemy.CheckPlayerMaxRange() && enemy.CanSeePlayerWithClearLineOfSight)
         {
-            if (enemy.abilities.FindAbilityByIndex(1).numberOfCharges > 0) enemy.abilities.TriggerAbilityByIndex(1);
-            enemy.abilities.TriggerAbilityByIndex(0);
+            if (enemy.abilities.FindAbilityByIndex(1).numberOfCharges > 0) enemy.abilities.TriggerAbilityByIndex(1, enemy.abilities.entityAbilities[1].EnemyCastDelayTime);
+            else if (enemy.abilities.FindAbilityByIndex(0).numberOfCharges > 0) enemy.abilities.TriggerAbilityByIndex(0, enemy.abilities.entityAbilities[0].EnemyCastDelayTime);
         }
         else stateMachine.ChangeState(enemy.MoveState);
     }

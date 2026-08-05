@@ -30,6 +30,7 @@ public class State
     public virtual void Exit()
     {
         entity.animator.SetBool(animBoolName, false);
+        entity.abilities.CancelAbility();
     }
 
     public virtual void LogicUpdate()

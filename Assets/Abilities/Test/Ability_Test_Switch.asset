@@ -15,8 +15,9 @@ MonoBehaviour:
   name: Switch
   description: Hit an enemy with this to take control!
   icon: {fileID: 21300000, guid: 4c1bdb65db5dce34aa847c8a5f0147a5, type: 3}
-  color: {r: 1, g: 0.84050083, b: 0, a: 1}
-  offColor: {r: 0.8018868, g: 0.67295605, b: 0, a: 0.4627451}
+  UIcolor: {r: 1, g: 0.8795767, b: 0, a: 1}
+  UIoffColor: {r: 0.764151, g: 0.6734452, b: 0.018022425, a: 0.54901963}
+  telegraphColor: {r: 255, g: 0, b: 0, a: 1}
   type: 5
   inBetweenChargesCooldownTime: 0.5
   cooldownTime: 10

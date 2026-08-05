@@ -40,11 +40,11 @@ public class Spider_MoveState : MoveState
         }
         else if (enemy.CheckPlayerMaxRange() && enemy.abilities.FindAbilityByIndex(0).numberOfCharges > 0 && enemy.CanSeePlayerWithClearLineOfSight)
         {
-            enemy.abilities.TriggerAbilityByIndex(0);
+            enemy.abilities.TriggerAbilityByIndex(0, enemy.abilities.entityAbilities[0].EnemyCastDelayTime);
         }
         else if (enemy.CheckPlayerMinRange() && enemy.abilities.FindAbilityByIndex(1).numberOfCharges > 0 && enemy.CanSeePlayerWithClearLineOfSight)
         {
-            enemy.abilities.TriggerAbilityByIndex(1);
+            enemy.abilities.TriggerAbilityByIndex(1, enemy.abilities.entityAbilities[1].EnemyCastDelayTime);
             stateMachine.ChangeState(enemy.IdleState);
         }
     }

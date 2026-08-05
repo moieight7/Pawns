@@ -16415,7 +16415,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c45f2dd3210a0c4286b6a9170692270, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemySilhouette: {fileID: 0}
+  enemySilhouette: {fileID: 6592796210809417492, guid: b0e10bdbca0434746b3d3010151dc428, type: 3}
   waves:
   - enemies:
     - enemy: {fileID: 4125757722190910676, guid: 94faf3425b90c1746b1d1e2fa9998efd, type: 3}
@@ -32201,12 +32201,16 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8882508817277145224, guid: fccac045eeef5724c9578694d20930ba, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5183414180587685762, guid: fccac045eeef5724c9578694d20930ba, type: 3}
-      insertIndex: -1
+      insertIndex: 9
       addedObject: {fileID: 1300877716}
   m_SourcePrefab: {fileID: 100100000, guid: fccac045eeef5724c9578694d20930ba, type: 3}
 --- !u!114 &6215522619930738595
@@ -32591,6 +32595,18 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3720589228959381516, guid: dc8286e0b967a4c40ae5417926bc85a2, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3720589228959381516, guid: dc8286e0b967a4c40ae5417926bc85a2, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3720589228959381516, guid: dc8286e0b967a4c40ae5417926bc85a2, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3733028291006295398, guid: dc8286e0b967a4c40ae5417926bc85a2, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -32662,7 +32678,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1556226796937128160, guid: dc8286e0b967a4c40ae5417926bc85a2, type: 3}
-      insertIndex: -1
+      insertIndex: 9
       addedObject: {fileID: 738898149}
   m_SourcePrefab: {fileID: 100100000, guid: dc8286e0b967a4c40ae5417926bc85a2, type: 3}
 --- !u!95 &8229600562782222341

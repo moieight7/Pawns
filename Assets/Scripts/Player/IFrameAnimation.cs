@@ -53,11 +53,4 @@ public class IFrameAnimation : MonoBehaviour
         time = duration;
         timer = 0;
     }
-
-    private IEnumerator OnCompleteDelay(Tween tween, float delay = 0.5f)
-    {
-        yield return new WaitForSeconds(delay);
-        Debug.Log("IFrameAnimation OnCompleteDelay");
-        tween.Play();
-    }
 }

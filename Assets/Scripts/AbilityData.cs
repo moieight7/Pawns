@@ -9,12 +9,14 @@ public class AbilityData : ScriptableObject
     public new string name;
     public string description;
     public Sprite icon;
-    public Color color = Color.white;
-    public Color offColor = new Color(140, 140, 140, 129);
+    public Color UIcolor = Color.white;
+    public Color UIoffColor = new Color(140, 140, 140, 129);
+    public Color telegraphColor = new Color(255, 0, 0);
     public AbilityType type;
 
     public float inBetweenChargesCooldownTime;
     public float cooldownTime;
+    public float enemyCastDelayTime = 0;
 
     public int maxCharges;
 
