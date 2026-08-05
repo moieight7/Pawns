@@ -18,6 +18,7 @@ MonoBehaviour:
   playerMovementSpeed: 460
   navMeshAgentMovementSpeed: 6
   seeThroughObstacles: 0
+  flipX: 0
   playerMinCheckDist: 5
   playerMaxCheckDist: 10
   closeRangeDist: 1.7

@@ -646,10 +646,10 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.008668661, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.547522, y: 0.44568902}
     oldSize: {x: 4, y: 2}
     newSize: {x: 0.64, y: 0.64}
     adaptiveTilingThreshold: 0.5
@@ -657,7 +657,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2, y: 2}
+  m_Size: {x: 2.8051114, y: 2}
   m_EdgeRadius: 0
 --- !u!95 &901760679825485232
 Animator:
@@ -697,12 +697,16 @@ MonoBehaviour:
   maxHealth: 0
   type: 2
   firePoint: {fileID: 8764237246934095151}
-  target: {fileID: 0}
   entityData: {fileID: 11400000, guid: 840bc9397f90600409403d23d5c1f9cf, type: 2}
-  healthSlider: {fileID: 0}
+  target: {fileID: 0}
   isDashing: 0
   playDeathSound: 1
   dataObjects: []
+  lifedrain: 0
+  OnSwitchedToEvent:
+    _PersistentCalls: []
+  OnSwitchedFromEvent:
+    _PersistentCalls: []
   IdleStateData: {fileID: 11400000, guid: bd194a7766fe23445863251b3801caed, type: 2}
   MoveStateData: {fileID: 11400000, guid: f4202bfac14978f49ab4d1a0b3249f5c, type: 2}
   DashStateData: {fileID: 11400000, guid: bbd7919168f35c642a37c3e8e3ad814e, type: 2}
@@ -1000,6 +1004,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8068074755716902124}
   - component: {fileID: 2170535873694356856}
+  - component: {fileID: 5840841140883143960}
   m_Layer: 9
   m_Name: Eye
   m_TagString: Untagged
@@ -1074,6 +1079,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5840841140883143960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8610958327497190662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5749ffda29dcd9643a8f1ed641de5bcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraTargetDivider: 100
 --- !u!1 &8902060779131380617
 GameObject:
   m_ObjectHideFlags: 0

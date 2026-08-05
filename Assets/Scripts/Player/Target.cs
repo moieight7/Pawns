@@ -39,8 +39,6 @@ public class Target : MonoBehaviour
     private void Start()
     {
         SetTarget(GameObject.FindGameObjectWithTag("Player").transform);
-        Debug.Log("targetTransform: " + targetTransform.name);
-
         mainCamera.transform.position = GameObject.FindGameObjectWithTag("Player").transform.position;
     }
 
