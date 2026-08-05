@@ -17162,7 +17162,7 @@ Camera:
   far clip plane: 5000
   field of view: 40
   orthographic: 1
-  orthographic size: 4
+  orthographic size: 11.25
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -22948,7 +22948,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 22400762, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.0000038146973
+      value: 0.000019073486
       objectReference: {fileID: 0}
     - target: {fileID: 22426080, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -30291,7 +30291,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4125757722190910676, guid: 94faf3425b90c1746b1d1e2fa9998efd, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4125757722190910676, guid: 94faf3425b90c1746b1d1e2fa9998efd, type: 3}
       propertyPath: m_TagString
@@ -30315,11 +30315,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6284456447618503103, guid: 94faf3425b90c1746b1d1e2fa9998efd, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6284456447618503103, guid: 94faf3425b90c1746b1d1e2fa9998efd, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -32121,11 +32121,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1222037235960383279, guid: fccac045eeef5724c9578694d20930ba, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1222037235960383279, guid: fccac045eeef5724c9578694d20930ba, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2170535873694356856, guid: fccac045eeef5724c9578694d20930ba, type: 3}
       propertyPath: m_SortingOrder
@@ -32185,7 +32185,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5183414180587685762, guid: fccac045eeef5724c9578694d20930ba, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5183414180587685762, guid: fccac045eeef5724c9578694d20930ba, type: 3}
       propertyPath: m_TagString
