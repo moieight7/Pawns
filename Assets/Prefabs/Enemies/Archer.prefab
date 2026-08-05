@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 7171650044626170678}
   - component: {fileID: 8037203024772471398}
   - component: {fileID: 4223379539481748470}
-  - component: {fileID: 3626415024471089222}
+  - component: {fileID: 6681301900193455911}
   m_Layer: 9
   m_Name: Archer
   m_TagString: Enemy
@@ -340,13 +340,14 @@ MonoBehaviour:
   isDashing: 0
   playDeathSound: 1
   dataObjects: []
+  lifedrain: 0
   OnSwitchedToEvent:
     _PersistentCalls: []
   OnSwitchedFromEvent:
     _PersistentCalls: []
   IdleStateData: {fileID: 11400000, guid: 9f6c617b049444c438d4fa9eb33f4f0c, type: 2}
   MoveStateData: {fileID: 11400000, guid: ee67874f5205ac648a10d6c50e99080f, type: 2}
---- !u!114 &3626415024471089222
+--- !u!114 &6681301900193455911
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -355,11 +356,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1556226796937128160}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e35c836097327894b91342ba881136a2, type: 3}
+  m_Script: {fileID: 11500000, guid: 610d662caa153e743941962c4bf69a1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 400
-  motion: {x: 0, y: 0}
 --- !u!1 &2657331689837539828
 GameObject:
   m_ObjectHideFlags: 0

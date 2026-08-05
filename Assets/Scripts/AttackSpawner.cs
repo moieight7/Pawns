@@ -41,7 +41,11 @@ public class AttackSpawner : MonoBehaviour
 
     private IEnumerator SpawnAttackWithDelay(Entity caster, GameObject prefab, float delay)
     {
+        EntityType type = caster.type;
+
         yield return new WaitForSeconds(delay);
+
+        if (type != caster.type) yield break;
 
         GameObject attack = null;
         Attack attackComponent = null;

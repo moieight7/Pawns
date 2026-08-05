@@ -490,6 +490,7 @@ public class Entity : MonoBehaviour
         healthSlider.Hide();
 
         iFrameTimer = entityData.iFrameTime;
+        if (GetComponent<IFrameAnimation>() != null) GetComponent<IFrameAnimation>().DoIFrameAnim(entityData.iFrameTime);
 
         if (from.health <= 0) from.Die();
 

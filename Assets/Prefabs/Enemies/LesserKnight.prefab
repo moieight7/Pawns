@@ -441,6 +441,7 @@ GameObject:
   - component: {fileID: 2103105549188239789}
   - component: {fileID: 461112119850878561}
   - component: {fileID: 5315177173175149590}
+  - component: {fileID: -735284154524861130}
   m_Layer: 9
   m_Name: LesserKnight
   m_TagString: Enemy
@@ -695,16 +696,32 @@ MonoBehaviour:
   maxHealth: 0
   type: 2
   firePoint: {fileID: 2744599922627094998}
-  target: {fileID: 0}
   entityData: {fileID: 11400000, guid: 4929e7b511b043e4fb7909dfcf26c729, type: 2}
-  healthSlider: {fileID: 0}
+  target: {fileID: 0}
   isDashing: 0
   playDeathSound: 1
   dataObjects: []
+  lifedrain: 0
+  OnSwitchedToEvent:
+    _PersistentCalls: []
+  OnSwitchedFromEvent:
+    _PersistentCalls: []
   IdleStateData: {fileID: 11400000, guid: edbbed26ebc8d8842b8e09e8588c8e62, type: 2}
   MoveStateData: {fileID: 11400000, guid: a39f63a0d9f78e64284824b021b95250, type: 2}
   DashStateData: {fileID: 11400000, guid: a8f1ea5c1d4878a4ea49d15aee660e00, type: 2}
   StaggerStateData: {fileID: 11400000, guid: 7d7038a9be60ee143b446dca78c903ab, type: 2}
+--- !u!114 &-735284154524861130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4125757722190910676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 610d662caa153e743941962c4bf69a1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4447977924096083503
 GameObject:
   m_ObjectHideFlags: 0
