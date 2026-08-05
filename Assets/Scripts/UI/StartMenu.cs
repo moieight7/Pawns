@@ -53,10 +53,20 @@ public class StartMenu : MonoBehaviour
         });
     }
 
-    public void SnapTo()
+    public void SnapToMenuOpen()
     {
         startMenuOpen = true;
         DOTweenAnimationManager.LocalMove(startUI, new Vector3(0, startUI.transform.localPosition.y, startUI.transform.position.z), 0.01f, Ease.Linear, true);
+    }
+
+    public void SnapToMenuClosed()
+    {
+        startMenuOpen = false;
+        startUI.transform.DOLocalMove(new Vector3(0, 390.2f, 0), 0.01f).SetEase(Ease.InSine).SetUpdate(true).OnComplete(() =>
+        {
+            startMenuOpen = false;
+            SlowdownManager.instance.UnPause();
+        });
     }
 
     public void Quit()

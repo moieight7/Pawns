@@ -31757,7 +31757,7 @@ MonoBehaviour:
       - _Type: 5
         _Int: 0
         _String: 
-        _X: 1
+        _X: 0.7
         _Y: 0
         _Z: 0
         _W: 0
@@ -39823,7 +39823,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 22400762, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.000015258789
+      value: -0.0000076293945
       objectReference: {fileID: 0}
     - target: {fileID: 22426080, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -43542,7 +43542,7 @@ MonoBehaviour:
       - _Type: 5
         _Int: 0
         _String: 
-        _X: 1
+        _X: 0.7
         _Y: 0
         _Z: 0
         _W: 0
@@ -44327,7 +44327,7 @@ MonoBehaviour:
       - _Type: 5
         _Int: 0
         _String: 
-        _X: 1
+        _X: 0.7
         _Y: 0
         _Z: 0
         _W: 0
@@ -48563,7 +48563,7 @@ MonoBehaviour:
       - _Type: 5
         _Int: 0
         _String: 
-        _X: 1
+        _X: 0.7
         _Y: 0
         _Z: 0
         _W: 0

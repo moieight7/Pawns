@@ -75,13 +75,14 @@ public class PauseMenu : MonoBehaviour
 
     public void ResetScene()
     {
+        StartMenu.instance.SnapToMenuClosed();
         LevelReset.Reset();
         Unpause();
     }
 
     public void Quit()
     {
-        StartMenu.instance.SnapTo();
+        StartMenu.instance.SnapToMenuOpen();
         SceneManager.LoadScene("StartMenu");
     }
 }
