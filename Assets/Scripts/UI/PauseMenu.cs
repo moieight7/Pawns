@@ -54,6 +54,8 @@ public class PauseMenu : MonoBehaviour
 
     public void Pause()
     {
+        Cursor.visible = true;
+
         paused = true;
         pauseUI.SetActive(true);
         SlowdownManager.instance.Pause();
@@ -61,6 +63,8 @@ public class PauseMenu : MonoBehaviour
 
     public void Unpause()
     {
+        Cursor.visible = false;
+
         paused = false;
         pauseUI.SetActive(false);
         SlowdownManager.instance.UnPause();
