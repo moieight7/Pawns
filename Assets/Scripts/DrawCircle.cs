@@ -12,7 +12,6 @@ public class DrawCircle : MonoBehaviour
     private void Start()
     {
         lineRenderer = GetComponent<LineRenderer>();
-        SetPositions();
     }
 
     void Update()

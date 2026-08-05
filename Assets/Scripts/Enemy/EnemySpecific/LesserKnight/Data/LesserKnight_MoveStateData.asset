@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89f186c92df34eb4896b22d2d31dd05d, type: 3}
   m_Name: LesserKnight_MoveStateData
   m_EditorClassIdentifier: 
-  moveSpeed: 6
+  moveSpeed: 4
   acceleration: 80
-  stoppingDistance: 1.9
+  stoppingDistance: 4

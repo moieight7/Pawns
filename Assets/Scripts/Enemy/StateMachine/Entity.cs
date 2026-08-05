@@ -97,6 +97,8 @@ public class Entity : MonoBehaviour
         healthSlider = GetComponentInChildren<EnemyHealthSlider>();
         if (type == EntityType.Player) healthSlider.Hide();
 
+        if (GetComponent<PlayerMovement>() != null) GetComponent<PlayerMovement>().movementSpeed = entityData.playerMovementSpeed;
+
         stateMachine = new FiniteStateMachine();
 
         target = Target.instance.TargetTransform;

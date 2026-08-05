@@ -17,6 +17,7 @@ public class Archer_IdleState : IdleState
     public override void Enter()
     {
         base.Enter();
+        enemy.navMeshAgent.isStopped = true;
     }
 
     public override void Exit()

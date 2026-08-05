@@ -140,7 +140,9 @@ public static class AbilityBehaviorManager
         if (caster.type == EntityType.Player)
         {
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            caster.transform.position = mousePosition;
+            NavMeshHit hit;
+            bool isValidPosition = NavMesh.SamplePosition(mousePosition, out hit, 0.1f, 1 << NavMesh.GetAreaFromName("Walkable"));
+            if (isValidPosition) caster.transform.position = mousePosition;
         }
         else if (caster.type == EntityType.Enemy)
         {
