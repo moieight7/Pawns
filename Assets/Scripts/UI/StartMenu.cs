@@ -66,9 +66,9 @@ public class StartMenu : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name == "StartMenu") { contentCanvasGroup.DOFade(1, 1).SetUpdate(true); StartMenu.instance.SnapTo(); }
+        if (scene.name == "StartMenu") { startMenuOpen = true; contentCanvasGroup.DOFade(1, 1).SetUpdate(true); DOTweenAnimationManager.LocalMove(startUI, new Vector3(0, 14.2f, 0), 0.01f, Ease.Linear, true); }
         else if (scene.name == "Gameplay") contentCanvasGroup.DOFade(0, 1).SetUpdate(true);
-        Debug.Log("OnSceneLoaded");
+        Debug.Log("OnSceneLoaded " + scene.name);
         GetComponent<Canvas>().worldCamera = Camera.main;
     }
 }
