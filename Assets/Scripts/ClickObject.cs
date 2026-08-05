@@ -16,7 +16,6 @@ public class ClickObject : MonoBehaviour
         GameObject hoverTarget = GetHover(out RaycastHit2D hoverHit);
         if (hoverTarget != null && hoverTarget.GetComponent<ClickableObject>() != null && hoverTarget.GetComponent<ClickableObject>().hoverFlag == false)
         {
-            Debug.Log("ClickObject - OnHoverEvent " + hoverTarget.name);
             hoverTarget.GetComponent<ClickableObject>().OnHoverEvent.Invoke();
             hoverTarget.GetComponent<ClickableObject>().hoverFlag = true;
             if (lastHovered != null) lastHovered.GetComponent<ClickableObject>().hoverFlag = false;
@@ -53,8 +52,6 @@ public class ClickObject : MonoBehaviour
 
     private bool IsPointerOverObject()
     {
-        Debug.Log("ClickObject - IsPointerOverObject");
-
         PointerEventData ped = new PointerEventData(EventSystem.current);
         ped.position = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Input.mousePosition.z);
         List<RaycastResult> results = new List<RaycastResult>();

@@ -81,8 +81,8 @@ public class Entity : MonoBehaviour
 
         Target.OnTargetSet += OnTargetSet;
 
-        DebugLogConsole.AddCommand("buddha", "Upon death sets player HP to 1, ensuring they can never die.", SetInvincibleFlag);
-        DebugLogConsole.AddCommand<float>("hurt", "Deals damage to the player entity.", TakeDamageConsole);
+        DebugLogConsole.AddCommandStatic("buddha", "Upon death sets player HP to 1, ensuring they can never die.", "SetInvincibleFlag", typeof(Entity));
+        DebugLogConsole.AddCommandStatic("hurt", "Deals damage to the player entity.", "TakeDamageConsole", typeof(Entity));
         DebugLogConsole.AddCommand("dracula", "Enables/disables the lifedrain flag on the player entity.", SetLifedrainFlagConsole);
     }
 
@@ -394,7 +394,7 @@ public class Entity : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, entityData.playerMaxCheckDist);
     }
 
-    private void SetInvincibleFlag()
+    private static void SetInvincibleFlag()
     {
         Entity player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
 
@@ -403,7 +403,7 @@ public class Entity : MonoBehaviour
         else if (!player.invincible) Debug.Log("Buddha Mode off...");
     }
 
-    private void TakeDamageConsole(float damage)
+    private static void TakeDamageConsole(float damage)
     {
         Entity player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
 
