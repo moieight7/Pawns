@@ -129,6 +129,20 @@ public class Ability
         OnAbilityCoolDownEvent.Invoke();
     }
 
+    public void RefundAbilityCharge()
+    {
+        isCoolingDown = false;
+
+        numberOfCharges++;
+        numberOfCharges = Mathf.Clamp(numberOfCharges, 0, abilityData.maxCharges);
+
+        FinishAbilityCooldown();
+        AbilityCooldownManager.instance.CancelAbilityCooldown(this);
+        cooldownCoroutines.Clear();
+
+        Debug.Log("Ability cooldown end (" + Name + ")");
+    }
+
     public IEnumerator CooldownLoop()
     {
         Debug.Log("Enter CooldownLoop() on " + Name);
@@ -138,8 +152,11 @@ public class Ability
             Debug.Log("Enter CooldownLoop while on " + Name);
             yield return new WaitUntil(() => cooldownCoroutines.Count > 0);
             Debug.Log("CooldownLoop " + Name + " passed first yield");
-            AbilityCooldownManager.instance.TriggerAbilityCooldown(cooldownCoroutines.First());
-            cooldownCoroutines.Remove(cooldownCoroutines.First());
+            if (cooldownCoroutines.Count > 0)
+            {
+                AbilityCooldownManager.instance.TriggerAbilityCooldown(cooldownCoroutines.First());
+                cooldownCoroutines.Remove(cooldownCoroutines.First());
+            }
             yield return new WaitUntil(() => isCoolingDown == false);
         }
         cooldownLoopRunning = false;

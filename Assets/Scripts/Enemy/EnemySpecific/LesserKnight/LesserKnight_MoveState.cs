@@ -33,7 +33,6 @@ public class LesserKnight_MoveState : MoveState
         enemy.navMeshAgent.SetDestination(enemy.target.position);
         if (enemy.CheckDanger() && enemy.abilities.FindAbilityByIndex(2).numberOfCharges > 0 && !enemy.isDashing)
         {
-            enemy.abilities.TriggerAbilityByIndex(2);
             stateMachine.ChangeState(enemy.DashState);
         }
         else if (enemy.CheckPlayerMaxRange() && enemy.abilities.FindAbilityByIndex(1).numberOfCharges > 0 && !enemy.CheckPlayerMinRange() && enemy.CanSeePlayerWithClearLineOfSight)

@@ -15,6 +15,8 @@ public class LesserKnight_DashState : DashState
     public override void Enter()
     {
         base.Enter();
+
+        enemy.abilities.TriggerAbilityByIndex(2);
     }
 
     public override void Exit()

@@ -144,11 +144,11 @@ public static class AbilityBehaviorManager
             NavMeshHit hit;
             bool isValidPosition = NavMesh.SamplePosition(mousePosition, out hit, 1, 1 << NavMesh.GetAreaFromName("Walkable"));
 
-            if (!isValidPosition) return;
+            if (!isValidPosition) { caster.abilities.FindAbilityByIndex(2).RefundAbilityCharge(); return; }
 
             NavMeshPath path = new NavMeshPath();
             NavMesh.CalculatePath(caster.transform.position, mousePosition, 1 << NavMesh.GetAreaFromName("Walkable"), path);
-            if (path.status != NavMeshPathStatus.PathComplete) return;
+            if (path.status != NavMeshPathStatus.PathComplete) { caster.abilities.FindAbilityByIndex(2).RefundAbilityCharge(); return; }
 
             caster.transform.position = mousePosition;
         }

@@ -30313,7 +30313,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4125757722190910676, guid: 94faf3425b90c1746b1d1e2fa9998efd, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4125757722190910676, guid: 94faf3425b90c1746b1d1e2fa9998efd, type: 3}
       propertyPath: m_TagString
@@ -30337,11 +30337,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6284456447618503103, guid: 94faf3425b90c1746b1d1e2fa9998efd, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6284456447618503103, guid: 94faf3425b90c1746b1d1e2fa9998efd, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -32609,7 +32609,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1556226796937128160, guid: dc8286e0b967a4c40ae5417926bc85a2, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1556226796937128160, guid: dc8286e0b967a4c40ae5417926bc85a2, type: 3}
       propertyPath: m_TagString
@@ -32629,11 +32629,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3733028291006295398, guid: dc8286e0b967a4c40ae5417926bc85a2, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3733028291006295398, guid: dc8286e0b967a4c40ae5417926bc85a2, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4223379539481748470, guid: dc8286e0b967a4c40ae5417926bc85a2, type: 3}
       propertyPath: type
