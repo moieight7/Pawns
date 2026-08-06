@@ -6,6 +6,7 @@ using UltEvents;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Tilemaps;
 
 public static class AbilityBehaviorManager
 {
@@ -141,8 +142,15 @@ public static class AbilityBehaviorManager
         {
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             NavMeshHit hit;
-            bool isValidPosition = NavMesh.SamplePosition(mousePosition, out hit, 0.1f, 1 << NavMesh.GetAreaFromName("Walkable"));
-            if (isValidPosition) caster.transform.position = mousePosition;
+            bool isValidPosition = NavMesh.SamplePosition(mousePosition, out hit, 1, 1 << NavMesh.GetAreaFromName("Walkable"));
+
+            if (!isValidPosition) return;
+
+            NavMeshPath path = new NavMeshPath();
+            NavMesh.CalculatePath(caster.transform.position, mousePosition, 1 << NavMesh.GetAreaFromName("Walkable"), path);
+            if (path.status != NavMeshPathStatus.PathComplete) return;
+
+            caster.transform.position = mousePosition;
         }
         else if (caster.type == EntityType.Enemy)
         {
@@ -154,11 +162,19 @@ public static class AbilityBehaviorManager
                 Vector3 circlePos = Vector3.zero;
                 bool isValidPosition;
                 NavMeshHit hit;
+
+                int timesChecked = 0;
                 do
                 {
                     circlePos = Random.insideUnitSphere * teleportRadius;
-                    isValidPosition = NavMesh.SamplePosition(circlePos, out hit, 0.1f, 1 << NavMesh.GetAreaFromName("Walkable"));
-                } while (!isValidPosition);
+                    isValidPosition = NavMesh.SamplePosition(circlePos, out hit, 1, 1 << NavMesh.GetAreaFromName("Walkable"));
+
+                    NavMeshPath path = new NavMeshPath();
+                    NavMesh.CalculatePath(caster.transform.position, circlePos, 1 << NavMesh.GetAreaFromName("Walkable"), path);
+                    if (path.status != NavMeshPathStatus.PathComplete) isValidPosition = false;
+
+                    timesChecked++;
+                } while (!isValidPosition || timesChecked < 100);
 
                 caster.transform.position = hit.position;
             }

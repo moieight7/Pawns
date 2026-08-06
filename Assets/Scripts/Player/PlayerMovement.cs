@@ -24,6 +24,8 @@ public class PlayerMovement : MonoBehaviour
         entity = GetComponent<Entity>();
         rb = GetComponent<Rigidbody2D>();
         crosshair = FindObjectOfType<Crosshair>();
+
+        movementSpeed = entity.entityData.playerMovementSpeed;
     }
 
     void FixedUpdate()

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c92bf4f4d35a9444487b49b6788044aa, type: 3}
   m_Name: Ability_Test_Switch
   m_EditorClassIdentifier: 
-  name: Switch
-  description: Hit an enemy with this to take control!
+  name: Possess Pawn
+  description: Strike a pawn with this to take control!
   icon: {fileID: 21300000, guid: 4c1bdb65db5dce34aa847c8a5f0147a5, type: 3}
   UIcolor: {r: 1, g: 0.8795767, b: 0, a: 1}
   UIoffColor: {r: 0.764151, g: 0.6734452, b: 0.018022425, a: 0.54901963}
@@ -21,6 +21,7 @@ MonoBehaviour:
   type: 5
   inBetweenChargesCooldownTime: 0.5
   cooldownTime: 10
+  enemyCastDelayTime: 0
   maxCharges: 1
   startUsable: 0
   OnAbilityTriggeredEvent:

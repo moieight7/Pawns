@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Ability_Archer_Primary
   m_EditorClassIdentifier: 
   name: Arrow
-  description: Fires a single arrow
+  description: Fires a single arrow.
   icon: {fileID: 21300000, guid: cb6fbf122c536b74b906ca257609b0dc, type: 3}
   UIcolor: {r: 1, g: 1, b: 1, a: 1}
   UIoffColor: {r: 0.54901963, g: 0.54901963, b: 0.54901963, a: 0.54901963}

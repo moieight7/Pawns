@@ -50,8 +50,11 @@ public class Target : MonoBehaviour
             var cameraTargetPosition = (mousePosition + (cameraTargetDivider - 1) * targetTransform.position) / cameraTargetDivider;
             transform.position = cameraTargetPosition;
 
-            var firePointPosition = (mousePosition + (firePointDivider - 1) * targetTransform.position) / firePointDivider;
-            firePointTransform.position = firePointPosition;
+            if (!PauseMenu.instance.Paused)
+            {
+                var firePointPosition = (mousePosition + (firePointDivider - 1) * targetTransform.position) / firePointDivider;
+                firePointTransform.position = firePointPosition;
+            }
         }
         else { transform.position = targetTransform.position; firePointTransform.position = targetTransform.position; }
     }
