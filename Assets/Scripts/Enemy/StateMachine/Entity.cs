@@ -474,6 +474,8 @@ public class Entity : MonoBehaviour
     {
         Debug.Log("OnSwitchedTo entity " + name + " from entity " + from.name);
 
+        abilities.CancelAbility();
+
         invincible = from.invincible;
         SetLifedrainFlag(from.lifedrain);
 
