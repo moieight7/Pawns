@@ -167,14 +167,14 @@ public static class AbilityBehaviorManager
                 do
                 {
                     circlePos = Random.insideUnitSphere * teleportRadius;
-                    isValidPosition = NavMesh.SamplePosition(circlePos, out hit, 1, 1 << NavMesh.GetAreaFromName("Walkable"));
+                    isValidPosition = NavMesh.SamplePosition(circlePos, out hit, 5, 1 << NavMesh.GetAreaFromName("Walkable"));
 
                     NavMeshPath path = new NavMeshPath();
                     NavMesh.CalculatePath(caster.transform.position, circlePos, 1 << NavMesh.GetAreaFromName("Walkable"), path);
                     if (path.status != NavMeshPathStatus.PathComplete) isValidPosition = false;
 
                     timesChecked++;
-                } while (!isValidPosition || timesChecked < 100);
+                } while (!isValidPosition && timesChecked < 100);
 
                 caster.transform.position = hit.position;
             }
