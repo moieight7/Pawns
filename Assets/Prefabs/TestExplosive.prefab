@@ -254,7 +254,7 @@ MonoBehaviour:
   explodeDamageMin: 10
   explodeDamageMax: 80
   explodeRadius: 4
-  explodeTime: 2.5
+  explodeTime: 2
   explosionOutlineStartColor: {r: 0.99607843, g: 0.44313726, b: 0, a: 0}
   explosionOutlineEndColor: {r: 0.99607843, g: 0.44313726, b: 0, a: 1}
 --- !u!120 &6327130449789182753

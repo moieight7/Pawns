@@ -239,7 +239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39c9fad0ca32caf4794c53459202635b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 25
+  damage: 20
   timeUntilDelete: 1
   destroyOnHit: 1
   sender: {fileID: 0}
@@ -247,5 +247,5 @@ MonoBehaviour:
   invisible: 0
   OnHitEvent:
     _PersistentCalls: []
-  speed: 10
+  speed: 8
   moveDir: {x: 0, y: 0}

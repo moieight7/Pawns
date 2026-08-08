@@ -18370,7 +18370,7 @@ MonoBehaviour:
   m_OverrideTileSize: 1
   m_TileSize: 16
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.5
+  m_VoxelSize: 0.33333334
   m_BuildHeightMesh: 0
   m_MinRegionArea: 0
   m_HideEditorLogs: 0

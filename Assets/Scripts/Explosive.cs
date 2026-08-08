@@ -26,7 +26,7 @@ public class Explosive : Projectile
 
         Color2 start = new Color2(new Color(explosionOutlineStartColor.r, explosionOutlineStartColor.g, explosionOutlineStartColor.b, explosionOutlineStartColor.a), new Color(explosionOutlineStartColor.r, explosionOutlineStartColor.g, explosionOutlineStartColor.b, explosionOutlineStartColor.a));
         Color2 end = new Color2(new Color(explosionOutlineEndColor.r, explosionOutlineEndColor.g, explosionOutlineEndColor.b, explosionOutlineEndColor.a), new Color(explosionOutlineEndColor.r, explosionOutlineEndColor.g, explosionOutlineEndColor.b, explosionOutlineEndColor.a));
-        explosionOutline.SetColor(start, end, explodeTime * 0.75f, Ease.InOutSine);
+        explosionOutline.SetColor(start, end, explodeTime * 0.85f, Ease.InOutSine);
     }
 
     protected override void Update()

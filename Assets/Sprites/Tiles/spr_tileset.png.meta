@@ -955,6 +955,48 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: spr_tileset_39
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 240
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e262e50bd22e59545b28056accdf505b
+      internalID: -257506482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_tileset_40
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 208
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef417ff3833a22847814262054aa3450
+      internalID: -343579640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -999,7 +1041,9 @@ TextureImporter:
       spr_tileset_36: 472861010
       spr_tileset_37: 2047497987
       spr_tileset_38: -125493602
+      spr_tileset_39: -257506482
       spr_tileset_4: 1858942090
+      spr_tileset_40: -343579640
       spr_tileset_5: -2125372838
       spr_tileset_6: -839155111
       spr_tileset_7: -21634113

@@ -166,7 +166,7 @@ public static class AbilityBehaviorManager
                 int timesChecked = 0;
                 do
                 {
-                    circlePos = Random.insideUnitSphere * teleportRadius;
+                    circlePos = caster.transform.position + (Vector3)(Random.insideUnitCircle * teleportRadius);
                     isValidPosition = NavMesh.SamplePosition(circlePos, out hit, 5, 1 << NavMesh.GetAreaFromName("Walkable"));
 
                     NavMeshPath path = new NavMeshPath();
