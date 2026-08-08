@@ -74781,7 +74781,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 22400762, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.000049591064
+      value: -0.000019073486
       objectReference: {fileID: 0}
     - target: {fileID: 22426080, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -75786,7 +75786,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7215567664082147558, guid: 98b21567ac169594e93afb5f14bcc343, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7215567664082147558, guid: 98b21567ac169594e93afb5f14bcc343, type: 3}
       propertyPath: m_TagString
@@ -75794,11 +75794,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7829269697237205399, guid: 98b21567ac169594e93afb5f14bcc343, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7829269697237205399, guid: 98b21567ac169594e93afb5f14bcc343, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9154855444585862319, guid: 98b21567ac169594e93afb5f14bcc343, type: 3}
       propertyPath: entityAbilities.Array.size
@@ -85771,7 +85771,97 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Event:
     _PersistentCalls:
-    - _Target: {fileID: 1120824617}
+    - _Target: {fileID: 0}
+      _MemberName: DOTweenAnimationManager, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null.BlendableLocalMoveBy
+      _PersistentArguments:
+      - _Type: 13
+        _Int: 0
+        _String: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 1120824616}
+      - _Type: 7
+        _Int: 0
+        _String: 
+        _X: 0
+        _Y: -5
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+      - _Type: 5
+        _Int: 0
+        _String: 
+        _X: 1
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+      - _Type: 4
+        _Int: 1
+        _String: DG.Tweening.Ease, DOTween, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+      - _Type: 1
+        _Int: 0
+        _String: 
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+    - _Target: {fileID: 0}
+      _MemberName: DOTweenAnimationManager, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null.BlendableLocalMoveBy
+      _PersistentArguments:
+      - _Type: 13
+        _Int: 0
+        _String: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 1967771615}
+      - _Type: 7
+        _Int: 0
+        _String: 
+        _X: 0
+        _Y: -5
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+      - _Type: 5
+        _Int: 0
+        _String: 
+        _X: 1
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+      - _Type: 4
+        _Int: 1
+        _String: DG.Tweening.Ease, DOTween, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+      - _Type: 1
+        _Int: 0
+        _String: 
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+    - _Target: {fileID: 1120824624}
       _MemberName: DOPlayById
       _PersistentArguments:
       - _Type: 2
@@ -94423,7 +94513,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &387681202032351704
 GameObject:
   m_ObjectHideFlags: 0
@@ -94573,7 +94663,7 @@ Transform:
   m_GameObject: {fileID: 300456589872587731}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -57.599976, y: -114.09998, z: 0}
+  m_LocalPosition: {x: -57.400024, y: -118.70002, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -94671,7 +94761,7 @@ RectTransform:
   m_Father: {fileID: 1160874707234236420}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
