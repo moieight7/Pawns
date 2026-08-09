@@ -140,43 +140,58 @@ public static class AbilityBehaviorManager
     {
         if (caster.type == EntityType.Player)
         {
+            Debug.Log("Teleport_UseEffect player");
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector3 teleportTo = Vector3.zero;
             NavMeshHit hit;
             bool isValidPosition = NavMesh.SamplePosition(mousePosition, out hit, 1, 1 << NavMesh.GetAreaFromName("Walkable"));
 
-            if (!isValidPosition) { caster.abilities.FindAbilityByIndex(2).RefundAbilityCharge(); return; }
+            if (!isValidPosition) { Debug.Log("Teleport_UseEffect player position is invalid"); caster.abilities.FindAbilityByIndex(2).RefundAbilityCharge(); return; }
+
+            teleportTo = new Vector3(hit.position.x, hit.position.y, 0);
+
+            Vector3 checkPos = new Vector3(caster.transform.position.x, caster.transform.position.y, 0);
+            NavMesh.SamplePosition(checkPos, out hit, 1, 1 << NavMesh.GetAreaFromName("Walkable"));
+            Vector3 casterPos = new Vector3(hit.position.x, hit.position.y, 0);
 
             NavMeshPath path = new NavMeshPath();
-            NavMesh.CalculatePath(caster.transform.position, mousePosition, 1 << NavMesh.GetAreaFromName("Walkable"), path);
+            NavMesh.CalculatePath(casterPos, teleportTo, 1 << NavMesh.GetAreaFromName("Walkable"), path);
             if (path.status != NavMeshPathStatus.PathComplete) { caster.abilities.FindAbilityByIndex(2).RefundAbilityCharge(); return; }
 
-            caster.transform.position = mousePosition;
+            caster.transform.position = teleportTo;
         }
         else if (caster.type == EntityType.Enemy)
         {
+            Vector3 circlePos = Vector3.zero;
+            Vector3 teleportTo = Vector3.zero;
+            bool isValidPosition = false;
+            NavMeshHit hit = new NavMeshHit();
+
             if (caster is Wizard)
             {
                 Wizard wizardObject = (Wizard)caster;
                 float teleportRadius = wizardObject.GetTeleportRadius();
 
-                Vector3 circlePos = Vector3.zero;
-                bool isValidPosition;
-                NavMeshHit hit;
-
                 int timesChecked = 0;
-                do
+                while (timesChecked < 100)
                 {
                     circlePos = caster.transform.position + (Vector3)(Random.insideUnitCircle * teleportRadius);
-                    isValidPosition = NavMesh.SamplePosition(circlePos, out hit, 5, 1 << NavMesh.GetAreaFromName("Walkable"));
+                    circlePos = new Vector3(circlePos.x, circlePos.y, 0);
+                    isValidPosition = NavMesh.SamplePosition(circlePos, out hit, 1, 1 << NavMesh.GetAreaFromName("Walkable"));
+
+                    if (!isValidPosition) { timesChecked++; continue; }
+
+                    teleportTo = new Vector3(hit.position.x, hit.position.y, 0);
+
+                    Vector3 checkPos = new Vector3(caster.transform.position.x, caster.transform.position.y, 0);
+                    NavMesh.SamplePosition(checkPos, out hit, 1, 1 << NavMesh.GetAreaFromName("Walkable"));
+                    Vector3 casterPos = new Vector3(hit.position.x, hit.position.y, 0);
 
                     NavMeshPath path = new NavMeshPath();
-                    NavMesh.CalculatePath(caster.transform.position, circlePos, 1 << NavMesh.GetAreaFromName("Walkable"), path);
-                    if (path.status != NavMeshPathStatus.PathComplete) isValidPosition = false;
-
-                    timesChecked++;
-                } while (!isValidPosition && timesChecked < 100);
-
-                caster.transform.position = hit.position;
+                    NavMesh.CalculatePath(casterPos, teleportTo, 1 << NavMesh.GetAreaFromName("Walkable"), path);
+                    if (path.status != NavMeshPathStatus.PathComplete) { timesChecked++; isValidPosition = false; }
+                    else { caster.transform.position = teleportTo; break; }
+                }
             }
         }
     }

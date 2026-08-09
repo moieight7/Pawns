@@ -20,7 +20,7 @@ MonoBehaviour:
   telegraphColor: {r: 0, g: 0, b: 0, a: 0}
   type: 3
   inBetweenChargesCooldownTime: 0
-  cooldownTime: 15
+  cooldownTime: 10
   enemyCastDelayTime: 0
   maxCharges: 1
   startUsable: 1
