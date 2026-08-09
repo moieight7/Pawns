@@ -140,14 +140,24 @@ public class EntityAbilities : MonoBehaviour
         if (entity.type == EntityType.Player) AbilityUI.instance.SetAbilityUI();
     }
 
-    public void OnPlayerKilled()
+    public void EnableAbilities()
+    {
+        canUseAbilites = true;
+    }
+
+    public void DisableAbilities()
     {
         canUseAbilites = false;
     }
 
+    public void OnPlayerKilled()
+    {
+        DisableAbilities();
+    }
+
     public void OnPlayerRevived()
     {
-        canUseAbilites = true;
+        EnableAbilities();
     }
 
     private void ResetAllCooldowns()

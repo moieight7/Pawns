@@ -43,6 +43,16 @@ public class PlayerMovement : MonoBehaviour
         else if (rb.velocity.x > 0) GetComponent<SpriteRenderer>().flipX = false;*/
     }
 
+    public void EnableMovement() 
+    {
+        canMove = true;
+    }
+
+    public void DisableMovement()
+    {
+        canMove = false;
+    }
+
     public void OnPlayerKilled()
     {
         if (rb == null) rb = GetComponent<Rigidbody2D>();

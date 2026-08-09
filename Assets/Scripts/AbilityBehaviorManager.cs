@@ -140,13 +140,12 @@ public static class AbilityBehaviorManager
     {
         if (caster.type == EntityType.Player)
         {
-            Debug.Log("Teleport_UseEffect player");
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector3 teleportTo = Vector3.zero;
             NavMeshHit hit;
             bool isValidPosition = NavMesh.SamplePosition(mousePosition, out hit, 1, 1 << NavMesh.GetAreaFromName("Walkable"));
 
-            if (!isValidPosition) { Debug.Log("Teleport_UseEffect player position is invalid"); caster.abilities.FindAbilityByIndex(2).RefundAbilityCharge(); return; }
+            if (!isValidPosition) { caster.abilities.FindAbilityByIndex(2).RefundAbilityCharge(); return; }
 
             teleportTo = new Vector3(hit.position.x, hit.position.y, 0);
 
