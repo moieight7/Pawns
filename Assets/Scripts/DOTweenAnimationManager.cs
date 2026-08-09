@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UltEvents;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
 public static class DOTweenAnimationManager
@@ -30,5 +31,15 @@ public static class DOTweenAnimationManager
     public static Tween CanvasGroupFade(CanvasGroup canvasGroup, float endValue, float duration = 1, Ease ease = Ease.Linear, bool ignoreTimescale = false)
     {
         return canvasGroup.DOFade(endValue, duration).SetEase(ease).SetUpdate(ignoreTimescale);
+    }
+
+    public static Tween TilemapFade(Tilemap tilemap, float endAlpha, float duration, Ease ease = Ease.Linear, bool ignoreTimescale = false)
+    {
+        float alpha = tilemap.color.a;
+        return DOTween.To(() => alpha, x => alpha = x, endAlpha, duration).SetEase(ease).SetUpdate(ignoreTimescale)
+            .OnUpdate(() =>
+            {
+                tilemap.color = new Color(tilemap.color.r, tilemap.color.g, tilemap.color.b, alpha);
+            });
     }
 }

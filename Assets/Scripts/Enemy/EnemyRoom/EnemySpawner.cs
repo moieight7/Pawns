@@ -76,12 +76,16 @@ public class EnemySpawner : MonoBehaviour
 
         if (waves[currentWave].midWaveTriggers.Count != 0 && waves[currentWave].aliveEnemiesPercentage != 0)
         {
-            MidWaveTrigger midWaveTrigger = waves[currentWave].midWaveTriggers[waves[currentWave].currentMidTrigger];
+            int currentTrigger = waves[currentWave].currentMidTrigger;
+            MidWaveTrigger midWaveTrigger = waves[currentWave].midWaveTriggers[currentTrigger];
+            Debug.Log("CurrentMidWaveTrigger check: " + midWaveTrigger.killedEnemiesThreshold + " >= " + waves[currentWave].aliveEnemiesPercentage + ", midWaveTrigger.fired:" + midWaveTrigger.fired);
             if (midWaveTrigger.killedEnemiesThreshold >= waves[currentWave].aliveEnemiesPercentage && midWaveTrigger.fired == false)
             {
                 Debug.Log("Invoke MidWaveTrigger " + midWaveTrigger.killedEnemiesThreshold + " >= " + waves[currentWave].aliveEnemiesPercentage);
                 midWaveTrigger.OnMidWaveTrigger.Invoke();
                 midWaveTrigger.fired = true;
+
+                waves[currentWave].currentMidTrigger++;
             }
         }
     }
@@ -183,7 +187,7 @@ public class EnemySpawner : MonoBehaviour
         public UltEvent OnWaveStart, OnWaveEnd;
 
         [HideInInspector] public float aliveEnemiesPercentage;
-        [HideInInspector] public int currentMidTrigger = 0;
+        public int currentMidTrigger = 0;
     }
 
     [System.Serializable]

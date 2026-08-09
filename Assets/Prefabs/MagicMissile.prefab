@@ -174,7 +174,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 10
   timeUntilDelete: 1
-  destroyOnHit: 1
+  destroyOnHit: 0
   sender: {fileID: 0}
   timer: 0
   invisible: 0
