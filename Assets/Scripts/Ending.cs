@@ -11,7 +11,12 @@ public static class Ending
         Target.instance.OnPlayerKilled();
     }
 
-    public static void BackgroundAnim(RawImage backgroundImage, float fadeAmount, float numberOfFades, float delayBetweenFades)
+    public static void SetCursorVisible()
+    {
+        Cursor.visible = true;
+    }
+
+    public static void BackgroundAnim(RawImage backgroundImage, float fadeAmount, float numberOfFades, float delayBetweenFades, bool setStartScreen = false)
     {
         Sequence sequence = DOTween.Sequence();
 
@@ -24,6 +29,7 @@ public static class Ending
             sequence.AppendInterval(delayBetweenFades);
         }
 
+        if (setStartScreen) sequence.OnComplete(() => StartMenu.instance.OpenMenuVictoryScreen(backgroundImage.uvRect));
         sequence.Play();
     }
 }

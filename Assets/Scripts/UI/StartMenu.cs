@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class StartMenu : MonoBehaviour
 {
@@ -67,6 +68,13 @@ public class StartMenu : MonoBehaviour
             startMenuOpen = false;
             SlowdownManager.instance.UnPause();
         });
+    }
+
+    public void OpenMenuVictoryScreen(Rect victoryBackgroundImageRect)
+    {
+        startMenuOpen = true; 
+        DOTweenAnimationManager.LocalMove(startUI, new Vector3(0, 14.2f, 0), 0.01f, Ease.Linear, true);
+        GetComponentInChildren<RawImage>().uvRect = victoryBackgroundImageRect;
     }
 
     public void Quit()
