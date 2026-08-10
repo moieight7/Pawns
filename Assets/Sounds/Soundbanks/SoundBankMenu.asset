@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 699640e159d981e4f9bd297fc8434a16, type: 3}
+  m_Name: SoundBankMenu
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: snd_click
+    clip: {fileID: 8300000, guid: 337d739ea2c54304e94ced5b26d4a468, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    mixer: {fileID: -3061975827912826642, guid: 1cbe5e9822b65b042a316b37763fd37f, type: 2}
+    source: {fileID: 0}

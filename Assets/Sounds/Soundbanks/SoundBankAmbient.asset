@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 699640e159d981e4f9bd297fc8434a16, type: 3}
+  m_Name: SoundBankAmbient
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: 
+    clip: {fileID: 8300000, guid: 9185c5f7dc536554d885f90302030060, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 1
+    mixer: {fileID: -3061975827912826642, guid: 1cbe5e9822b65b042a316b37763fd37f, type: 2}
+    source: {fileID: 0}
+  - name: 
+    clip: {fileID: 8300000, guid: d98806c2c1b77d04cb626693650af17e, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    mixer: {fileID: -3061975827912826642, guid: 1cbe5e9822b65b042a316b37763fd37f, type: 2}
+    source: {fileID: 0}
+  - name: 
+    clip: {fileID: 8300000, guid: 491234d496133d54a89e2b7d1d8a9a42, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    mixer: {fileID: -3061975827912826642, guid: 1cbe5e9822b65b042a316b37763fd37f, type: 2}
+    source: {fileID: 0}

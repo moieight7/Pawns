@@ -18,9 +18,9 @@ public static class AbilityBehaviorManager
     {
         CastAbility castAbility = new CastAbility(caster, ability, persistentCall);
 
-        if (castAbility.persistentCall.PersistentArguments.Length > 0) castAbility.persistentCall.SetArguments(caster);
+        if (castAbility.persistentCall.MemberName.Split(",")[0].Trim() == "AbilityBehaviorManager") castAbility.persistentCall.SetArguments(caster);
         castAbility.persistentCall.Invoke();
-        DestroyCastAbility(castAbility);
+        if (castAbility.persistentCall.MemberName.Split(",")[0].Trim() == "AbilityBehaviorManager") DestroyCastAbility(castAbility);
     }
 
     private static void DestroyCastAbility(CastAbility castAbility)
@@ -216,6 +216,7 @@ public static class AbilityBehaviorManager
         caster.OnSwitchedFrom(target);
 
         Ability switchAbility = oldEntityAbilities.entityAbilities.Find(x => x.Type == AbilityType.Switch);
+        AbilityCooldownManager.instance.CancelAbilityCooldown(switchAbility);
         newEntityAbilities.AddAbility(switchAbility);
         oldEntityAbilities.RemoveAbility(AbilityType.Switch);
 

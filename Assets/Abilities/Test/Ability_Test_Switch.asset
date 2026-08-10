@@ -49,3 +49,33 @@ MonoBehaviour:
         _Object: {fileID: 6718963880191780741, guid: 0996731b64ec3b141a1ed1b5c29de79b, type: 3}
   OnAbilityCoolDownEvent:
     _PersistentCalls: []
+  OnAbilityCoolDownPlayerEvent:
+    _PersistentCalls:
+    - _Target: {fileID: 0}
+      _MemberName: StaticAudioPlayer, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null.Play
+      _PersistentArguments:
+      - _Type: 2
+        _Int: 0
+        _String: snd_sine2
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+      - _Type: 5
+        _Int: 0
+        _String: 
+        _X: 0.4
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+      - _Type: 5
+        _Int: 0
+        _String: 
+        _X: 1.5
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}

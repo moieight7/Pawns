@@ -126,6 +126,7 @@ public class EntityAbilities : MonoBehaviour
         Ability abilityToRemove = FindAbilityByType(type);
         abilityToRemove.OnRemove();
         entityAbilities.Remove(abilityToRemove);
+        playerAbilities.Remove(playerAbilities.Find(x => x.type == type));
     }
 
     private void OnAbilityTriggered(Entity entity)

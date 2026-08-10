@@ -23,7 +23,7 @@ public class AbilityCooldownManager : MonoBehaviour
     {
         Debug.Log("QueueCooldown on " + ability.Name);
         ability.cooldownCoroutines.Add(ability.Cooldown());
-        if (!ability.cooldownLoopRunning) StartCoroutine(ability.CooldownLoop());
+        if (!ability.cooldownLoopRunning) { ability.cooldownLoop = StartCoroutine(ability.CooldownLoop()); }
         else Debug.Log("QueueCooldown on " + ability.Name + " - cooldownLoopRunning");
     }
 
@@ -39,7 +39,8 @@ public class AbilityCooldownManager : MonoBehaviour
 
     public void CancelAbilityCooldown(Ability ability)
     {
-        if (ability.cooldownLoopRunning) StopCoroutine(ability.CooldownLoop());
+        Debug.Log("CancelAbilityCooldown on " + ability.Name);
+        if (ability.cooldownLoopRunning) { Debug.Log("CancelAbilityCooldown stopCooldownLoop"); StopCoroutine(ability.CooldownLoop()); ability.cooldownLoop = null; }
         StopCoroutine(ability.Cooldown());
     }
 

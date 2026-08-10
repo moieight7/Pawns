@@ -22,7 +22,9 @@ public class Ability
 
     public bool usable = true;
 
-    [SerializeField] public UltEvent OnAbilityTriggeredEvent, OnAbilityCoolDownEvent;
+    public Coroutine cooldownLoop;
+
+    [SerializeField] public UltEvent OnAbilityTriggeredEvent, OnAbilityCoolDownEvent, OnAbilityCoolDownPlayerEvent;
 
     public string Name
     {
@@ -100,6 +102,7 @@ public class Ability
     {
         OnAbilityTriggeredEvent.CopyFrom(abilityData.OnAbilityTriggeredEvent);
         OnAbilityCoolDownEvent.CopyFrom(abilityData.OnAbilityCoolDownEvent);
+        OnAbilityCoolDownPlayerEvent.CopyFrom(abilityData.OnAbilityCoolDownPlayerEvent);
     }
 
     public void TriggerAbility() 
@@ -119,14 +122,18 @@ public class Ability
         List<PersistentCall> persistentCalls = new List<PersistentCall>();
         persistentCalls = OnAbilityTriggeredEvent.PersistentCallsList;
 
-        foreach (PersistentCall call in persistentCalls) { Debug.Log(call.ToString()); AbilityBehaviorManager.CreateCastAbility(caster, this, call); }
+        foreach (PersistentCall call in persistentCalls) AbilityBehaviorManager.CreateCastAbility(caster, this, call); 
     }
 
-    public void FinishAbilityCooldown() 
+    public void FinishAbilityCooldown(bool playCooldownEvents = true) 
 	{
         Debug.Log(AbilityBehaviorManager.CooldownFinishLog(this));
         OnAbilityChargeCooldown.Invoke(caster);
-        OnAbilityCoolDownEvent.Invoke();
+        if (playCooldownEvents)
+        {
+            OnAbilityCoolDownEvent.Invoke();
+            if (caster.type == EntityType.Player) { Debug.Log("StaticAudioPlayer OnAbilityCoolDownPlayerEvent " + caster.name + ", " + caster.type + ", " + Name); OnAbilityCoolDownPlayerEvent.Invoke(); }
+        }
     }
 
     public void RefundAbilityCharge()
@@ -136,7 +143,7 @@ public class Ability
         numberOfCharges++;
         numberOfCharges = Mathf.Clamp(numberOfCharges, 0, abilityData.maxCharges);
 
-        FinishAbilityCooldown();
+        FinishAbilityCooldown(false);
         AbilityCooldownManager.instance.CancelAbilityCooldown(this);
         cooldownCoroutines.Clear();
 
@@ -145,13 +152,15 @@ public class Ability
 
     public IEnumerator CooldownLoop()
     {
-        Debug.Log("Enter CooldownLoop() on " + Name);
+        if (cooldownLoop != null) yield break;
+
+        Debug.Log("Enter CooldownLoop() on " + Name + ", " + caster.name);
         cooldownLoopRunning = true;
         while (cooldownCoroutines.Count > 0)
         {
-            Debug.Log("Enter CooldownLoop while on " + Name);
+            Debug.Log("Enter CooldownLoop while on " + Name + ", " + caster.name);
             yield return new WaitUntil(() => cooldownCoroutines.Count > 0);
-            Debug.Log("CooldownLoop " + Name + " passed first yield");
+            Debug.Log("CooldownLoop " + Name + " passed first yield" + ", " + caster.name);
             if (cooldownCoroutines.Count > 0)
             {
                 AbilityCooldownManager.instance.TriggerAbilityCooldown(cooldownCoroutines.First());
@@ -160,12 +169,12 @@ public class Ability
             yield return new WaitUntil(() => isCoolingDown == false);
         }
         cooldownLoopRunning = false;
-        Debug.Log("Exit CooldownLoop() on " + Name);
+        Debug.Log("Exit CooldownLoop() on " + Name + ", " + caster.name);
     }
 
 	public IEnumerator Cooldown()
 	{
-        Debug.Log("Ability cooldown start (" + Name + ")");
+        Debug.Log("Ability cooldown start (" + Name + ") on " + caster.name);
 
         if (caster.type == EntityType.Player) AbilityUI.instance.CooldownAnimation(this);
         isCoolingDown = true;
@@ -175,7 +184,7 @@ public class Ability
         numberOfCharges++;
         numberOfCharges = Mathf.Clamp(numberOfCharges, 0, abilityData.maxCharges);
         FinishAbilityCooldown();
-        Debug.Log("Ability cooldown end (" + Name + ")");
+        Debug.Log("Ability cooldown end (" + Name + ") on " + caster.name);
     }
 
     public IEnumerator InBetweenChargesCooldown()
@@ -190,7 +199,7 @@ public class Ability
         isCoolingDown = false;
         numberOfCharges = MaxCharges;
 
-        FinishAbilityCooldown();
+        FinishAbilityCooldown(false);
         AbilityCooldownManager.instance.CancelAbilityCooldown(this);
 
         if (caster.type == EntityType.Player) AbilityUI.instance.CancelCooldownAnimation(this);

@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4ce3b836061190458d299fee57ae2b8, type: 3}
+  m_Name: SoundBankMaster
+  m_EditorClassIdentifier: 
+  soundBanks:
+  - {fileID: 11400000, guid: f3439b05c19c4344fbf108355fa93ba7, type: 2}
+  - {fileID: 11400000, guid: 5d5522684b3d06548ae59c82e832d674, type: 2}
+  - {fileID: 11400000, guid: fa8ed74658754f748b70ed5b3c2e97e3, type: 2}
+  - {fileID: 11400000, guid: 59d1dd52e4b272c49b1581ae3206064e, type: 2}
+  errorAudio:
+    name: snd_error
+    clip: {fileID: 8300000, guid: ba626c97c71de7d4c966aa319c91d290, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    mixer: {fileID: -3061975827912826642, guid: 1cbe5e9822b65b042a316b37763fd37f, type: 2}
+    source: {fileID: 0}

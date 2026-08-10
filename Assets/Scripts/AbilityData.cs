@@ -22,5 +22,5 @@ public class AbilityData : ScriptableObject
 
     public bool startUsable = true;
 
-    public UltEvent OnAbilityTriggeredEvent, OnAbilityCoolDownEvent;
+    public UltEvent OnAbilityTriggeredEvent, OnAbilityCoolDownEvent, OnAbilityCoolDownPlayerEvent;
 }
