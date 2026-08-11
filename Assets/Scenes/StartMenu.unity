@@ -448,6 +448,7 @@ GameObject:
   - component: {fileID: 257132774}
   - component: {fileID: 257132772}
   - component: {fileID: 257132771}
+  - component: {fileID: 257132775}
   m_Layer: 5
   m_Name: StartMenuUI
   m_TagString: Untagged
@@ -553,6 +554,49 @@ MonoBehaviour:
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
   m_PresetInfoIsWorld: 0
+--- !u!114 &257132775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 257132769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2bdd0436e6e41b4d9ed73248ba9eeea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttons: []
+  OnClickEvent:
+    _PersistentCalls:
+    - _Target: {fileID: 0}
+      _MemberName: StaticAudioPlayer, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null.Play
+      _PersistentArguments:
+      - _Type: 2
+        _Int: 0
+        _String: snd_click
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+      - _Type: 5
+        _Int: 0
+        _String: 
+        _X: 0.65
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+      - _Type: 5
+        _Int: 0
+        _String: 
+        _X: 1
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
 --- !u!1 &272562832
 GameObject:
   m_ObjectHideFlags: 0
@@ -1659,6 +1703,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2050330377}
   m_CullTransparentMesh: 1
+--- !u!1 &2050948449
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2050948451}
+  - component: {fileID: 2050948450}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2050948450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2050948449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 708207af48cc2424e9ddd77e115fdebe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mixer: {fileID: 24100000, guid: 1cbe5e9822b65b042a316b37763fd37f, type: 2}
+  soundBankMaster: {fileID: 11400000, guid: 82edd610b951cd74f97410e5ac83e7c5, type: 2}
+  sounds: []
+--- !u!4 &2050948451
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2050948449}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 18.939173, y: 6.542547, z: -0.15876727}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2068437921
 GameObject:
   m_ObjectHideFlags: 0
@@ -1804,3 +1895,4 @@ SceneRoots:
   - {fileID: 257132770}
   - {fileID: 1988288529}
   - {fileID: 492807605}
+  - {fileID: 2050948451}

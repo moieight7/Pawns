@@ -2,12 +2,14 @@ using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UltEvents;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseUI, content, resetConfirm, quitConfirm;
+    public UltEvent OnPauseKey, OnUnpauseKey;
 
     private bool paused = false;
     private Tween moveTween;
@@ -42,8 +44,8 @@ public class PauseMenu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape) && !StartMenu.instance.StartMenuOpen)
         {
-            if (!paused) Pause();
-            else Unpause();
+            if (!paused) { OnPauseKey.Invoke(); Pause(); }
+            else { OnUnpauseKey.Invoke(); Unpause(); }
         }
     }
 

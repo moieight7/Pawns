@@ -1,6 +1,7 @@
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using UltEvents;
 using UnityEngine;
 
 public class Explosive : Projectile
@@ -12,6 +13,7 @@ public class Explosive : Projectile
     public float explodeTime;
 
     public Color explosionOutlineStartColor, explosionOutlineEndColor;
+    public UltEvent OnExplodeEvent;
 
     private DrawCircle explosionOutline;
     private Tween movementTween;
@@ -44,6 +46,7 @@ public class Explosive : Projectile
     private void OnDestroy()
     {
         Explode();
+        OnExplodeEvent.Invoke();
     }
 
     private void Explode()

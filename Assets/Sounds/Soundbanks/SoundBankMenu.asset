@@ -20,3 +20,17 @@ MonoBehaviour:
     loop: 0
     mixer: {fileID: -3061975827912826642, guid: 1cbe5e9822b65b042a316b37763fd37f, type: 2}
     source: {fileID: 0}
+  - name: snd_menu_open_b
+    clip: {fileID: 8300000, guid: b5170db4d64aecc45b28333eb42065ec, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    mixer: {fileID: -3061975827912826642, guid: 1cbe5e9822b65b042a316b37763fd37f, type: 2}
+    source: {fileID: 0}
+  - name: snd_menu_close_b
+    clip: {fileID: 8300000, guid: b13d44115d67d374890a9ae16e743e89, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    mixer: {fileID: -3061975827912826642, guid: 1cbe5e9822b65b042a316b37763fd37f, type: 2}
+    source: {fileID: 0}

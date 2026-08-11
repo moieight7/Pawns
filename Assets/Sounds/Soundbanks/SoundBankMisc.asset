@@ -41,3 +41,10 @@ MonoBehaviour:
     loop: 0
     mixer: {fileID: -3061975827912826642, guid: 1cbe5e9822b65b042a316b37763fd37f, type: 2}
     source: {fileID: 0}
+  - name: snd_ominous_bell
+    clip: {fileID: 8300000, guid: e0f683a2be4c67e4d863b8b4f15b50fe, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    mixer: {fileID: -3061975827912826642, guid: 1cbe5e9822b65b042a316b37763fd37f, type: 2}
+    source: {fileID: 0}

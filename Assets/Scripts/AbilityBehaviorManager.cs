@@ -157,6 +157,7 @@ public static class AbilityBehaviorManager
             NavMesh.CalculatePath(casterPos, teleportTo, 1 << NavMesh.GetAreaFromName("Walkable"), path);
             if (path.status != NavMeshPathStatus.PathComplete) { caster.abilities.FindAbilityByIndex(2).RefundAbilityCharge(); return; }
 
+            AudioManager.instance.Play("snd_magic", 1, 1);
             caster.transform.position = teleportTo;
         }
         else if (caster.type == EntityType.Enemy)
@@ -189,7 +190,7 @@ public static class AbilityBehaviorManager
                     NavMeshPath path = new NavMeshPath();
                     NavMesh.CalculatePath(casterPos, teleportTo, 1 << NavMesh.GetAreaFromName("Walkable"), path);
                     if (path.status != NavMeshPathStatus.PathComplete) { timesChecked++; isValidPosition = false; }
-                    else { caster.transform.position = teleportTo; break; }
+                    else { caster.transform.position = teleportTo; AudioManager.instance.Play("snd_magic", 0.4f, 1); break; }
                 }
             }
         }
