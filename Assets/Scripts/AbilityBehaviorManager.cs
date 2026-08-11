@@ -216,7 +216,8 @@ public static class AbilityBehaviorManager
         caster.OnSwitchedFrom(target);
 
         Ability switchAbility = oldEntityAbilities.entityAbilities.Find(x => x.Type == AbilityType.Switch);
-        AbilityCooldownManager.instance.CancelAbilityCooldown(switchAbility);
+        switchAbility.StopCooldown();
+
         newEntityAbilities.AddAbility(switchAbility);
         oldEntityAbilities.RemoveAbility(AbilityType.Switch);
 

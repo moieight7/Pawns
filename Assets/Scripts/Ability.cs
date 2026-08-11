@@ -169,6 +169,7 @@ public class Ability
             yield return new WaitUntil(() => isCoolingDown == false);
         }
         cooldownLoopRunning = false;
+        cooldownLoop = null;
         Debug.Log("Exit CooldownLoop() on " + Name + ", " + caster.name);
     }
 
@@ -179,6 +180,7 @@ public class Ability
         if (caster.type == EntityType.Player) AbilityUI.instance.CooldownAnimation(this);
         isCoolingDown = true;
         yield return new WaitForSeconds(abilityData.cooldownTime);
+        if (cooldownLoop == null) yield break;
         isCoolingDown = false;
 
         numberOfCharges++;
@@ -204,6 +206,18 @@ public class Ability
 
         if (caster.type == EntityType.Player) AbilityUI.instance.CancelCooldownAnimation(this);
 
+        cooldownCoroutines.Clear();
+    }
+
+    public void StopCooldown()
+    {
+        isCoolingDown = false;
+        cooldownLoopRunning = false;
+        foreach (IEnumerator coroutine in cooldownCoroutines)
+        {
+            AbilityCooldownManager.instance.CancelAbilityCooldown(this);
+            AbilityCooldownManager.instance.StopAbilityCooldown(this);
+        }
         cooldownCoroutines.Clear();
     }
 

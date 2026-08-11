@@ -57,8 +57,11 @@ public class Attack : MonoBehaviour
             bool persistentCallsValid = true;
             foreach (PersistentCall call in OnHitEvent.PersistentCallsList)
             {
-                persistentCallsValid = SetOnHitPersistentCallArguments(call, collision);
-                if (!persistentCallsValid) break;
+                if (call.MemberName.Split(",")[0].Trim() == "AbilityBehaviorManager")
+                {
+                    persistentCallsValid = SetOnHitPersistentCallArguments(call, collision);
+                    if (!persistentCallsValid) break;
+                }
             }
             if (persistentCallsValid) OnHitEvent.Invoke();
         }
