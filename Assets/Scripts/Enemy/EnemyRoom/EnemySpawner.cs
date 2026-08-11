@@ -116,7 +116,7 @@ public class EnemySpawner : MonoBehaviour
     {
         currentWave++;
 
-        if (OnWaveChanged != null)
+        if (OnWaveChanged != null && currentWave > 0)
             OnWaveChanged();
 
         isWaitingForWave = true;

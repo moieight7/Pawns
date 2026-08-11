@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -50,14 +51,16 @@ public class AudioManager : MonoBehaviour
     public void Play(string name)
     {
         Sound s = Array.Find(sounds.ToArray(), sound => sound.name == name);
-        s.source.PlayOneShot(s.clip, s.volume);
+        if (!s.source.loop) s.source.PlayOneShot(s.clip, s.volume);
+        else s.source.Play();
     }
 
     public void Play(string name, float volume)
     {
         Sound s = Array.Find(sounds.ToArray(), sound => sound.name == name);
         s.source.volume = volume;
-        s.source.PlayOneShot(s.clip, s.volume);
+        if (!s.source.loop) s.source.PlayOneShot(s.clip, s.volume);
+        else s.source.Play();
     }
 
     public void Play(string name, float volume, float pitch)
@@ -65,13 +68,34 @@ public class AudioManager : MonoBehaviour
         Sound s = Array.Find(sounds.ToArray(), sound => sound.name == name);
         s.source.volume = volume;
         s.source.pitch = pitch;
-        s.source.PlayOneShot(s.clip, s.volume);
+        if (!s.source.loop) s.source.PlayOneShot(s.clip, s.volume);
+        else s.source.Play();
+    }
+
+    public void Play(string name, float volume, float pitch, float delay)
+    {
+        Sound s = Array.Find(sounds.ToArray(), sound => sound.name == name);
+        s.source.volume = volume;
+        s.source.pitch = pitch;
+        StartCoroutine(PlayWithDelay(s, delay));
+    }
+
+    public void StopLoopingAudio(string name)
+    {
+        Sound s = Array.Find(sounds.ToArray(), sound => sound.name == name);
+        s.source.Stop();
     }
 
     public void PlayClipAtPoint(string name, Transform point)
     {
         Sound s = Array.Find(sounds.ToArray(), sound => sound.name == name);
         AudioSource.PlayClipAtPoint(s.clip, point.position, s.volume);
+    }
+
+    public AudioSource GetSource(string name)
+    {
+        Sound s = Array.Find(sounds.ToArray(), sound => sound.name == name);
+        return s.source;
     }
 
     public AudioClip GetClip(string name)
@@ -90,5 +114,19 @@ public class AudioManager : MonoBehaviour
     {
         Sound s = Array.Find(sounds.ToArray(), sound => sound.name == name);
         return s.volume;
+    }
+
+    public void FadeIn(string name, float startVolume, float endVolume, float time, Ease easeType = Ease.Linear)
+    {
+        AudioSource audioSource = GetSource(name);
+        audioSource.volume = startVolume;
+        DOTween.To(() => audioSource.volume, x => audioSource.volume = x, endVolume, time).SetEase(easeType);
+    }
+
+    private IEnumerator PlayWithDelay(Sound s, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        if (!s.source.loop) s.source.PlayOneShot(s.clip, s.volume);
+        else s.source.Play();
     }
 }

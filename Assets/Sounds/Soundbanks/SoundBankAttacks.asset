@@ -13,22 +13,29 @@ MonoBehaviour:
   m_Name: SoundBankAttacks
   m_EditorClassIdentifier: 
   sounds:
-  - name: 
+  - name: snd_woosh
     clip: {fileID: 8300000, guid: 1af505f1056822643ac062745e0c99e7, type: 3}
     volume: 1
     pitch: 1
     loop: 0
     mixer: {fileID: -3061975827912826642, guid: 1cbe5e9822b65b042a316b37763fd37f, type: 2}
     source: {fileID: 0}
-  - name: 
+  - name: snd_explode
     clip: {fileID: 8300000, guid: f45473dc19080cf4da940f11d27ad236, type: 3}
     volume: 1
     pitch: 1
     loop: 0
     mixer: {fileID: -3061975827912826642, guid: 1cbe5e9822b65b042a316b37763fd37f, type: 2}
     source: {fileID: 0}
-  - name: 
+  - name: snd_magic
     clip: {fileID: 8300000, guid: 65e771a33ff4b1f4785583485356992b, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    mixer: {fileID: -3061975827912826642, guid: 1cbe5e9822b65b042a316b37763fd37f, type: 2}
+    source: {fileID: 0}
+  - name: snd_windchime
+    clip: {fileID: 8300000, guid: edc1f0ce76481a948ba993375006e7aa, type: 3}
     volume: 1
     pitch: 1
     loop: 0

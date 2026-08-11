@@ -70,6 +70,7 @@ public static class AbilityBehaviorManager
         {
             PlayerMovement playerMovement = caster.GetComponent<PlayerMovement>();
             caster.Dash(playerMovement.motion.normalized * force, duration);
+            AudioManager.instance.Play("snd_woosh", 0.4f, 2);
         }
         else if (caster.type == EntityType.Enemy)
         {
@@ -120,6 +121,7 @@ public static class AbilityBehaviorManager
 
                 caster.Dash(dashDir, dashStateData.dashDuration);
             }
+            AudioManager.instance.Play("snd_woosh", 0.4f, 2);
         }
     }
 

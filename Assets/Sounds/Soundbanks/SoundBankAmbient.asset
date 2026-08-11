@@ -13,24 +13,31 @@ MonoBehaviour:
   m_Name: SoundBankAmbient
   m_EditorClassIdentifier: 
   sounds:
-  - name: 
+  - name: snd_ambient
     clip: {fileID: 8300000, guid: 9185c5f7dc536554d885f90302030060, type: 3}
     volume: 0.3
     pitch: 1
     loop: 1
     mixer: {fileID: -3061975827912826642, guid: 1cbe5e9822b65b042a316b37763fd37f, type: 2}
     source: {fileID: 0}
-  - name: 
+  - name: snd_next
     clip: {fileID: 8300000, guid: d98806c2c1b77d04cb626693650af17e, type: 3}
     volume: 1
     pitch: 1
     loop: 1
     mixer: {fileID: -3061975827912826642, guid: 1cbe5e9822b65b042a316b37763fd37f, type: 2}
     source: {fileID: 0}
-  - name: 
+  - name: snd_water
     clip: {fileID: 8300000, guid: 491234d496133d54a89e2b7d1d8a9a42, type: 3}
     volume: 1
     pitch: 1
-    loop: 0
+    loop: 1
+    mixer: {fileID: -3061975827912826642, guid: 1cbe5e9822b65b042a316b37763fd37f, type: 2}
+    source: {fileID: 0}
+  - name: snd_water2
+    clip: {fileID: 8300000, guid: c50f7d46c06096548aaf43bb5e8150fb, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
     mixer: {fileID: -3061975827912826642, guid: 1cbe5e9822b65b042a316b37763fd37f, type: 2}
     source: {fileID: 0}

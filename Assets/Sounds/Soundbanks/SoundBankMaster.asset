@@ -17,6 +17,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5d5522684b3d06548ae59c82e832d674, type: 2}
   - {fileID: 11400000, guid: fa8ed74658754f748b70ed5b3c2e97e3, type: 2}
   - {fileID: 11400000, guid: 59d1dd52e4b272c49b1581ae3206064e, type: 2}
+  - {fileID: 11400000, guid: 80284d09a6352fd4598462e8654bc014, type: 2}
   errorAudio:
     name: snd_error
     clip: {fileID: 8300000, guid: ba626c97c71de7d4c966aa319c91d290, type: 3}

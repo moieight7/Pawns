@@ -47,6 +47,34 @@ MonoBehaviour:
         _Z: 0
         _W: 0
         _Object: {fileID: 41337451440972637, guid: 71c06f3a544f8e642a09b8cab6d4543b, type: 3}
+    - _Target: {fileID: 0}
+      _MemberName: StaticAudioPlayer, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null.Play
+      _PersistentArguments:
+      - _Type: 2
+        _Int: 0
+        _String: snd_windchime
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+      - _Type: 5
+        _Int: 0
+        _String: 
+        _X: 0.3
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+      - _Type: 5
+        _Int: 0
+        _String: 
+        _X: 1.2
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
   OnAbilityCoolDownEvent:
     _PersistentCalls: []
   OnAbilityCoolDownPlayerEvent:
