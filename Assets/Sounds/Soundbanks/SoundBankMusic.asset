@@ -27,3 +27,17 @@ MonoBehaviour:
     loop: 1
     mixer: {fileID: 6101314072646231390, guid: 1cbe5e9822b65b042a316b37763fd37f, type: 2}
     source: {fileID: 0}
+  - name: mus_lose
+    clip: {fileID: 8300000, guid: 7a3a2cb0f0f83064290a0e9301be5a57, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    mixer: {fileID: 6101314072646231390, guid: 1cbe5e9822b65b042a316b37763fd37f, type: 2}
+    source: {fileID: 0}
+  - name: mus_end
+    clip: {fileID: 8300000, guid: 6ed43fef889193b47ae2408d96bce728, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    mixer: {fileID: 6101314072646231390, guid: 1cbe5e9822b65b042a316b37763fd37f, type: 2}
+    source: {fileID: 0}

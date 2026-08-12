@@ -120,7 +120,7 @@ public class AudioManager : MonoBehaviour
     {
         AudioSource audioSource = GetSource(name);
         audioSource.volume = startVolume;
-        DOTween.To(() => audioSource.volume, x => audioSource.volume = x, endVolume, time).SetEase(easeType);
+        DOTween.To(() => audioSource.volume, x => audioSource.volume = x, endVolume, time).SetEase(easeType).SetUpdate(true);
     }
 
     private IEnumerator PlayWithDelay(Sound s, float delay)
