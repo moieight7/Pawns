@@ -234,6 +234,7 @@ GameObject:
   m_Component:
   - component: {fileID: 126850271}
   - component: {fileID: 126850272}
+  - component: {fileID: 126850273}
   m_Layer: 0
   m_Name: DisableBackgroundExtras
   m_TagString: Untagged
@@ -249,12 +250,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 126850269}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.85896534, y: 0.58025354, z: -10.0507765}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 30.922752, y: 20.889128, z: -3601.828}
+  m_LocalScale: {x: 36, y: 36, z: 36}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 257132770}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &126850272
 MonoBehaviour:
@@ -360,6 +361,23 @@ MonoBehaviour:
         _Z: 0
         _W: 0
         _Object: {fileID: 0}
+--- !u!114 &126850273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 126850269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12e6d17b3ed89d1498b5e973d2dd384b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnPlayerDeath:
+    _PersistentCalls:
+    - _Target: {fileID: 126850272}
+      _MemberName: Invoke
+      _PersistentArguments: []
 --- !u!1 &182925859
 GameObject:
   m_ObjectHideFlags: 0
@@ -788,6 +806,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2055978646}
+  - {fileID: 564306403}
+  - {fileID: 126850271}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1224,7 +1244,7 @@ MonoBehaviour:
       - _Type: 5
         _Int: 0
         _String: 
-        _X: 0.5
+        _X: 0.6
         _Y: 0
         _Z: 0
         _W: 0
@@ -1475,7 +1495,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 564306403}
-  - component: {fileID: 564306402}
+  - component: {fileID: 564306405}
+  - component: {fileID: 564306406}
   - component: {fileID: 564306404}
   m_Layer: 0
   m_Name: StartMenuBackgroundExtraTrigger
@@ -1484,23 +1505,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &564306402
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 564306400}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0534808eccc257498cdf08d1cbfc2c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnStart:
-    _PersistentCalls:
-    - _Target: {fileID: 564306404}
-      _MemberName: Invoke
-      _PersistentArguments: []
 --- !u!4 &564306403
 Transform:
   m_ObjectHideFlags: 0
@@ -1509,12 +1513,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 564306400}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.85896534, y: 0.58025354, z: -10.0507765}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 30.922752, y: 20.889128, z: -3601.828}
+  m_LocalScale: {x: 36, y: 36, z: 36}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 257132770}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &564306404
 MonoBehaviour:
@@ -1621,6 +1625,131 @@ MonoBehaviour:
         _W: 0
         _Object: {fileID: 0}
   _Delay: 24
+--- !u!114 &564306405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 564306400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49ac186d78c6de841aee2d693f953d58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneName: StartMenu
+  OnSceneLoaded:
+    _PersistentCalls:
+    - _Target: {fileID: 564306406}
+      _MemberName: Invoke
+      _PersistentArguments: []
+    - _Target: {fileID: 564306404}
+      _MemberName: Invoke
+      _PersistentArguments: []
+--- !u!114 &564306406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 564306400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 289ff940279d54e4e92f632d7d3823dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Event:
+    _PersistentCalls:
+    - _Target: {fileID: 0}
+      _MemberName: DOTweenAnimationManager, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null.RawImageFade
+      _PersistentArguments:
+      - _Type: 13
+        _Int: 0
+        _String: UnityEngine.UI.RawImage, UnityEngine.UI, Version=1.0.0.0, Culture=neutral,
+          PublicKeyToken=null
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 1144790757}
+      - _Type: 5
+        _Int: 0
+        _String: 
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+      - _Type: 5
+        _Int: 0
+        _String: 
+        _X: 0.01
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+      - _Type: 4
+        _Int: 1
+        _String: DG.Tweening.Ease, DOTween, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+      - _Type: 1
+        _Int: 1
+        _String: 
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+    - _Target: {fileID: 0}
+      _MemberName: DOTweenAnimationManager, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null.RawImageFade
+      _PersistentArguments:
+      - _Type: 13
+        _Int: 0
+        _String: UnityEngine.UI.RawImage, UnityEngine.UI, Version=1.0.0.0, Culture=neutral,
+          PublicKeyToken=null
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 880196899}
+      - _Type: 5
+        _Int: 0
+        _String: 
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+      - _Type: 5
+        _Int: 0
+        _String: 
+        _X: 0.01
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+      - _Type: 4
+        _Int: 1
+        _String: DG.Tweening.Ease, DOTween, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+      - _Type: 1
+        _Int: 1
+        _String: 
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
 --- !u!1 &600377106
 GameObject:
   m_ObjectHideFlags: 0
@@ -3206,5 +3335,3 @@ SceneRoots:
   - {fileID: 492807605}
   - {fileID: 2050948451}
   - {fileID: 309852110}
-  - {fileID: 564306403}
-  - {fileID: 126850271}

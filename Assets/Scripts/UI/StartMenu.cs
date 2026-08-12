@@ -1,5 +1,6 @@
 using DG.Tweening;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -64,11 +65,15 @@ public class StartMenu : MonoBehaviour
     public void SnapToMenuClosed()
     {
         startMenuOpen = false;
-        startUI.transform.DOLocalMove(new Vector3(0, 390.31f, 0), 0.01f).SetEase(Ease.InSine).SetUpdate(true).OnComplete(() =>
+
+        List<RawImage> images = new List<RawImage>();
+        images = GetComponentsInChildren<RawImage>().ToList();
+        foreach (RawImage image in images)
         {
-            startMenuOpen = false;
-            SlowdownManager.instance.UnPause();
-        });
+            image.transform.localPosition = Vector3.zero;
+        }
+
+        SlowdownManager.instance.UnPause();
     }
 
     public void OpenMenuVictoryScreen(Rect victoryBackgroundImageRect)

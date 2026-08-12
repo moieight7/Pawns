@@ -83,3 +83,17 @@ MonoBehaviour:
     loop: 0
     mixer: {fileID: -3061975827912826642, guid: 1cbe5e9822b65b042a316b37763fd37f, type: 2}
     source: {fileID: 0}
+  - name: snd_thud
+    clip: {fileID: 8300000, guid: f9dc9896cfd50e043bd0e51c05882ab7, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    mixer: {fileID: -3061975827912826642, guid: 1cbe5e9822b65b042a316b37763fd37f, type: 2}
+    source: {fileID: 0}
+  - name: snd_fire
+    clip: {fileID: 8300000, guid: 331d561eb2beab942988047291a6975c, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    mixer: {fileID: -3061975827912826642, guid: 1cbe5e9822b65b042a316b37763fd37f, type: 2}
+    source: {fileID: 0}

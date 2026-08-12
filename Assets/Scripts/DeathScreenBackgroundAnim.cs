@@ -36,7 +36,11 @@ public class DeathScreenBackgroundAnim : MonoBehaviour
 
             void Down()
             {
-                image.gameObject.transform.DOBlendableLocalMoveBy(new Vector3(0, -moveY, 0), downDuration).SetEase(Ease.OutCubic).SetUpdate(UpdateType.Normal, true).OnComplete(() => { upDuration = 0.9f; Up(); });
+                image.gameObject.transform.DOBlendableLocalMoveBy(new Vector3(0, -moveY, 0), downDuration).SetEase(Ease.OutCubic).SetUpdate(UpdateType.Normal, true).OnComplete(
+                    () => {
+                        upDuration = 0.9f; 
+                        Up(); 
+                    });
             }
         }
     }

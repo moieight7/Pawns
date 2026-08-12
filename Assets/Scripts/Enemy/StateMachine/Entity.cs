@@ -62,6 +62,9 @@ public class Entity : MonoBehaviour
     public delegate void PlayerDamagedAction();
     public static event PlayerDamagedAction OnPlayerDamaged;
 
+    public delegate void PlayerKilledAction();
+    public static event PlayerKilledAction OnPlayerKilled;
+
     public delegate void EntityDamagedAction(Entity entity);
     public static event EntityDamagedAction OnEntityDamaged;
 
@@ -160,6 +163,7 @@ public class Entity : MonoBehaviour
         else if (type == EntityType.Player) 
         {
             playerEntityDead = true;
+            if (OnPlayerKilled != null) OnPlayerKilled.Invoke();
             PlayerDeath.instance.TriggerDeathSequence(this);
         }
     }

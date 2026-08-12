@@ -264,6 +264,7 @@ MonoBehaviour:
   damage: 20
   timeUntilDelete: 1
   destroyOnHit: 0
+  destroyOnEnemyHit: 0
   sender: {fileID: 0}
   timer: 0
   invisible: 0
