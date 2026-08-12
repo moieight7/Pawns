@@ -1,6 +1,7 @@
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UltEvents;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -41,5 +42,14 @@ public static class DOTweenAnimationManager
             {
                 tilemap.color = new Color(tilemap.color.r, tilemap.color.g, tilemap.color.b, alpha);
             });
+    }
+
+    public static void TextTypewriter(UIText uiText, string finalText, float delay, float duration, Ease ease = Ease.Linear, bool ignoreTimescale = false)
+    {
+        string text = "";
+        DOTween.To(() => text, x => text = x, finalText, duration).SetEase(ease).SetUpdate(ignoreTimescale).SetDelay(delay).OnUpdate(() =>
+        {
+            uiText.SetText(text);
+        });
     }
 }

@@ -69,3 +69,17 @@ MonoBehaviour:
     loop: 0
     mixer: {fileID: -3061975827912826642, guid: 1cbe5e9822b65b042a316b37763fd37f, type: 2}
     source: {fileID: 0}
+  - name: snd_bird
+    clip: {fileID: 8300000, guid: 2b0dd95981468ea4da6fa4b88fc18663, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    mixer: {fileID: -3061975827912826642, guid: 1cbe5e9822b65b042a316b37763fd37f, type: 2}
+    source: {fileID: 0}
+  - name: snd_heartbeat
+    clip: {fileID: 8300000, guid: 5f144740927d9e44a9e7e2a3e3d86928, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    mixer: {fileID: -3061975827912826642, guid: 1cbe5e9822b65b042a316b37763fd37f, type: 2}
+    source: {fileID: 0}

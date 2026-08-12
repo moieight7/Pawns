@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -9,6 +10,7 @@ public class PlayerHealthSlider : MonoBehaviour
 {
     public Entity entity;
     public UIText healthText;
+    public Color lifedrainAlertColor;
 
     private Slider slider;
     private float velocity;
@@ -29,6 +31,7 @@ public class PlayerHealthSlider : MonoBehaviour
 
         Entity.OnSwitch += OnSwitch;
         Entity.OnPlayerDamaged += OnPlayerDamaged;
+        Entity.OnLifedrainEnabled += OnLifedrainEnabled;
 
         SceneManager.sceneLoaded += OnLevelReset;
     }
@@ -73,5 +76,15 @@ public class PlayerHealthSlider : MonoBehaviour
         slider = GetComponent<Slider>();
         SetEntity(GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>());
         SetText();
+    }
+
+    private void OnLifedrainEnabled()
+    {
+        Image image = slider.fillRect.gameObject.GetComponent<Image>();
+        Color startingColor = slider.fillRect.gameObject.GetComponent<Image>().color;
+
+        image.DOColor(lifedrainAlertColor, 0.75f).SetUpdate(false).SetLoops(4, LoopType.Yoyo).SetEase(Ease.InOutSine); // 217 68 78
+
+        AudioManager.instance.Play("snd_heartbeat", 0.7f, 1);
     }
 }

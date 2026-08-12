@@ -68,6 +68,9 @@ public class Entity : MonoBehaviour
     public delegate void EnemyKilledAction();
     public static event EnemyKilledAction OnEnemyKilled;
 
+    public delegate void LifedrainEnabledAction();
+    public static event LifedrainEnabledAction OnLifedrainEnabled;
+
     private void Awake()
     {
         health = entityData.health;
@@ -424,6 +427,8 @@ public class Entity : MonoBehaviour
             
             if (lifedrainCoroutine != null) StopCoroutine(lifedrainCoroutine);
             lifedrainCoroutine = StartCoroutine(LifedrainCoroutine());
+
+            if (OnLifedrainEnabled != null) OnLifedrainEnabled.Invoke();
         }
         else if (!player.lifedrain)
         {
@@ -444,6 +449,8 @@ public class Entity : MonoBehaviour
 
             if (lifedrainCoroutine != null) StopCoroutine(lifedrainCoroutine);
             lifedrainCoroutine = StartCoroutine(LifedrainCoroutine());
+
+            if (OnLifedrainEnabled != null) OnLifedrainEnabled.Invoke();
         }
         else if (!set)
         {

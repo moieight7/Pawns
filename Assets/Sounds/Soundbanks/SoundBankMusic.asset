@@ -13,6 +13,13 @@ MonoBehaviour:
   m_Name: SoundBankMusic
   m_EditorClassIdentifier: 
   sounds:
+  - name: mus_start
+    clip: {fileID: 8300000, guid: d70d8e0debe0e544ea638c661090c9a5, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    mixer: {fileID: 6101314072646231390, guid: 1cbe5e9822b65b042a316b37763fd37f, type: 2}
+    source: {fileID: 0}
   - name: mus_level
     clip: {fileID: 8300000, guid: 878fbbea6cdec8a4f95f4cf6ed48ddf6, type: 3}
     volume: 1
