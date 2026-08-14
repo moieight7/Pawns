@@ -16,6 +16,7 @@ namespace UltEvents
 
         [SerializeField]
         private float _Delay;
+        private bool canceled = false;
 
         private WaitForSeconds _Wait;
 
@@ -55,11 +56,18 @@ namespace UltEvents
 
         /************************************************************************************************************************/
 
+        public void Cancel()
+        {
+            canceled = true;
+            StopCoroutine(DelayedInvoke());
+        }
+
         private IEnumerator DelayedInvoke()
         {
             _Wait ??= new(_Delay);
 
             yield return _Wait;
+            if (canceled) { canceled = false; yield break; }
 
             base.Invoke();
         }

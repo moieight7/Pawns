@@ -233,8 +233,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 126850271}
-  - component: {fileID: 126850272}
   - component: {fileID: 126850273}
+  - component: {fileID: 126850275}
+  - component: {fileID: 126850274}
   m_Layer: 0
   m_Name: DisableBackgroundExtras
   m_TagString: Untagged
@@ -257,7 +258,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 257132770}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &126850272
+--- !u!114 &126850273
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -266,7 +267,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 126850269}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 289ff940279d54e4e92f632d7d3823dc, type: 3}
+  m_Script: {fileID: 11500000, guid: 12e6d17b3ed89d1498b5e973d2dd384b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnPlayerDeath:
+    _PersistentCalls:
+    - _Target: {fileID: 126850274}
+      _MemberName: Invoke
+      _PersistentArguments: []
+--- !u!114 &126850274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 126850269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e290abc39aa5f6b4b83eaa8db8708dd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _Event:
@@ -361,7 +379,8 @@ MonoBehaviour:
         _Z: 0
         _W: 0
         _Object: {fileID: 0}
---- !u!114 &126850273
+  _Delay: 2
+--- !u!114 &126850275
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -370,12 +389,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 126850269}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12e6d17b3ed89d1498b5e973d2dd384b, type: 3}
+  m_Script: {fileID: 11500000, guid: 49ac186d78c6de841aee2d693f953d58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnPlayerDeath:
+  sceneName: Gameplay
+  OnSceneLoaded:
     _PersistentCalls:
-    - _Target: {fileID: 126850272}
+    - _Target: {fileID: 564306404}
+      _MemberName: Cancel
+      _PersistentArguments: []
+    - _Target: {fileID: 126850274}
       _MemberName: Invoke
       _PersistentArguments: []
 --- !u!1 &182925859
@@ -2277,9 +2300,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 126850272}
-        m_TargetAssemblyTypeName: UltEvents.UltEventHolder, Kybernetik.UltEvents
+      - m_Target: {fileID: 126850274}
+        m_TargetAssemblyTypeName: UltEvents.UnscaledDelayedUltEventHolder, Kybernetik.UltEvents
         m_MethodName: Invoke
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 564306404}
+        m_TargetAssemblyTypeName: UltEvents.UnscaledDelayedUltEventHolder, Kybernetik.UltEvents
+        m_MethodName: Cancel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

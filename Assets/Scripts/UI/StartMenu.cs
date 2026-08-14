@@ -79,7 +79,8 @@ public class StartMenu : MonoBehaviour
     public void OpenMenuVictoryScreen(Rect victoryBackgroundImageRect)
     {
         startMenuOpen = true;
-        DOTweenAnimationManager.LocalMove(startUI, new Vector3(-1.7f, 0, 0), 0.01f, Ease.Linear, true);
+        startUI.transform.localPosition = new Vector3(0, 0, 0);
+        foreach (RawImage image in startMenuBackgrounds) { image.enabled = true; image.gameObject.transform.localPosition = Vector3.zero; }
         GetComponentInChildren<RawImage>().uvRect = victoryBackgroundImageRect;
     }
 
@@ -95,8 +96,8 @@ public class StartMenu : MonoBehaviour
             contentCanvasGroup.DOFade(1, 1).SetUpdate(true); 
             DOTweenAnimationManager.Move(contentCanvasGroup.gameObject, new Vector3(-0.0027777785435318949f, -0.013888465240597725f, 0), 0.01f, Ease.Linear, true);
             //contentCanvasGroup.gameObject.transform.position = Vector3.zero;
-            startUI.transform.localPosition = Vector3.zero;
-            foreach (RawImage image in startMenuBackgrounds) image.gameObject.transform.localPosition = Vector3.zero;
+            startUI.transform.localPosition = new Vector3(0, 0, 0);
+            foreach (RawImage image in startMenuBackgrounds) { image.enabled = true; image.gameObject.transform.localPosition = Vector3.zero; }
             //DOTweenAnimationManager.Move(startUI, new Vector3(-0.04722222313284874f, 0, 92.20125579833985f), 0.01f, Ease.Linear, true);
         }
         else if (scene.name == "Gameplay") contentCanvasGroup.DOFade(0, 1).SetUpdate(true);

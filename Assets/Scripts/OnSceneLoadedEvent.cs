@@ -16,6 +16,6 @@ public class OnSceneLoadedEvent : MonoBehaviour
 
     private void OnSceneLoad(Scene scene, LoadSceneMode loadSceneMode)
     {
-        if (scene.name == sceneName) { Debug.Log("OnSceneLoad " + scene.name + " " + sceneName); OnSceneLoaded.Invoke(); }
+        if (scene.name == sceneName) { Debug.Log("OnSceneLoadEvent " + scene.name + " " + sceneName); OnSceneLoaded.Invoke(); }
     }
 }
