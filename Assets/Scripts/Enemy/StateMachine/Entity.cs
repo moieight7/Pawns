@@ -95,6 +95,9 @@ public class Entity : MonoBehaviour
     public virtual void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
+
+        if (type == EntityType.Player) rb.bodyType = RigidbodyType2D.Dynamic;
+
         animator = gameObject.GetComponent<Animator>();
         abilities = gameObject.GetComponent<EntityAbilities>();
 
@@ -518,6 +521,8 @@ public class Entity : MonoBehaviour
 
         if (from.health <= 0) from.Die();
 
+        rb.bodyType = RigidbodyType2D.Dynamic;
+
         OnSwitchedToEvent.Invoke();
     }
 
@@ -540,6 +545,7 @@ public class Entity : MonoBehaviour
         gameObject.tag = "Enemy";
         type = EntityType.Enemy;
 
+        rb.bodyType = RigidbodyType2D.Kinematic;
         rb.velocity = Vector3.zero;
         healthSlider.Show();
 

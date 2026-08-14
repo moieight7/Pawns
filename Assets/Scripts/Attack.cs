@@ -11,13 +11,26 @@ public class Attack : MonoBehaviour
     public bool destroyOnHit = true;
     //public GameObject hitEffect;
 
-    [HideInInspector] public Transform sender;
+    [Header("Color")]
+    public Color playerColor;
+    public Color enemyColor;
+    public SpriteRenderer filter;
 
-    public float timer;
+    [HideInInspector] public Transform sender;
+    protected Entity caster;
+
+    protected float timer;
     private float invisTimer;
     [HideInInspector] public bool invisible = false;
 
     public UltEvent OnHitEvent;
+
+    protected virtual void Start()
+    {
+        caster = sender.GetComponentInParent<Entity>();
+        if (caster.type == EntityType.Player) filter.color = playerColor;
+        else filter.color = enemyColor;
+    }
 
     protected virtual void Update()
     {

@@ -552,7 +552,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5183414180587685762}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -593,6 +593,8 @@ MonoBehaviour:
       _PersistentCalls: []
     OnAbilityCoolDownEvent:
       _PersistentCalls: []
+    OnAbilityCoolDownPlayerEvent:
+      _PersistentCalls: []
   - abilityData: {fileID: 11400000, guid: eb6512fc076c0ab47a0f1feebee2b822, type: 2}
     caster: {fileID: 0}
     numberOfCharges: 0
@@ -602,6 +604,8 @@ MonoBehaviour:
       _PersistentCalls: []
     OnAbilityCoolDownEvent:
       _PersistentCalls: []
+    OnAbilityCoolDownPlayerEvent:
+      _PersistentCalls: []
   - abilityData: {fileID: 11400000, guid: 29eb62d4d2767b640adbecf864bb4ada, type: 2}
     caster: {fileID: 0}
     numberOfCharges: 0
@@ -610,6 +614,8 @@ MonoBehaviour:
     OnAbilityTriggeredEvent:
       _PersistentCalls: []
     OnAbilityCoolDownEvent:
+      _PersistentCalls: []
+    OnAbilityCoolDownPlayerEvent:
       _PersistentCalls: []
   primaryKey: 323
   secondaryKey: 324

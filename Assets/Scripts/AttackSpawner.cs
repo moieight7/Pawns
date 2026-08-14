@@ -83,7 +83,8 @@ public class AttackSpawner : MonoBehaviour
         if (caster.type == EntityType.Player) diff = Camera.main.ScreenToWorldPoint(Input.mousePosition) - caster.firePoint.position;
         else if (caster.type == EntityType.Enemy) diff = caster.target.transform.position - caster.firePoint.position;
         diff.Normalize();
-        rotationZ = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
+        if (attackComponent is not Swing) rotationZ = Mathf.Atan2(-diff.x, diff.y) * Mathf.Rad2Deg;
+        else rotationZ = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
 
         distance = diff.magnitude;
         direction = diff / distance;

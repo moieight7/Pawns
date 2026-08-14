@@ -18587,7 +18587,7 @@ MonoBehaviour:
   m_OverrideTileSize: 1
   m_TileSize: 16
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.33333334
+  m_VoxelSize: 0.6666667
   m_BuildHeightMesh: 0
   m_MinRegionArea: 0
   m_HideEditorLogs: 0
@@ -26162,6 +26162,8 @@ MonoBehaviour:
           _Object: {fileID: 41337451440972637, guid: 76865ac315994ed4a9a19be5221cfbce, type: 3}
     OnAbilityCoolDownEvent:
       _PersistentCalls: []
+    OnAbilityCoolDownPlayerEvent:
+      _PersistentCalls: []
   - abilityData: {fileID: 11400000, guid: 9d63a338e9efd1c40a96101384a0cb58, type: 2}
     caster: {fileID: 0}
     numberOfCharges: 0
@@ -26191,6 +26193,8 @@ MonoBehaviour:
           _W: 0
           _Object: {fileID: 6718963880191780741, guid: 0996731b64ec3b141a1ed1b5c29de79b, type: 3}
     OnAbilityCoolDownEvent:
+      _PersistentCalls: []
+    OnAbilityCoolDownPlayerEvent:
       _PersistentCalls: []
   primaryKey: 323
   secondaryKey: 324
@@ -26883,6 +26887,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entity: {fileID: 0}
   healthText: {fileID: 762477664}
+  lifedrainAlertColor: {r: 0, g: 0, b: 0, a: 0}
+  slider: {fileID: 0}
 --- !u!1 &1424720639
 GameObject:
   m_ObjectHideFlags: 0
@@ -28652,6 +28658,10 @@ MonoBehaviour:
   content: {fileID: 547098428}
   resetConfirm: {fileID: 782679705}
   quitConfirm: {fileID: 190744989}
+  OnPauseKey:
+    _PersistentCalls: []
+  OnUnpauseKey:
+    _PersistentCalls: []
 --- !u!114 &1646948188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29398,6 +29408,8 @@ MonoBehaviour:
       _PersistentCalls: []
     OnAbilityCoolDownEvent:
       _PersistentCalls: []
+    OnAbilityCoolDownPlayerEvent:
+      _PersistentCalls: []
   - abilityData: {fileID: 11400000, guid: 67ee83240715d2f40a704c53f7705197, type: 2}
     caster: {fileID: 0}
     numberOfCharges: 0
@@ -29406,6 +29418,8 @@ MonoBehaviour:
     OnAbilityTriggeredEvent:
       _PersistentCalls: []
     OnAbilityCoolDownEvent:
+      _PersistentCalls: []
+    OnAbilityCoolDownPlayerEvent:
       _PersistentCalls: []
   - abilityData: {fileID: 11400000, guid: eb7e12ae2acf2074eaa098c3823cd0ed, type: 2}
     caster: {fileID: 0}
@@ -29416,6 +29430,8 @@ MonoBehaviour:
       _PersistentCalls: []
     OnAbilityCoolDownEvent:
       _PersistentCalls: []
+    OnAbilityCoolDownPlayerEvent:
+      _PersistentCalls: []
   - abilityData: {fileID: 11400000, guid: 3bb8a358b70798744ae5ea430fb95150, type: 2}
     caster: {fileID: 0}
     numberOfCharges: 0
@@ -29425,6 +29441,8 @@ MonoBehaviour:
       _PersistentCalls: []
     OnAbilityCoolDownEvent:
       _PersistentCalls: []
+    OnAbilityCoolDownPlayerEvent:
+      _PersistentCalls: []
   - abilityData: {fileID: 11400000, guid: 9d63a338e9efd1c40a96101384a0cb58, type: 2}
     caster: {fileID: 0}
     numberOfCharges: 0
@@ -29433,6 +29451,8 @@ MonoBehaviour:
     OnAbilityTriggeredEvent:
       _PersistentCalls: []
     OnAbilityCoolDownEvent:
+      _PersistentCalls: []
+    OnAbilityCoolDownPlayerEvent:
       _PersistentCalls: []
   primaryKey: 323
   secondaryKey: 324
@@ -33557,6 +33577,8 @@ MonoBehaviour:
           _Object: {fileID: 41337451440972637, guid: 76865ac315994ed4a9a19be5221cfbce, type: 3}
     OnAbilityCoolDownEvent:
       _PersistentCalls: []
+    OnAbilityCoolDownPlayerEvent:
+      _PersistentCalls: []
   - abilityData: {fileID: 11400000, guid: 9d63a338e9efd1c40a96101384a0cb58, type: 2}
     caster: {fileID: 0}
     numberOfCharges: 0
@@ -33586,6 +33608,8 @@ MonoBehaviour:
           _W: 0
           _Object: {fileID: 6718963880191780741, guid: 0996731b64ec3b141a1ed1b5c29de79b, type: 3}
     OnAbilityCoolDownEvent:
+      _PersistentCalls: []
+    OnAbilityCoolDownPlayerEvent:
       _PersistentCalls: []
   primaryKey: 323
   secondaryKey: 324
