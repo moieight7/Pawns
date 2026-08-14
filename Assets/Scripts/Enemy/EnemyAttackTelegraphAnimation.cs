@@ -52,7 +52,6 @@ public class EnemyAttackTelegraphAnimation : MonoBehaviour
 
     public void StopTelegraphAnim()
     {
-        Debug.Log("EnemyAttackTelegraphAnimation stop");
         timer = 0;
 
         TelegraphAnim.Pause();

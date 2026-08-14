@@ -95,8 +95,6 @@ public static class AbilityBehaviorManager
             Vector2 dashDir = Vector2.zero;
             if (attackToAvoid is Projectile)
             {
-                Debug.Log("AttackToAvoid projectile");
-
                 Projectile projectile = (Projectile)attackToAvoid;
                 dashDir = new Vector2(projectile.moveDir.y, -projectile.moveDir.x);
 
@@ -106,8 +104,6 @@ public static class AbilityBehaviorManager
             }
             else if (attackToAvoid is Swing)
             {
-                Debug.Log("AttackToAvoid swing");
-
                 Swing swing = (Swing)attackToAvoid;
 
                 dashDir = swing.sender.transform.position - caster.transform.position;

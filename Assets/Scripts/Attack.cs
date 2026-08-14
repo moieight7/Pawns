@@ -47,8 +47,6 @@ public class Attack : MonoBehaviour
 
     protected void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Collided with " + collision.name);
-
         Entity entity = collision.GetComponent<Entity>();
         if (entity != null) entity.TakeDamage(damage);
 
@@ -79,8 +77,6 @@ public class Attack : MonoBehaviour
                 if (!(senderEntity = sender.GetComponentInParent<Entity>())) { return false; }
             if (!(targetEntity = collision.gameObject.GetComponent<Entity>()))
                 if (!(targetEntity = collision.gameObject.GetComponentInParent<Entity>())) { return false; }
-
-            Debug.Log("senderEntity: " + senderEntity.name + " " + "targetEntity: " + targetEntity.name);
 
             call.SetArguments(senderEntity, targetEntity);
             return true;

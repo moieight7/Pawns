@@ -87,10 +87,8 @@ public class EntityAbilities : MonoBehaviour
 
     private IEnumerator TriggerAbilityDelay(int index, float delay)
     {
-        Debug.Log("TriggerAbilityDelay 1");
         isCasting = true;
         yield return new WaitForSeconds(delay);
-        Debug.Log("TriggerAbilityDelay 2");
         playerAbilities[index].ability.TriggerAbility();
         isCasting = false;
     }
@@ -131,13 +129,11 @@ public class EntityAbilities : MonoBehaviour
 
     private void OnAbilityTriggered(Entity entity)
     {
-        Debug.Log("OnAbilityTriggered");
         if (entity.type == EntityType.Player) AbilityUI.instance.SetAbilityUI();
     }
 
     private void OnAbilityChargeCooldown(Entity entity)
     {
-        Debug.Log("OnAbilityChargeCooldown");
         if (entity.type == EntityType.Player) AbilityUI.instance.SetAbilityUI();
     }
 

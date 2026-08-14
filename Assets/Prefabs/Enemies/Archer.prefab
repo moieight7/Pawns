@@ -49,6 +49,7 @@ GameObject:
   - component: {fileID: 4223379539481748470}
   - component: {fileID: 6681301900193455911}
   - component: {fileID: 9116407753666540993}
+  - component: {fileID: 1216017507616171420}
   m_Layer: 9
   m_Name: Archer
   m_TagString: Enemy
@@ -196,6 +197,8 @@ MonoBehaviour:
           _Object: {fileID: 41337451440972637, guid: 76865ac315994ed4a9a19be5221cfbce, type: 3}
     OnAbilityCoolDownEvent:
       _PersistentCalls: []
+    OnAbilityCoolDownPlayerEvent:
+      _PersistentCalls: []
   - abilityData: {fileID: 11400000, guid: 7290bf60d9cc57f41ad51d8907c45629, type: 2}
     caster: {fileID: 0}
     numberOfCharges: 1
@@ -225,6 +228,8 @@ MonoBehaviour:
           _W: 0
           _Object: {fileID: 41337451440972637, guid: 71c06f3a544f8e642a09b8cab6d4543b, type: 3}
     OnAbilityCoolDownEvent:
+      _PersistentCalls: []
+    OnAbilityCoolDownPlayerEvent:
       _PersistentCalls: []
   primaryKey: 323
   secondaryKey: 324
@@ -374,6 +379,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   telegraphSpriteRenderer: {fileID: 9199496403076826629}
+--- !u!114 &1216017507616171420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1556226796937128160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36c390c9f75374c45a538b86bd138ede, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2657331689837539828
 GameObject:
   m_ObjectHideFlags: 0

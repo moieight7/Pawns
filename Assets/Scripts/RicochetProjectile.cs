@@ -19,7 +19,6 @@ public class RicochetProjectile : Projectile
         RaycastHit2D hit = Physics2D.Raycast(previousPosition, currentPositionRayTo, Vector3.Distance(transform.position, previousPosition), bounceOffMask);
         if (hit.collider != null)
         {
-            Debug.Log("Bounce off of " + hit.collider.name + " distance: " + Vector3.Distance(transform.position, previousPosition));
             numberOfBounces--;
             if (numberOfBounces <= 0) Destroy(gameObject);
 

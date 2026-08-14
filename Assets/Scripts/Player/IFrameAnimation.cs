@@ -23,7 +23,6 @@ public class IFrameAnimation : MonoBehaviour
 
         if (timer > time && doAnim)
         {
-            Debug.Log("IFrameAnimation stop");
             timer = 0;
 
             IFrameAnim.Pause();
@@ -36,7 +35,6 @@ public class IFrameAnimation : MonoBehaviour
 
     public void DoIFrameAnim(float duration)
     {
-        Debug.Log("IFrameAnimation DoIFrameAnim");
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         if (IFrameAnim == null)

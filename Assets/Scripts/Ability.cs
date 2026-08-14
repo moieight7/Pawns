@@ -114,10 +114,15 @@ public class Ability
 
         numberOfCharges--;
 
+        #if UNITY_EDITOR
         Debug.Log(AbilityBehaviorManager.AbilityTriggerLog(this));
+        #endif
+
         OnAbilityTriggered.Invoke(caster);
 
+        #if UNITY_EDITOR
         Debug.Log(OnAbilityTriggeredEvent.ToString());
+        #endif
 
         List<PersistentCall> persistentCalls = new List<PersistentCall>();
         persistentCalls = OnAbilityTriggeredEvent.PersistentCallsList;
@@ -127,12 +132,20 @@ public class Ability
 
     public void FinishAbilityCooldown(bool playCooldownEvents = true) 
 	{
+        #if UNITY_EDITOR
         Debug.Log(AbilityBehaviorManager.CooldownFinishLog(this));
+        #endif
         OnAbilityChargeCooldown.Invoke(caster);
         if (playCooldownEvents)
         {
             OnAbilityCoolDownEvent.Invoke();
-            if (caster.type == EntityType.Player) { Debug.Log("StaticAudioPlayer OnAbilityCoolDownPlayerEvent " + caster.name + ", " + caster.type + ", " + Name); OnAbilityCoolDownPlayerEvent.Invoke(); }
+            if (caster.type == EntityType.Player) 
+            {
+                #if UNITY_EDITOR
+                Debug.Log("StaticAudioPlayer OnAbilityCoolDownPlayerEvent " + caster.name + ", " + caster.type + ", " + Name);
+                #endif
+                OnAbilityCoolDownPlayerEvent.Invoke(); 
+            }
         }
     }
 
@@ -146,21 +159,16 @@ public class Ability
         FinishAbilityCooldown(false);
         AbilityCooldownManager.instance.CancelAbilityCooldown(this);
         cooldownCoroutines.Clear();
-
-        Debug.Log("Ability cooldown end (" + Name + ")");
     }
 
     public IEnumerator CooldownLoop()
     {
         if (cooldownLoop != null) yield break;
 
-        Debug.Log("Enter CooldownLoop() on " + Name + ", " + caster.name);
         cooldownLoopRunning = true;
         while (cooldownCoroutines.Count > 0)
         {
-            Debug.Log("Enter CooldownLoop while on " + Name + ", " + caster.name);
             yield return new WaitUntil(() => cooldownCoroutines.Count > 0);
-            Debug.Log("CooldownLoop " + Name + " passed first yield" + ", " + caster.name);
             if (cooldownCoroutines.Count > 0)
             {
                 AbilityCooldownManager.instance.TriggerAbilityCooldown(cooldownCoroutines.First());
@@ -170,13 +178,10 @@ public class Ability
         }
         cooldownLoopRunning = false;
         cooldownLoop = null;
-        Debug.Log("Exit CooldownLoop() on " + Name + ", " + caster.name);
     }
 
 	public IEnumerator Cooldown()
 	{
-        Debug.Log("Ability cooldown start (" + Name + ") on " + caster.name);
-
         if (caster.type == EntityType.Player) AbilityUI.instance.CooldownAnimation(this);
         isCoolingDown = true;
         yield return new WaitForSeconds(abilityData.cooldownTime);
@@ -186,7 +191,6 @@ public class Ability
         numberOfCharges++;
         numberOfCharges = Mathf.Clamp(numberOfCharges, 0, abilityData.maxCharges);
         FinishAbilityCooldown();
-        Debug.Log("Ability cooldown end (" + Name + ") on " + caster.name);
     }
 
     public IEnumerator InBetweenChargesCooldown()

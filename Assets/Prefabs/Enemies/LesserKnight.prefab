@@ -443,6 +443,7 @@ GameObject:
   - component: {fileID: 5315177173175149590}
   - component: {fileID: -735284154524861130}
   - component: {fileID: 7776377002268225968}
+  - component: {fileID: -1404565661259789377}
   m_Layer: 9
   m_Name: LesserKnight
   m_TagString: Enemy
@@ -569,6 +570,8 @@ MonoBehaviour:
       _PersistentCalls: []
     OnAbilityCoolDownEvent:
       _PersistentCalls: []
+    OnAbilityCoolDownPlayerEvent:
+      _PersistentCalls: []
   - abilityData: {fileID: 11400000, guid: e84a521b2f0cc7648b04a702f0cb7d92, type: 2}
     caster: {fileID: 0}
     numberOfCharges: 0
@@ -578,6 +581,8 @@ MonoBehaviour:
       _PersistentCalls: []
     OnAbilityCoolDownEvent:
       _PersistentCalls: []
+    OnAbilityCoolDownPlayerEvent:
+      _PersistentCalls: []
   - abilityData: {fileID: 11400000, guid: b1551ddf2f04db545854aca771e97e3f, type: 2}
     caster: {fileID: 0}
     numberOfCharges: 0
@@ -586,6 +591,8 @@ MonoBehaviour:
     OnAbilityTriggeredEvent:
       _PersistentCalls: []
     OnAbilityCoolDownEvent:
+      _PersistentCalls: []
+    OnAbilityCoolDownPlayerEvent:
       _PersistentCalls: []
   primaryKey: 323
   secondaryKey: 324
@@ -737,6 +744,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   telegraphSpriteRenderer: {fileID: 5050537421827601641}
+--- !u!114 &-1404565661259789377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4125757722190910676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36c390c9f75374c45a538b86bd138ede, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4447977924096083503
 GameObject:
   m_ObjectHideFlags: 0

@@ -173,8 +173,14 @@ public class Entity : MonoBehaviour
         while (lifedrain)
         {
             yield return new WaitForSeconds(1.5f);
-            if (health == 1) continue;
-            if (health - Mathf.Abs(lifedrainStep) < 1) { Debug.Log("LifedrainCoroutine: " + (lifedrainStep - health)); SetHealth(1); }
+            if (health == 1 || playerEntityDead) continue;
+            if (health - Mathf.Abs(lifedrainStep) < 1) 
+            {
+                #if UNITY_EDITOR
+                    Debug.Log("LifedrainCoroutine: " + (lifedrainStep - health));
+                #endif
+                SetHealth(1); 
+            }
             else if (health > 1) TakeDamage(lifedrainStep, false, false);
         }
     }
@@ -282,7 +288,10 @@ public class Entity : MonoBehaviour
         Debug.DrawRay(transform.position, target.gameObject.transform.position - gameObject.transform.position, Color.yellow);
 
         RaycastHit2D[] hits = Physics2D.CircleCastAll(gameObject.transform.position, entityData.circleCastCheckRadius, direction, distance, entityData.whatIsWall);
+
+        #if UNITY_EDITOR
         for (int i = 0; i < hits.Length; i++) Debug.Log(gameObject.name + " hit " + hits[i].collider.gameObject.name + ", which is on layer " + hits[i].collider.gameObject.layer.ToString());
+        #endif
 
         bool hit = Physics2D.CircleCast(gameObject.transform.position, entityData.circleCastCheckRadius, direction, distance, entityData.whatIsWall);
 
@@ -483,7 +492,9 @@ public class Entity : MonoBehaviour
 
     public void OnSwitchedTo(Entity from)
     {
+        #if UNITY_EDITOR
         Debug.Log("OnSwitchedTo entity " + name + " from entity " + from.name);
+        #endif
 
         abilities.CancelAbility();
 
@@ -512,13 +523,15 @@ public class Entity : MonoBehaviour
 
     public void OnSwitchedFrom(Entity to)
     {
+        #if UNITY_EDITOR
         Debug.Log("OnSwitchedFrom entity " + name + " to entity " + to.name);
+        #endif
 
-        if (playerEntityDead)
+        /*if (playerEntityDead)
         {
             PlayerDeath.instance.EndDeathSequence(this);
             playerEntityDead = false;
-        }
+        }*/
 
         invincible = false;
         SetLifedrainFlag(false);

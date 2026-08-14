@@ -48,7 +48,7 @@ public class StartMenu : MonoBehaviour
     {
         Debug.Log("StartMenu Play");
         SceneManager.LoadScene("Gameplay");
-        startUI.transform.DOBlendableLocalMoveBy(new Vector3(0, 390.31f, 0), 1.5f).SetEase(Ease.InSine).SetUpdate(true).OnComplete(() =>
+        startUI.transform.DOBlendableLocalMoveBy(new Vector3(0, 360.06427f, 0), 1.5f).SetEase(Ease.InSine).SetUpdate(true).OnComplete(() =>
         {
             Debug.Log("StartMenu DoLocalMove");
             startMenuOpen = false;

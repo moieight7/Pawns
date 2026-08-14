@@ -72,16 +72,22 @@ public class EnemySpawner : MonoBehaviour
     {
         if (totalEnemyCountInWave > 0) waves[currentWave].aliveEnemiesPercentage = aliveEnemies.Count / totalEnemyCountInWave;
 
+        #if UNITY_EDITOR
         Debug.Log("MidWaveTrigger: " + aliveEnemies.Count + " / " + totalEnemyCountInWave + " = " + waves[currentWave].aliveEnemiesPercentage);
+        #endif
 
         if (waves[currentWave].midWaveTriggers.Count != 0 && waves[currentWave].aliveEnemiesPercentage != 0)
         {
             int currentTrigger = waves[currentWave].currentMidTrigger;
             MidWaveTrigger midWaveTrigger = waves[currentWave].midWaveTriggers[currentTrigger];
+            #if UNITY_EDITOR
             Debug.Log("CurrentMidWaveTrigger check: " + midWaveTrigger.killedEnemiesThreshold + " >= " + waves[currentWave].aliveEnemiesPercentage + ", midWaveTrigger.fired:" + midWaveTrigger.fired);
+            #endif
             if (midWaveTrigger.killedEnemiesThreshold >= waves[currentWave].aliveEnemiesPercentage && midWaveTrigger.fired == false)
             {
+                #if UNITY_EDITOR
                 Debug.Log("Invoke MidWaveTrigger " + midWaveTrigger.killedEnemiesThreshold + " >= " + waves[currentWave].aliveEnemiesPercentage);
+                #endif
                 midWaveTrigger.OnMidWaveTrigger.Invoke();
                 midWaveTrigger.fired = true;
 

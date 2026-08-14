@@ -12,32 +12,17 @@ public class PlayerHealthSlider : MonoBehaviour
     public UIText healthText;
     public Color lifedrainAlertColor;
 
-    private Slider slider;
+    public Slider slider;
     private float velocity;
 
-    public static PlayerHealthSlider instance;
-
-    private void Awake()
+    void Start()
     {
-        if (instance != null)
-        {
-            Debug.LogWarning("An instance of HealthSlider already exists. Deleting the newest one...");
-            Destroy(gameObject);
-            return;
-        }
-
-        instance = this;
-        DontDestroyOnLoad(this.gameObject);
-
         Entity.OnSwitch += OnSwitch;
         Entity.OnPlayerDamaged += OnPlayerDamaged;
         Entity.OnLifedrainEnabled += OnLifedrainEnabled;
 
-        SceneManager.sceneLoaded += OnLevelReset;
-    }
+        //SceneManager.sceneLoaded += OnLevelReset;
 
-    void Start()
-    {
         slider = GetComponent<Slider>();
         SetEntity(GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>());
         SetText();
@@ -57,7 +42,9 @@ public class PlayerHealthSlider : MonoBehaviour
 
     private void SetText()
     {
-        healthText.SetText(Mathf.RoundToInt(entity.health).ToString() + " / " + entity.maxHealth.ToString());
+        int playerHealth = Mathf.RoundToInt(entity.health);
+        playerHealth = Mathf.Clamp(playerHealth, 0, (int)entity.maxHealth);
+        healthText.SetText(playerHealth.ToString() + " / " + entity.maxHealth.ToString());
     }
 
     private void OnPlayerDamaged()
@@ -70,16 +57,18 @@ public class PlayerHealthSlider : MonoBehaviour
         SetEntity(to);
     }
 
-    private void OnLevelReset(Scene scene, LoadSceneMode arg1)
+    /*private void OnLevelReset(Scene scene, LoadSceneMode arg1)
     {
         if (scene.name != "Gameplay") { return; }
         slider = GetComponent<Slider>();
         SetEntity(GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>());
         SetText();
-    }
+    }*/
 
     private void OnLifedrainEnabled()
     {
+        if (slider == null) return;
+        slider = GetComponent<Slider>();
         Image image = slider.fillRect.gameObject.GetComponent<Image>();
         Color startingColor = slider.fillRect.gameObject.GetComponent<Image>().color;
 
