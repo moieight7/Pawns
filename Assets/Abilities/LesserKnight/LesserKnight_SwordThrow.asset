@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Sword Throw
   description: Throws a sword in the direction you're looking.
-  icon: {fileID: 21300000, guid: aff74750ef3833840a6da03dcfd39596, type: 3}
+  icon: {fileID: 21300000, guid: c8d38119f1fc5c544aed40388e12887a, type: 3}
   UIcolor: {r: 1, g: 1, b: 1, a: 1}
   UIoffColor: {r: 0.54901963, g: 0.54901963, b: 0.54901963, a: 0.54901963}
   telegraphColor: {r: 0.11463465, g: 0.7490196, b: 0, a: 1}

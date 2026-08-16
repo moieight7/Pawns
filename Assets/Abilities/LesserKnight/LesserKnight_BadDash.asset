@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c92bf4f4d35a9444487b49b6788044aa, type: 3}
   m_Name: LesserKnight_BadDash
   m_EditorClassIdentifier: 
-  name: Bad Dash
-  description: Dash a short distance, then fall over.
-  icon: {fileID: 21300000, guid: 26ec46a6e836bec4b9b7193679635081, type: 3}
+  name: Dash
+  description: Dash a short distance.
+  icon: {fileID: 21300000, guid: a66abb7a16661b043bb5e699685e7df5, type: 3}
   UIcolor: {r: 1, g: 1, b: 1, a: 1}
   UIoffColor: {r: 0.54901963, g: 0.54901963, b: 0.54901963, a: 0.54901963}
   telegraphColor: {r: 0, g: 0, b: 0, a: 0}

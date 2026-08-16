@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Magic Missile
   description: A quick bolt of magic that deals a small amount of damage.
-  icon: {fileID: 21300000, guid: cb6fbf122c536b74b906ca257609b0dc, type: 3}
+  icon: {fileID: 21300000, guid: 583c35b1f1cb36f4486b2f8b6cbd2d94, type: 3}
   UIcolor: {r: 1, g: 1, b: 1, a: 1}
   UIoffColor: {r: 0.54901963, g: 0.54901963, b: 0.54901963, a: 0.54901963}
   telegraphColor: {r: 0, g: 0.9715028, b: 1, a: 1}

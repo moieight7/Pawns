@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Burst
   description: Fires three slow bullets at a target.
-  icon: {fileID: 21300000, guid: cb6fbf122c536b74b906ca257609b0dc, type: 3}
+  icon: {fileID: 21300000, guid: 04b40728869cd6c45b63f41393903720, type: 3}
   UIcolor: {r: 1, g: 1, b: 1, a: 1}
   UIoffColor: {r: 0.54901963, g: 0.54901963, b: 0.54901963, a: 0.54901963}
   telegraphColor: {r: 1, g: 1, b: 1, a: 1}

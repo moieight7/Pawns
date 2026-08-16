@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Possess Pawn
   description: Strike a pawn with this to take control!
-  icon: {fileID: 21300000, guid: 4c1bdb65db5dce34aa847c8a5f0147a5, type: 3}
+  icon: {fileID: 21300000, guid: c43b66ca4ae9f2145bdb644cd209d413, type: 3}
   UIcolor: {r: 1, g: 0.8795767, b: 0, a: 1}
   UIoffColor: {r: 0.764151, g: 0.6734452, b: 0.018022425, a: 0.54901963}
   telegraphColor: {r: 255, g: 0, b: 0, a: 1}

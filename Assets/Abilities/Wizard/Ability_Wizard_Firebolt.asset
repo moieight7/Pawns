@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Firebolt
   description: Fires an explosive bolt that detonates after a short delay.
-  icon: {fileID: 21300000, guid: aff74750ef3833840a6da03dcfd39596, type: 3}
+  icon: {fileID: 21300000, guid: 0bcb3955e8116ef438ca39db6195675d, type: 3}
   UIcolor: {r: 1, g: 1, b: 1, a: 1}
   UIoffColor: {r: 0.54901963, g: 0.54901963, b: 0.54901963, a: 0.54901963}
   telegraphColor: {r: 1, g: 0.46893463, b: 0, a: 1}

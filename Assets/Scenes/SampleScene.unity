@@ -16655,9 +16655,7 @@ MonoBehaviour:
   spawnTimer: 1
   randomSpawnDelayMin: 0.05
   randomSpawnDelayMax: 0.15
-  currentWave: -1
   aliveEnemies: []
-  totalEnemyCountInWave: 0
 --- !u!1 &412584105
 GameObject:
   m_ObjectHideFlags: 0
@@ -18587,7 +18585,7 @@ MonoBehaviour:
   m_OverrideTileSize: 1
   m_TileSize: 16
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.6666667
+  m_VoxelSize: 0.5
   m_BuildHeightMesh: 0
   m_MinRegionArea: 0
   m_HideEditorLogs: 0

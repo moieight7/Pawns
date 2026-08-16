@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Spread
   description: Fires three bullets in an arc pattern.
-  icon: {fileID: 21300000, guid: aff74750ef3833840a6da03dcfd39596, type: 3}
+  icon: {fileID: 21300000, guid: 39a4bb54181eca6469e5f3e3abe2610d, type: 3}
   UIcolor: {r: 1, g: 1, b: 1, a: 1}
   UIoffColor: {r: 0.54901963, g: 0.54901963, b: 0.54901963, a: 0.54901963}
   telegraphColor: {r: 1, g: 0, b: 0, a: 1}

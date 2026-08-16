@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Teleport
   description: Teleports the user to the point they're aiming at.
-  icon: {fileID: 21300000, guid: 26ec46a6e836bec4b9b7193679635081, type: 3}
+  icon: {fileID: 21300000, guid: df9b5624d6488c4469ab05b1fb7db4e8, type: 3}
   UIcolor: {r: 1, g: 1, b: 1, a: 1}
   UIoffColor: {r: 0.54901963, g: 0.54901963, b: 0.54901963, a: 0.54901963}
   telegraphColor: {r: 0, g: 0, b: 0, a: 0}
