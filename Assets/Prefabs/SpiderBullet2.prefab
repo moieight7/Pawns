@@ -329,7 +329,7 @@ MonoBehaviour:
   destroyOnHit: 1
   playerColor: {r: 0.28627452, g: 1, b: 0, a: 0.54509807}
   enemyColor: {r: 1, g: 0.11764706, b: 0, a: 0.59607846}
-  filter: {fileID: 0}
+  filter: {fileID: 5410395107584040372}
   sender: {fileID: 0}
   invisible: 0
   OnHitEvent:

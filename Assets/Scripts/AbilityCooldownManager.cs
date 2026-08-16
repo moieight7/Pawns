@@ -25,9 +25,9 @@ public class AbilityCooldownManager : MonoBehaviour
         if (ability.cooldownLoop == null) { ability.cooldownLoop = StartCoroutine(ability.CooldownLoop());  }
     }
 
-    public void TriggerAbilityCooldown(IEnumerator coroutine)
+    public Coroutine TriggerAbilityCooldown(Ability ability, IEnumerator coroutine)
     {
-        StartCoroutine(coroutine);
+        return StartCoroutine(coroutine);
     }
 
     public void TriggerAbilityInBetweenChargesCooldown(Ability ability)
@@ -37,8 +37,9 @@ public class AbilityCooldownManager : MonoBehaviour
 
     public void CancelAbilityCooldown(Ability ability)
     {
-        if (ability.cooldownLoop != null) { StopCoroutine(ability.CooldownLoop()); ability.cooldownLoop = null; }
-        StopCoroutine(ability.Cooldown());
+        ability.cooldownCoroutines.Clear();
+        if (ability.cooldownLoop != null) StopCoroutine(ability.cooldownLoop); ability.cooldownLoop = null;
+        if (ability.cooldown != null) StopCoroutine(ability.cooldown);
     }
 
     public void StopAbilityCooldown(Ability ability)

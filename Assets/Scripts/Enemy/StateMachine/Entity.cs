@@ -43,7 +43,7 @@ public class Entity : MonoBehaviour
 
     private bool pauseStateMachine = false;
 
-    [SerializeField] private bool lifedrain = false;
+    private bool lifedrain = false;
     private float lifedrainDuration = 30;
     private float lifedrainStep;
 
@@ -89,6 +89,7 @@ public class Entity : MonoBehaviour
 
         DebugLogConsole.AddCommandStatic("buddha", "Upon death sets player HP to 1, ensuring they can never die.", "SetInvincibleFlag", typeof(Entity));
         DebugLogConsole.AddCommandStatic("hurt", "Deals damage to the player entity.", "TakeDamageConsole", typeof(Entity));
+        DebugLogConsole.AddCommandStatic("ghost", "Turns off the player's collisions.", "SetPlayerCollisions", typeof(Entity));
         DebugLogConsole.AddCommand("dracula", "Enables/disables the lifedrain flag on the player entity.", SetLifedrainFlagConsole);
     }
 
@@ -476,6 +477,17 @@ public class Entity : MonoBehaviour
         }
     }
 
+    private static void SetPlayerCollisions()
+    {
+        Entity player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
+        Collider2D collider = player.GetComponent<Collider2D>();
+
+        collider.enabled = !collider.enabled;
+
+        if (collider.enabled) Debug.Log("Ghost Mode on...");
+        else if (!collider.enabled) Debug.Log("Ghost Mode off...");
+    }
+
     public void PauseNavMeshAgent()
     {
         navMeshAgent.isStopped = true;
@@ -500,6 +512,7 @@ public class Entity : MonoBehaviour
         #endif
 
         abilities.CancelAbility();
+        abilities.ResetAllCooldowns();
 
         invincible = from.invincible;
         SetLifedrainFlag(from.lifedrain);
@@ -531,12 +544,6 @@ public class Entity : MonoBehaviour
         #if UNITY_EDITOR
         Debug.Log("OnSwitchedFrom entity " + name + " to entity " + to.name);
         #endif
-
-        /*if (playerEntityDead)
-        {
-            PlayerDeath.instance.EndDeathSequence(this);
-            playerEntityDead = false;
-        }*/
 
         invincible = false;
         SetLifedrainFlag(false);

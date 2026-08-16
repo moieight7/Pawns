@@ -16,13 +16,11 @@ public class Ability
 
     [HideInInspector] public List<IEnumerator> cooldownCoroutines = new List<IEnumerator>();
 
-    public bool cooldownLoopRunning = false;
-
     private bool isCoolingDown = false;
 
     public bool usable = true;
 
-    public Coroutine cooldownLoop;
+    public Coroutine cooldownLoop, cooldown;
 
     [SerializeField] public UltEvent OnAbilityTriggeredEvent, OnAbilityCoolDownEvent, OnAbilityCoolDownPlayerEvent;
 
@@ -165,18 +163,16 @@ public class Ability
     {
         if (cooldownLoop != null) yield break;
 
-        cooldownLoopRunning = true;
         while (cooldownCoroutines.Count > 0)
         {
             yield return new WaitUntil(() => cooldownCoroutines.Count > 0);
             if (cooldownCoroutines.Count > 0)
             {
-                AbilityCooldownManager.instance.TriggerAbilityCooldown(cooldownCoroutines.First());
+                cooldown = AbilityCooldownManager.instance.TriggerAbilityCooldown(this, cooldownCoroutines.First());
                 cooldownCoroutines.Remove(cooldownCoroutines.First());
             }
             yield return new WaitUntil(() => isCoolingDown == false);
         }
-        cooldownLoopRunning = false;
         cooldownLoop = null;
     }
 
@@ -216,7 +212,6 @@ public class Ability
     public void StopCooldown()
     {
         isCoolingDown = false;
-        cooldownLoopRunning = false;
         foreach (IEnumerator coroutine in cooldownCoroutines)
         {
             AbilityCooldownManager.instance.CancelAbilityCooldown(this);

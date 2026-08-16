@@ -57,7 +57,10 @@ public class EntityAbilities : MonoBehaviour
         foreach (PlayerAbility playerAbility in playerAbilities)
         {
             playerAbility.ability.caster = gameObject.GetComponent<Entity>();
-            playerAbility.ability.cooldownLoopRunning = false;
+
+            if (playerAbility.ability.cooldownLoop != null) StopCoroutine(playerAbility.ability.cooldownLoop);
+            playerAbility.ability.cooldownLoop = null;
+            playerAbility.ability.cooldownCoroutines.Clear();
             
             if (playerAbility.ability.StartUsable) { playerAbility.ability.numberOfCharges = playerAbility.ability.MaxCharges; playerAbility.ability.usable = true; }
             else { playerAbility.ability.numberOfCharges = 0; AbilityCooldownManager.instance.QueueCooldown(playerAbility.ability); }
@@ -157,9 +160,21 @@ public class EntityAbilities : MonoBehaviour
         EnableAbilities();
     }
 
-    private void ResetAllCooldowns()
+    public void ResetAllCooldowns()
     {
         foreach (PlayerAbility playerAbility in playerAbilities) playerAbility.ability.ResetCooldown();
+    }
+
+    public void DisableTemporarily(float delay)
+    {
+        StartCoroutine(Disable(delay));
+    }
+
+    private IEnumerator Disable(float delay)
+    {
+        canUseAbilites = false;
+        yield return new WaitForSeconds(delay);
+        canUseAbilites = true;
     }
 }
 

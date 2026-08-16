@@ -61,7 +61,7 @@ public static class AbilityBehaviorManager
 
     public static void SpiderPrimary_UseEffect(Entity caster, GameObject bullet, float numberOfBullets, float delay)
     {
-        for (int i = 0; i < numberOfBullets; i++) AttackSpawner.instance.SpawnAttack(caster, bullet, delay * i);
+        for (int i = 0; i < numberOfBullets; i++) { Debug.Log("SpiderPrimary_UseEffect " + caster.name + " " + i); AttackSpawner.instance.SpawnAttack(caster, bullet, delay * i); }
     }
 
     public static void Dash_UseEffect(Entity caster, float force, float duration)
@@ -205,11 +205,17 @@ public static class AbilityBehaviorManager
         if (target.stateMachine == null) target.stateMachine = new FiniteStateMachine();
         if (caster.stateMachine == null) caster.stateMachine = new FiniteStateMachine();
 
-        foreach (Ability ability in oldEntityAbilities.entityAbilities) AbilityCooldownManager.instance.CancelAbilityCooldown(ability);
-        foreach (Ability ability in oldEntityAbilities.entityAbilities) AbilityCooldownManager.instance.ResetAbilityCooldown(ability);
+        foreach (Ability ability in oldEntityAbilities.entityAbilities) 
+        {
+            AbilityCooldownManager.instance.CancelAbilityCooldown(ability);
+            AbilityCooldownManager.instance.ResetAbilityCooldown(ability);
+        }
 
-        foreach (Ability ability in newEntityAbilities.entityAbilities) AbilityCooldownManager.instance.CancelAbilityCooldown(ability);
-        foreach (Ability ability in newEntityAbilities.entityAbilities) AbilityCooldownManager.instance.ResetAbilityCooldown(ability);
+        foreach (Ability ability in newEntityAbilities.entityAbilities)
+        {
+            AbilityCooldownManager.instance.CancelAbilityCooldown(ability);
+            AbilityCooldownManager.instance.ResetAbilityCooldown(ability);
+        }
 
         target.OnSwitchedTo(caster);
         caster.OnSwitchedFrom(target);
@@ -221,6 +227,9 @@ public static class AbilityBehaviorManager
         oldEntityAbilities.RemoveAbility(AbilityType.Switch);
 
         newEntityAbilities.SetAbilities();
+
+        //oldEntityAbilities.DisableTemporarily(1.5f);
+        //newEntityAbilities.DisableTemporarily(1.5f);
 
         Target.instance.SetTarget(target.transform);
 
