@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TeleportState : State, IEnemyState
+public class TeleportState : State
 {
     protected D_TeleportState stateData;
 

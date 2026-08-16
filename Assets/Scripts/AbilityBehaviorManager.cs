@@ -61,7 +61,7 @@ public static class AbilityBehaviorManager
 
     public static void SpiderPrimary_UseEffect(Entity caster, GameObject bullet, float numberOfBullets, float delay)
     {
-        for (int i = 0; i < numberOfBullets; i++) { Debug.Log("SpiderPrimary_UseEffect " + caster.name + " " + i); AttackSpawner.instance.SpawnAttack(caster, bullet, delay * i); }
+        for (int i = 0; i < numberOfBullets; i++) AttackSpawner.instance.SpawnAttack(caster, bullet, delay * i);
     }
 
     public static void Dash_UseEffect(Entity caster, float force, float duration)
@@ -227,9 +227,6 @@ public static class AbilityBehaviorManager
         oldEntityAbilities.RemoveAbility(AbilityType.Switch);
 
         newEntityAbilities.SetAbilities();
-
-        //oldEntityAbilities.DisableTemporarily(1.5f);
-        //newEntityAbilities.DisableTemporarily(1.5f);
 
         Target.instance.SetTarget(target.transform);
 

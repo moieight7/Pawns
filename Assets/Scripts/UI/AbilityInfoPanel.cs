@@ -9,7 +9,6 @@ public class AbilityInfoPanel : MonoBehaviour
     public UIText abilityName, abilityDesc;
 
     private CanvasGroup canvasGroup;
-
     private Ability ability;
 
     private Tween showTween, hideTween;

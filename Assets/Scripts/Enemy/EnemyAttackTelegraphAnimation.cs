@@ -23,8 +23,6 @@ public class EnemyAttackTelegraphAnimation : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.M)) DoTelegraphAnim(new Color(255, 0, 0), 2f);
-
         if (doAnim)
         {
             telegraphSpriteRenderer.flipX = enemySpriteRenderer.flipX;

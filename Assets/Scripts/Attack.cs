@@ -9,7 +9,6 @@ public class Attack : MonoBehaviour
     public float damage;
     public float timeUntilDelete = 1;
     public bool destroyOnHit = true;
-    //public GameObject hitEffect;
 
     [Header("Color")]
     public Color playerColor;
@@ -17,11 +16,12 @@ public class Attack : MonoBehaviour
     public SpriteRenderer filter;
 
     [HideInInspector] public Transform sender;
-    protected Entity caster;
 
+    protected Entity caster;
     protected float timer;
+
     private float invisTimer;
-    [HideInInspector] public bool invisible = false;
+    private bool invisible = false;
 
     public UltEvent OnHitEvent;
 
@@ -43,6 +43,11 @@ public class Attack : MonoBehaviour
         else invisTimer = 0;
     }
 
+    public virtual void SetDirection(Vector2 direction, float rotationZ)
+    {
+        gameObject.transform.rotation = Quaternion.Euler(0f, 0f, rotationZ);
+    }
+
     public virtual void OnBecameInvisible()
     {
         invisible = true;
@@ -51,11 +56,6 @@ public class Attack : MonoBehaviour
     public virtual void OnBecameVisible()
     {
         invisible = false;
-    }
-
-    public virtual void SetDirection(Vector2 direction, float rotationZ)
-    {
-        gameObject.transform.rotation = Quaternion.Euler(0f, 0f, rotationZ);
     }
 
     protected void OnTriggerEnter2D(Collider2D collision)

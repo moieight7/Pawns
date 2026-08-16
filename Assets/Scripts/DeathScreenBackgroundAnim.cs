@@ -19,9 +19,8 @@ public class DeathScreenBackgroundAnim : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoaded;
 
         if (SceneManager.GetActiveScene().name == "Gameplay")
-        {
-            Debug.Log("DeathScreen OnSceneLoaded"); foreach (RawImage image in images) { StartCoroutine(EnableDelay(image, 0, false)); }
-        }
+            foreach (RawImage image in images) 
+                StartCoroutine(EnableDelay(image, 0, false));
     }
 
     public void DoAnimation()
@@ -57,9 +56,8 @@ public class DeathScreenBackgroundAnim : MonoBehaviour
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if (scene.name == "Gameplay")
-        {
-            Debug.Log("DeathScreen OnSceneLoaded"); foreach (RawImage image in images) { StartCoroutine(EnableDelay(image, 2, false)); }
-        }
+            foreach (RawImage image in images) 
+                StartCoroutine(EnableDelay(image, 2, false));
     }
 
     private IEnumerator EnableDelay(RawImage image, float delay, bool enable)

@@ -1,6 +1,6 @@
 using UnityEngine.AI;
 
-public class MoveState : State, IEnemyState
+public class MoveState : State
 {
     protected D_MoveState stateData;
 

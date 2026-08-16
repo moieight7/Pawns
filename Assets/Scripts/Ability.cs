@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UltEvents;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 [System.Serializable]
 public class Ability
@@ -16,9 +14,8 @@ public class Ability
 
     [HideInInspector] public List<IEnumerator> cooldownCoroutines = new List<IEnumerator>();
 
-    private bool isCoolingDown = false;
-
     public bool usable = true;
+    private bool isCoolingDown = false;
 
     public Coroutine cooldownLoop, cooldown;
 

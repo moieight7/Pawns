@@ -26020,7 +26020,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33133ecc4eaebb443a61ac0bf32f55ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyID: 0
   health: 0
   maxHealth: 0
   type: 1
@@ -26028,8 +26027,6 @@ MonoBehaviour:
   entityData: {fileID: 11400000, guid: d6e65dfdd19e0f149a923946601c687b, type: 2}
   target: {fileID: 0}
   isDashing: 0
-  playDeathSound: 1
-  dataObjects: []
   OnSwitchedToEvent:
     _PersistentCalls: []
   OnSwitchedFromEvent:
@@ -26181,7 +26178,6 @@ MonoBehaviour:
   - abilityData: {fileID: 11400000, guid: 72c2905d7dd981e448e25a33493fee2d, type: 2}
     caster: {fileID: 0}
     numberOfCharges: 2
-    cooldownLoopRunning: 1
     usable: 1
     OnAbilityTriggeredEvent:
       _PersistentCalls:
@@ -26213,7 +26209,6 @@ MonoBehaviour:
   - abilityData: {fileID: 11400000, guid: 9d63a338e9efd1c40a96101384a0cb58, type: 2}
     caster: {fileID: 0}
     numberOfCharges: 0
-    cooldownLoopRunning: 1
     usable: 1
     OnAbilityTriggeredEvent:
       _PersistentCalls:
@@ -29448,7 +29443,6 @@ MonoBehaviour:
   - abilityData: {fileID: 11400000, guid: 89203bc7b722db64d9f90855de79b7b6, type: 2}
     caster: {fileID: 0}
     numberOfCharges: 0
-    cooldownLoopRunning: 0
     usable: 1
     OnAbilityTriggeredEvent:
       _PersistentCalls: []
@@ -29459,7 +29453,6 @@ MonoBehaviour:
   - abilityData: {fileID: 11400000, guid: 67ee83240715d2f40a704c53f7705197, type: 2}
     caster: {fileID: 0}
     numberOfCharges: 0
-    cooldownLoopRunning: 0
     usable: 1
     OnAbilityTriggeredEvent:
       _PersistentCalls: []
@@ -29470,7 +29463,6 @@ MonoBehaviour:
   - abilityData: {fileID: 11400000, guid: eb7e12ae2acf2074eaa098c3823cd0ed, type: 2}
     caster: {fileID: 0}
     numberOfCharges: 0
-    cooldownLoopRunning: 0
     usable: 1
     OnAbilityTriggeredEvent:
       _PersistentCalls: []
@@ -29481,7 +29473,6 @@ MonoBehaviour:
   - abilityData: {fileID: 11400000, guid: 3bb8a358b70798744ae5ea430fb95150, type: 2}
     caster: {fileID: 0}
     numberOfCharges: 0
-    cooldownLoopRunning: 0
     usable: 1
     OnAbilityTriggeredEvent:
       _PersistentCalls: []
@@ -29492,7 +29483,6 @@ MonoBehaviour:
   - abilityData: {fileID: 11400000, guid: 9d63a338e9efd1c40a96101384a0cb58, type: 2}
     caster: {fileID: 0}
     numberOfCharges: 0
-    cooldownLoopRunning: 0
     usable: 1
     OnAbilityTriggeredEvent:
       _PersistentCalls: []
@@ -29561,7 +29551,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 366e3304a27552148b1f2b844b2409e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyID: 0
   health: 100
   maxHealth: 0
   type: 1
@@ -29569,8 +29558,6 @@ MonoBehaviour:
   entityData: {fileID: 11400000, guid: 712d61a0f0a17e7498fa1ed367cbb4b1, type: 2}
   target: {fileID: 0}
   isDashing: 0
-  playDeathSound: 1
-  dataObjects: []
   OnSwitchedToEvent:
     _PersistentCalls: []
   OnSwitchedFromEvent:
@@ -33595,7 +33582,6 @@ MonoBehaviour:
   - abilityData: {fileID: 11400000, guid: 72c2905d7dd981e448e25a33493fee2d, type: 2}
     caster: {fileID: 0}
     numberOfCharges: 2
-    cooldownLoopRunning: 1
     usable: 1
     OnAbilityTriggeredEvent:
       _PersistentCalls:
@@ -33627,7 +33613,6 @@ MonoBehaviour:
   - abilityData: {fileID: 11400000, guid: 9d63a338e9efd1c40a96101384a0cb58, type: 2}
     caster: {fileID: 0}
     numberOfCharges: 0
-    cooldownLoopRunning: 1
     usable: 1
     OnAbilityTriggeredEvent:
       _PersistentCalls:

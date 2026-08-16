@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StaggerState : State, IEnemyState
+public class StaggerState : State
 {
     D_StaggerState stateData;
 

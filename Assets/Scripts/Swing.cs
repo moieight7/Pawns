@@ -6,8 +6,9 @@ public class Swing : Attack
 {
     private Collider2D trigger;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         trigger = GetComponent<Collider2D>();
         trigger.enabled = false;
     }

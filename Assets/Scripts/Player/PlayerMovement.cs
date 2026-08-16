@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class PlayerMovement : MonoBehaviour
 {
     public float movementSpeed;
+
     [HideInInspector] public Vector2 motion;
 
     private Rigidbody2D rb;
@@ -17,6 +18,16 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         SceneManager.sceneLoaded += OnLevelReset;
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnLevelReset;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnLevelReset;
     }
 
     void Start()
@@ -38,9 +49,6 @@ public class PlayerMovement : MonoBehaviour
 
         if (gameObject.transform.position.x > crosshair.gameObject.transform.position.x && entity.entityData.flipX) GetComponent<SpriteRenderer>().flipX = false;
         else if (gameObject.transform.position.x < crosshair.gameObject.transform.position.x && entity.entityData.flipX) GetComponent<SpriteRenderer>().flipX = true;
-
-        /*if (rb.velocity.x < 0) GetComponent<SpriteRenderer>().flipX = true;
-        else if (rb.velocity.x > 0) GetComponent<SpriteRenderer>().flipX = false;*/
     }
 
     public void EnableMovement() 

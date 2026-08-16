@@ -10,19 +10,18 @@ using UnityEngine.UI;
 public class EntityAbilities : MonoBehaviour
 {
     public List<Ability> entityAbilities;
-    public KeyCode primaryKey, secondaryKey, utilityKey, specialKey, switchKey;
 
+    [SerializeField] private KeyCode primaryKey, secondaryKey, utilityKey, specialKey, switchKey;
     [SerializeField] private List<PlayerAbility> playerAbilities = new List<PlayerAbility>();
+
+    private bool canUseAbilites = true, isCasting = false;
 
     private Entity entity;
     private Coroutine delayedAbility;
 
-    private bool canUseAbilites = true, isCasting = false;
-
     void Start()
     {
         entity = GetComponent<Entity>();
-        //entityAbilities = new List<Ability>(entity.entityData.entityAbilities);
 
         Ability.OnAbilityTriggered += OnAbilityTriggered;
         Ability.OnAbilityChargeCooldown += OnAbilityChargeCooldown;
@@ -163,18 +162,6 @@ public class EntityAbilities : MonoBehaviour
     public void ResetAllCooldowns()
     {
         foreach (PlayerAbility playerAbility in playerAbilities) playerAbility.ability.ResetCooldown();
-    }
-
-    public void DisableTemporarily(float delay)
-    {
-        StartCoroutine(Disable(delay));
-    }
-
-    private IEnumerator Disable(float delay)
-    {
-        canUseAbilites = false;
-        yield return new WaitForSeconds(delay);
-        canUseAbilites = true;
     }
 }
 

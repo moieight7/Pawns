@@ -11,11 +11,6 @@ public class EntityNameText : MonoBehaviour
         Entity.OnSwitch += OnSwitch;
     }
 
-    private void Start()
-    {
-        //nameText = GetComponent<UIText>();
-    }
-
     private void OnSwitch(Entity to, Entity from)
     {
         nameText.SetText("You are controlling: <color=yellow>" + to.name + "</color>");

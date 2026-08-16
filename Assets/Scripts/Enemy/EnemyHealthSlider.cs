@@ -17,8 +17,16 @@ public class EnemyHealthSlider : MonoBehaviour
     private void Awake()
     {
         scale = transform.localScale;
+    }
 
+    private void OnEnable()
+    {
         Entity.OnEntityDamaged += OnEntityDamaged;
+    }
+
+    private void OnDisable()
+    {
+        Entity.OnEntityDamaged -= OnEntityDamaged;
     }
 
     void Start()

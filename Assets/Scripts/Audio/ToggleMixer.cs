@@ -15,8 +15,7 @@ public class ToggleMixer : MonoBehaviour
 
     private void Start()
     {
-        float volume = 0f;
-        mixer.GetFloat(parameter, out volume);
+        mixer.GetFloat(parameter, out float volume);
 
         if (volume != -80)
         {
@@ -32,24 +31,19 @@ public class ToggleMixer : MonoBehaviour
 
     public void Toggle()
     {
-        Debug.Log("ToggleMixer toggle ");
-
-        float volume = 0f;
-        mixer.GetFloat(parameter, out volume);
+        mixer.GetFloat(parameter, out float volume);
 
         if (volume != -80)
         {
             mixer.SetFloat(parameter, -80);
             disabledImage.gameObject.SetActive(true);
             buttonImage.color = new Color(170, 170, 170);
-            Debug.Log("ToggleMixer toggle turn off");
         }
         else if (volume == -80)
         { 
             mixer.SetFloat(parameter, startVolume);
             disabledImage.gameObject.SetActive(false);
             buttonImage.color = new Color(255, 255, 255);
-            Debug.Log("ToggleMixer toggle turn on");
         }
     }
 }

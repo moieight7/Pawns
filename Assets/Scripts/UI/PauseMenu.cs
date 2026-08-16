@@ -84,7 +84,6 @@ public class PauseMenu : MonoBehaviour
 
     public void Quit()
     {
-        StartMenu.instance.SnapToMenuOpen();
         SceneManager.LoadScene("StartMenu");
     }
 }

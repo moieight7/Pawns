@@ -36,7 +36,10 @@ public class AudioManager : MonoBehaviour
                 s.source.clip = s.clip;
 
                 s.name = s.source.clip.name;
+
+                #if UNITY_EDITOR 
                 Debug.Log("Adding sound " + s.name + " to sound library.");
+                #endif
 
                 s.source.volume = s.volume;
                 s.source.pitch = s.pitch;
@@ -86,34 +89,10 @@ public class AudioManager : MonoBehaviour
         s.source.Stop();
     }
 
-    public void PlayClipAtPoint(string name, Transform point)
-    {
-        Sound s = Array.Find(sounds.ToArray(), sound => sound.name == name);
-        AudioSource.PlayClipAtPoint(s.clip, point.position, s.volume);
-    }
-
     public AudioSource GetSource(string name)
     {
         Sound s = Array.Find(sounds.ToArray(), sound => sound.name == name);
         return s.source;
-    }
-
-    public AudioClip GetClip(string name)
-    {
-        Sound s = Array.Find(sounds.ToArray(), sound => sound.name == name);
-        return s.clip;
-    }
-
-    public Sound GetSound(string name)
-    {
-        Sound s = Array.Find(sounds.ToArray(), sound => sound.name == name);
-        return s;
-    }
-
-    public float SetVolume(string name)
-    {
-        Sound s = Array.Find(sounds.ToArray(), sound => sound.name == name);
-        return s.volume;
     }
 
     public void FadeIn(string name, float startVolume, float endVolume, float time, Ease easeType = Ease.Linear)

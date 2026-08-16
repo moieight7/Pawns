@@ -8,7 +8,12 @@ public class FacePlayer : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private bool facingRight = false;
 
-    private void Awake()
+    private void OnEnable()
+    {
+        Entity.OnSwitch += OnSwitch;
+    }
+
+    private void OnDisable()
     {
         Entity.OnSwitch += OnSwitch;
     }

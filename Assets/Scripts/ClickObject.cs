@@ -9,7 +9,7 @@ using System.Linq;
 
 public class ClickObject : MonoBehaviour
 {
-    public GameObject lastHovered;
+    private GameObject lastHovered;
 
     void Update()
     {

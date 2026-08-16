@@ -23,6 +23,16 @@ public class DontDestroyUIOnLoad : MonoBehaviour
         SceneManager.sceneLoaded += OnLevelReset;
     }
 
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnLevelReset;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnLevelReset;
+    }
+
     private void OnLevelReset(Scene arg0, LoadSceneMode arg1)
     {
         GetComponent<Canvas>().worldCamera = Camera.main;

@@ -17,11 +17,11 @@ public class EnemySpawner : MonoBehaviour
     public float randomSpawnDelayMin = 0.05f;
     public float randomSpawnDelayMax = 0.15f;
 
-    public int currentWave = -1;
-    public List<GameObject> aliveEnemies;
-
     private bool isWaitingForWave = false, waveActive = false, isSpawningEnemies = false;
-    public float totalEnemyCountInWave;
+    private float totalEnemyCountInWave;
+    private int currentWave = -1;
+
+    public List<GameObject> aliveEnemies;
 
     public delegate void WaveChangedAction();
     public static event WaveChangedAction OnWaveChanged;
@@ -33,6 +33,18 @@ public class EnemySpawner : MonoBehaviour
     {
         Entity.OnSwitch += OnSwitch;
         Entity.OnEnemyKilled += CheckWaveStatus;
+    }
+
+    private void OnEnable()
+    {
+        Entity.OnSwitch += OnSwitch;
+        Entity.OnEnemyKilled += CheckWaveStatus;
+    }
+
+    private void OnDisable()
+    {
+        Entity.OnSwitch -= OnSwitch;
+        Entity.OnEnemyKilled -= CheckWaveStatus;
     }
 
     public void StartSpawning()
@@ -100,22 +112,6 @@ public class EnemySpawner : MonoBehaviour
     {
         waveActive = false;
         OnSpawningOver.Invoke();
-    }
-
-    public void ResetSpawner()
-    {
-        currentWave = -1;
-        isWaitingForWave = false;
-        waveActive = false;
-
-        for (int i = 0; i < aliveEnemies.Count; i++)
-        {
-            Entity entity = aliveEnemies[i].GetComponent<Entity>();
-            Destroy(entity.gameObject);
-        }
-        aliveEnemies.Clear();
-
-        foreach (Wave wave in waves) if (wave.midWaveTriggers.Count != 0) foreach (MidWaveTrigger midWaveTrigger in wave.midWaveTriggers) midWaveTrigger.fired = false;
     }
 
     IEnumerator NextWave()

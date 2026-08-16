@@ -5,6 +5,7 @@ using UnityEngine;
 public class SpiderEyeTarget : MonoBehaviour
 {
     [SerializeField] private float cameraTargetDivider;
+    [SerializeField] private float range = 0.2f;
 
     private Entity entity;
 
@@ -28,7 +29,7 @@ public class SpiderEyeTarget : MonoBehaviour
             transform.position = eyePosition;
         }
 
-        Vector2 clampedPosition = new Vector2(Mathf.Clamp(transform.localPosition.x, -0.2f, 0.2f), Mathf.Clamp(transform.localPosition.y, -0.2f, 0.2f));
+        Vector2 clampedPosition = new Vector2(Mathf.Clamp(transform.localPosition.x, -range, range), Mathf.Clamp(transform.localPosition.y, -range, range));
         transform.localPosition = clampedPosition;
     }
 }

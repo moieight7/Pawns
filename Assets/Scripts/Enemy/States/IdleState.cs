@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IdleState : State, IEnemyState
+public class IdleState : State
 {
     protected D_IdleState stateData;
 

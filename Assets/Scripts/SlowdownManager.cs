@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class SlowdownManager : MonoBehaviour
 {
-    private float desiredTimeScale = 1f, multiplier = 1;
+    private float multiplier = 1;
     private float lastTimeScale;
 
     public static SlowdownManager instance { get; private set; }
@@ -29,23 +29,11 @@ public class SlowdownManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
 
-    private void Start()
-    {
-        desiredTimeScale = Time.timeScale;
-    }
-
     public void Slowdown(float startAmount, float endAmount, float duration, Ease easeType)
     {
         Time.timeScale = startAmount;
         multiplier = duration;
         DOTween.To(() => Time.timeScale, x => Time.timeScale = x, endAmount, multiplier).SetEase(easeType).SetUpdate(true);
-    }
-
-    public void Slowdown(float amount, float duration, Ease easeType)
-    {
-        Time.timeScale = amount;
-        multiplier = duration;
-        DOTween.To(() => Time.timeScale, x => Time.timeScale = x, 1, multiplier).SetEase(easeType).SetUpdate(true);
     }
 
     public void CancelSlowdown()

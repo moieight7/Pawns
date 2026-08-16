@@ -18,8 +18,10 @@ public class Explosive : Projectile
     private DrawCircle explosionOutline;
     private Tween movementTween;
 
-    void Start()
+    protected override void Start()
     {
+        base.Start();
+
         movementTween = DOTween.To(() => rb.velocity, x => rb.velocity = x, Vector2.zero, 2).SetEase(Ease.OutSine);
 
         explosionOutline = GetComponent<DrawCircle>();

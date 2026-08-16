@@ -5,12 +5,11 @@ using UnityEngine;
 
 public class AbilityUI : MonoBehaviour
 {
-    public static AbilityUI instance;
-
     public GameObject containerPrefab;
 
     [SerializeField] private List<AbilityUIContainer> abilityUIContainers = new List<AbilityUIContainer>();
-    private Tween cooldownAnimation = null;
+
+    public static AbilityUI instance;
 
     private void Awake()
     {
@@ -50,17 +49,6 @@ public class AbilityUI : MonoBehaviour
         }
 
         SetAbilityUI();
-
-        /*foreach (ClickableObject clickableObject in shopPurchaseableObjects)
-        {
-            var call = clickableObject.OnHoverEvent.AddPersistentCall((Action)shopPurchaseableDynamicScreens[i].SetShopInfo);
-            call = clickableObject.OnHoverEvent.AddPersistentCall((Action)shopPurchaseableDynamicScreens[i].SetHover);
-            clickableObject.OnHoverStopEvent.AddPersistentCall((Action)shopPurchaseableDynamicScreens[i].UnsetHover);
-
-            clickableObject.OnClickEvent.AddPersistentCall((Action)shopPurchaseableDynamicScreens[i].PurchaseItem);
-
-            i++;
-        }*/
     }
 
     public void SetAbilityUI()

@@ -7,9 +7,14 @@ public class OnPlayerDeathEvent : MonoBehaviour
 {
     public UltEvent OnPlayerDeath;
 
-    private void Awake()
+    private void OnEnable()
     {
         Entity.OnPlayerKilled += OnPlayerKilled;
+    }
+
+    private void OnDisable()
+    {
+        Entity.OnPlayerKilled -= OnPlayerKilled;
     }
 
     private void OnPlayerKilled()

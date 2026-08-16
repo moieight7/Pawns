@@ -9,7 +9,8 @@ public class StartMenu : MonoBehaviour
 {
     public GameObject startUI, quitConfirm;
     public CanvasGroup contentCanvasGroup;
-    public List<RawImage> startMenuBackgrounds = new List<RawImage>();
+
+    [HideInInspector] public List<RawImage> startMenuBackgrounds = new List<RawImage>();
 
     private bool startMenuOpen = false;
 
@@ -46,32 +47,23 @@ public class StartMenu : MonoBehaviour
 
     public void Play()
     {
-        Debug.Log("StartMenu Play");
         SceneManager.LoadScene("Gameplay");
         startUI.transform.DOBlendableLocalMoveBy(new Vector3(0, 360.06427f, 0), 1.5f).SetEase(Ease.InSine).SetUpdate(true).OnComplete(() =>
         {
-            Debug.Log("StartMenu DoLocalMove");
             startMenuOpen = false;
             SlowdownManager.instance.UnPause();
         });
-    }
-
-    public void SnapToMenuOpen()
-    {
-        //startMenuOpen = true;
-        //startUI.transform.position = new Vector3(0, 0, 0);
     }
 
     public void SnapToMenuClosed()
     {
         startMenuOpen = false;
 
+        startUI.transform.localPosition = new Vector3(0, 360.06427f, 0);
+
         List<RawImage> images = new List<RawImage>();
         images = GetComponentsInChildren<RawImage>().ToList();
-        foreach (RawImage image in images)
-        {
-            image.transform.localPosition = Vector3.zero;
-        }
+        foreach (RawImage image in images) image.transform.localPosition = Vector3.zero;
 
         SlowdownManager.instance.UnPause();
     }
@@ -95,13 +87,10 @@ public class StartMenu : MonoBehaviour
             startMenuOpen = true; 
             contentCanvasGroup.DOFade(1, 1).SetUpdate(true); 
             DOTweenAnimationManager.Move(contentCanvasGroup.gameObject, new Vector3(-0.0027777785435318949f, -0.013888465240597725f, 0), 0.01f, Ease.Linear, true);
-            //contentCanvasGroup.gameObject.transform.position = Vector3.zero;
             startUI.transform.localPosition = new Vector3(0, 0, 0);
             foreach (RawImage image in startMenuBackgrounds) { image.enabled = true; image.gameObject.transform.localPosition = Vector3.zero; }
-            //DOTweenAnimationManager.Move(startUI, new Vector3(-0.04722222313284874f, 0, 92.20125579833985f), 0.01f, Ease.Linear, true);
         }
         else if (scene.name == "Gameplay") contentCanvasGroup.DOFade(0, 1).SetUpdate(true);
-        Debug.Log("OnSceneLoaded " + scene.name);
         GetComponent<Canvas>().worldCamera = Camera.main;
     }
 }

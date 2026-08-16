@@ -25,7 +25,7 @@ public class EnemyTargetSwitcher : MonoBehaviour
 
     void Start()
     {
-        enemies = FindObjectsOfType<Entity>().ToList<Entity>();
+        enemies = FindObjectsOfType<Entity>().ToList();
     }
 
     public void SetNewTarget()

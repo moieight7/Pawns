@@ -5,13 +5,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices.ComTypes;
 using TMPro;
+using UltEvents;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class Entity : MonoBehaviour
 {
     [Header("Entity Data")]
-    public int enemyID;
     [HideInInspector] public float health;
     [HideInInspector] public float maxHealth;
     public EntityType type;
@@ -26,35 +26,27 @@ public class Entity : MonoBehaviour
     public Animator animator { get; private set; }
     public EntityAbilities abilities { get; private set; }
     public NavMeshAgent navMeshAgent { get; private set; }
-    public AnimationToStateMachine atsm { get; private set; }
 
     private EnemyHealthSlider healthSlider;
 
     [HideInInspector] public bool isDashing = false;
-    [HideInInspector] public bool playDeathSound = true;
-    [HideInInspector] public List<ScriptableObject> dataObjects = new List<ScriptableObject>();
 
     private float iFrameTimer = 0;
-
-    private bool isKnockedBack = false;
-    private bool invincible = false;
-
-    private bool playerEntityDead = false;
-
-    private bool pauseStateMachine = false;
-
-    private bool lifedrain = false;
     private float lifedrainDuration = 30;
     private float lifedrainStep;
+
+    private bool invincible = false;
+    private bool lifedrain = false;
+    private bool pauseStateMachine = false;
+    private bool playerEntityDead = false;
 
     private Coroutine dashCooldown, lifedrainCoroutine;
 
     private Vector2 velocityWorkspace;
-    private static int id;
 
     [Header("Events")]
-    public UltEvents.UltEvent OnSwitchedToEvent;
-    public UltEvents.UltEvent OnSwitchedFromEvent;
+    public UltEvent OnSwitchedToEvent;
+    public UltEvent OnSwitchedFromEvent;
 
     public delegate void SwitchAction(Entity to, Entity from);
     public static event SwitchAction OnSwitch;
@@ -96,13 +88,10 @@ public class Entity : MonoBehaviour
     public virtual void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
-
         if (type == EntityType.Player) rb.bodyType = RigidbodyType2D.Dynamic;
 
         animator = gameObject.GetComponent<Animator>();
         abilities = gameObject.GetComponent<EntityAbilities>();
-
-        atsm = gameObject.GetComponent<AnimationToStateMachine>();
 
         healthSlider = GetComponentInChildren<EnemyHealthSlider>();
         if (type == EntityType.Player) healthSlider.Hide();
@@ -110,10 +99,7 @@ public class Entity : MonoBehaviour
         if (GetComponent<PlayerMovement>() != null) GetComponent<PlayerMovement>().movementSpeed = entityData.playerMovementSpeed;
 
         stateMachine = new FiniteStateMachine();
-
         target = Target.instance.TargetTransform;
-
-        enemyID = id++;
     }
 
     public virtual void Update()
@@ -176,7 +162,7 @@ public class Entity : MonoBehaviour
     {
         while (lifedrain)
         {
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(entityData.lifedrainDelay);
             if (health == 1 || playerEntityDead) continue;
             if (health - Mathf.Abs(lifedrainStep) < 1) 
             {
@@ -187,13 +173,6 @@ public class Entity : MonoBehaviour
             }
             else if (health > 1) TakeDamage(lifedrainStep, false, false);
         }
-    }
-
-    public virtual Vector3 SetDirection(Vector3 target)
-    {
-        Vector3 value = gameObject.transform.position - target;
-        value.Normalize();
-        return value;
     }
 
     public virtual void Dash(Vector2 dash, float duration = 0.4f)
@@ -215,17 +194,6 @@ public class Entity : MonoBehaviour
         return wallCheck.Count == 0;
     }
 
-    public void SetPosition(Transform point)
-    {
-        gameObject.transform.position = point.position;
-    }
-
-    public void ResetState()
-    {
-        animator.Rebind();
-        animator.Update(0f);
-    }
-
     private bool canSeePlayer;
 
     public bool CanSeePlayer
@@ -237,7 +205,6 @@ public class Entity : MonoBehaviour
                 return;
 
             canSeePlayer = value;
-            //ToggleFacePlayer(canSeePlayer);
         }
     }
 
@@ -250,7 +217,6 @@ public class Entity : MonoBehaviour
                 return;
 
             canSeePlayer = value;
-            //ToggleFacePlayer(canSeePlayer);
         }
     }
 
@@ -308,89 +274,27 @@ public class Entity : MonoBehaviour
         List<Collider2D> dangerous = new List<Collider2D>();
         if (Physics2D.OverlapCircleAll(gameObject.transform.position, entityData.closeRangeDist, entityData.whatIsDanger).Length != 0) 
         {
-            dangerous = Physics2D.OverlapCircleAll(gameObject.transform.position, entityData.closeRangeDist, entityData.whatIsDanger).ToList<Collider2D>();
-            //Debug.Log("CheckDanger: " + Physics2D.OverlapCircleAll(gameObject.transform.position, entityData.closeRangeDist, entityData.whatIsDanger)[0].name);
+            dangerous = Physics2D.OverlapCircleAll(gameObject.transform.position, entityData.closeRangeDist, entityData.whatIsDanger).ToList();
 
             List<Collider2D> nonFriendly = new List<Collider2D>();
             foreach (Collider2D collider in dangerous)
-            {
-                if (!((entityData.whatIsFriendly | (1 << collider.transform.parent.gameObject.layer)) == entityData.whatIsFriendly)) nonFriendly.Add(collider);
-            }
-            if (nonFriendly.Count == 0) return false;
+                if (!((entityData.whatIsFriendly | (1 << collider.transform.parent.gameObject.layer)) == entityData.whatIsFriendly)) 
+                    nonFriendly.Add(collider);
 
-            return true; 
+            if (nonFriendly.Count == 0) return false;
+            return true;
         }
         else return false;
     }
 
     public virtual GameObject GetDangerousObject()
     {
-        //Debug.Log("GetDangerousObject: " + Physics2D.OverlapCircle(gameObject.transform.position, entityData.closeRangeDist, entityData.whatIsDanger).gameObject.name);
         return Physics2D.OverlapCircle(gameObject.transform.position, entityData.closeRangeDist, entityData.whatIsDanger).gameObject;
     }
-
-    /*public void ToggleFacePlayer(bool toggle)
-    {
-        if (gameObject.GetComponent<FacePlayer>() != null) gameObject.GetComponent<FacePlayer>().enabled = toggle;
-    }*/
 
     public virtual bool CheckCloseRangeAction()
     {
         return Physics.OverlapSphere(gameObject.transform.position, entityData.closeRangeDist, entityData.whatIsPlayer).Length > 0;
-    }
-
-    public virtual Transform FindPlayersLastPosition()
-    {
-        return target.gameObject.transform;
-    }
-
-    public void DealDamage(float damage)
-    {
-        target.GetComponent<Entity>().TakeDamage(damage);
-    }
-
-    public bool KnockedBack()
-    {
-        return isKnockedBack;
-    }
-
-    public void OnReceivedKnockback()
-    {
-        StartCoroutine(KnockbackCoroutine());
-    }
-
-    public void OnTakeDamage()
-    {
-        //if (entityData.hurtSound) AudioManager.instance.Play(entityData.hurtSound.name, 5);
-    }
-
-    public void OnDeath()
-    {
-        //if (entityData.deathSound && playDeathSound) AudioManager.instance.Play(entityData.deathSound.name, 5);
-    }
-
-    private IEnumerator KnockbackCoroutine()
-    {
-        yield return null;
-        navMeshAgent.enabled = false;
-        //rb.useGravity = true;
-        rb.isKinematic = false;
-        isKnockedBack = true;
-
-        yield return new WaitForFixedUpdate();
-        yield return new WaitUntil(() => rb.velocity.magnitude <= entityData.knockbackStillThreshold);
-        yield return new WaitForSeconds(0.1f);
-
-        rb.velocity = Vector3.zero;
-        //rb.angularVelocity = Vector3.zero;
-        navMeshAgent.enabled = true;
-        //rb.useGravity = true;
-        rb.isKinematic = false;
-        navMeshAgent.Warp(transform.position);
-
-        yield return null;
-
-        isKnockedBack = false;
     }
 
     private IEnumerator DashCooldown(float cooldown)
