@@ -11,7 +11,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject pauseUI, content, resetConfirm, quitConfirm;
     public UltEvent OnPauseKey, OnUnpauseKey;
 
-    private bool paused = false;
+    private bool paused = false, canPause = true;
     private Tween moveTween;
 
     public bool Paused
@@ -37,12 +37,28 @@ public class PauseMenu : MonoBehaviour
 
     void Start()
     {
+        canPause = true;
         pauseUI.SetActive(false);
+    }
+
+    private void OnEnable()
+    {
+        Entity.OnPlayerKilled += OnPlayerKilled;
+    }
+
+    private void OnDisable()
+    {
+        Entity.OnPlayerKilled += OnPlayerKilled;
+    }
+
+    private void OnPlayerKilled()
+    {
+        canPause = false;
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !StartMenu.instance.StartMenuOpen)
+        if (Input.GetKeyDown(KeyCode.Escape) && !StartMenu.instance.StartMenuOpen && canPause)
         {
             if (!paused) { OnPauseKey.Invoke(); Pause(); }
             else { OnUnpauseKey.Invoke(); Unpause(); }

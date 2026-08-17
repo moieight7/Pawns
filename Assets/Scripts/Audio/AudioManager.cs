@@ -102,6 +102,12 @@ public class AudioManager : MonoBehaviour
         DOTween.To(() => audioSource.volume, x => audioSource.volume = x, endVolume, time).SetEase(easeType).SetUpdate(true);
     }
 
+    public void FadeOut(string name, float endVolume, float time, Ease easeType = Ease.Linear)
+    {
+        AudioSource audioSource = GetSource(name);
+        DOTween.To(() => audioSource.volume, x => audioSource.volume = x, endVolume, time).SetEase(easeType).SetUpdate(true);
+    }
+
     private IEnumerator PlayWithDelay(Sound s, float delay)
     {
         yield return new WaitForSeconds(delay);

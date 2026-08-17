@@ -13,17 +13,18 @@ MonoBehaviour:
   m_Name: LesserKnight_BaseData
   m_EditorClassIdentifier: 
   health: 100
+  lifedrainDelay: 1.8
   lifedrainDuration: 35
   iFrameTime: 1.3
   playerMovementSpeed: 370
   navMeshAgentMovementSpeed: 5
   seeThroughObstacles: 0
+  flipX: 1
   playerMinCheckDist: 3
   playerMaxCheckDist: 10
   closeRangeDist: 2
   circleCastCheckRadius: 1
   rangeCheckOffset: 0.2
-  knockbackStillThreshold: 0.05
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
@@ -39,113 +40,3 @@ MonoBehaviour:
   whatIsFriendly:
     serializedVersion: 2
     m_Bits: 768
-  spawnSound: {fileID: 0}
-  hurtSound: {fileID: 0}
-  deathSound: {fileID: 0}
-  entityAbilities:
-  - abilityData: {fileID: 11400000, guid: 89203bc7b722db64d9f90855de79b7b6, type: 2}
-    caster: {fileID: 0}
-    numberOfCharges: 1
-    cooldownLoopRunning: 0
-    usable: 1
-    OnAbilityTriggeredEvent:
-      _PersistentCalls:
-      - _Target: {fileID: 0}
-        _MemberName: AbilityBehaviorManager, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-          PublicKeyToken=null.Sword_UseEffect
-        _PersistentArguments:
-        - _Type: 13
-          _Int: 0
-          _String: Entity, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-          _X: 0
-          _Y: 0
-          _Z: 0
-          _W: 0
-          _Object: {fileID: 0}
-        - _Type: 13
-          _Int: 0
-          _String: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-          _X: 0
-          _Y: 0
-          _Z: 0
-          _W: 0
-          _Object: {fileID: 2698981838849851012, guid: f51a304092cf8594cbae12f48627599c, type: 3}
-    OnAbilityCoolDownEvent:
-      _PersistentCalls: []
-  - abilityData: {fileID: 11400000, guid: e84a521b2f0cc7648b04a702f0cb7d92, type: 2}
-    caster: {fileID: 0}
-    numberOfCharges: 1
-    cooldownLoopRunning: 0
-    usable: 1
-    OnAbilityTriggeredEvent:
-      _PersistentCalls:
-      - _Target: {fileID: 0}
-        _MemberName: AbilityBehaviorManager, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-          PublicKeyToken=null.TestPrimary_UseEffect
-        _PersistentArguments:
-        - _Type: 13
-          _Int: 0
-          _String: Entity, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-          _X: 0
-          _Y: 0
-          _Z: 0
-          _W: 0
-          _Object: {fileID: 0}
-        - _Type: 13
-          _Int: 0
-          _String: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-          _X: 0
-          _Y: 0
-          _Z: 0
-          _W: 0
-          _Object: {fileID: 41337451440972637, guid: ff7ee0741d2feee4ab9e70ef3437a733, type: 3}
-    OnAbilityCoolDownEvent:
-      _PersistentCalls: []
-  - abilityData: {fileID: 11400000, guid: b1551ddf2f04db545854aca771e97e3f, type: 2}
-    caster: {fileID: 0}
-    numberOfCharges: 1
-    cooldownLoopRunning: 0
-    usable: 1
-    OnAbilityTriggeredEvent:
-      _PersistentCalls:
-      - _Target: {fileID: 0}
-        _MemberName: AbilityBehaviorManager, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-          PublicKeyToken=null.Dash_UseEffect
-        _PersistentArguments:
-        - _Type: 13
-          _Int: 0
-          _String: Entity, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-          _X: 0
-          _Y: 0
-          _Z: 0
-          _W: 0
-          _Object: {fileID: 0}
-        - _Type: 5
-          _Int: 0
-          _String: 
-          _X: 20
-          _Y: 0
-          _Z: 0
-          _W: 0
-          _Object: {fileID: 0}
-        - _Type: 5
-          _Int: 0
-          _String: 
-          _X: 0.25
-          _Y: 0
-          _Z: 0
-          _W: 0
-          _Object: {fileID: 0}
-    OnAbilityCoolDownEvent:
-      _PersistentCalls: []
-  - abilityData: {fileID: 11400000, guid: 9d63a338e9efd1c40a96101384a0cb58, type: 2}
-    caster: {fileID: 0}
-    numberOfCharges: 0
-    cooldownLoopRunning: 0
-    usable: 1
-    OnAbilityTriggeredEvent:
-      _PersistentCalls: []
-    OnAbilityCoolDownEvent:
-      _PersistentCalls: []

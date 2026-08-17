@@ -329,9 +329,8 @@ MonoBehaviour:
   destroyOnHit: 1
   playerColor: {r: 1, g: 0.95686275, b: 0, a: 0.5176471}
   enemyColor: {r: 1, g: 0.95686275, b: 0, a: 0.5176471}
-  filter: {fileID: 0}
+  filter: {fileID: 8612180095923070650}
   sender: {fileID: 0}
-  invisible: 0
   OnHitEvent:
     _PersistentCalls:
     - _Target: {fileID: 0}

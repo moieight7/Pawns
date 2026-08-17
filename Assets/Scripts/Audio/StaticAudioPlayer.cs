@@ -30,4 +30,9 @@ public static class StaticAudioPlayer
     {
         AudioManager.instance.FadeIn(name, startVolume, endVolume, time, easeType);
     }
+
+    public static void FadeOut(string name, float endVolume, float time, Ease easeType = Ease.Linear)
+    {
+        AudioManager.instance.FadeOut(name, endVolume, time, easeType);
+    }
 }
